@@ -1,4 +1,4 @@
-package src.com.ic.unicamp.br.mc322.pacman;
+package com.ic.unicamp.br.mc322.pacman;
 
 public class Point {
 	private int x;
