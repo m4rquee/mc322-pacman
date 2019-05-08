@@ -1,4 +1,4 @@
-package src.com.ic.unicamp.br.mc322.pacman;
+package src.com.ic.unicamp.br.mc322.pacman.VisualJavaModel;
 
 import javax.swing.*;
 import java.awt.*;
