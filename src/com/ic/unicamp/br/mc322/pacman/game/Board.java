@@ -37,7 +37,7 @@ public class Board extends JPanel {
     public void doDrawing(Graphics g, Image apple, Image head, Image ball) {
         g.drawImage(apple, apple_x, apple_y, this);
 
-        for (int z = 0; z < B_LENGTH; z++) {
+        for (int z = 0; z < dots; z++) {
             int x = points.get(z).getX();
             int y = points.get(z).getY();
             if (z == 0) {

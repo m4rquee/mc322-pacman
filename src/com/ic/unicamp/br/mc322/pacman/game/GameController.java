@@ -23,8 +23,8 @@ public class GameController extends Board implements ActionListener {
 
 	public GameController() {
 		super.initBoard();
-		initGame();
 		loadImages();
+		initGame();
 	}
 
 	private void initGame() {
@@ -105,7 +105,7 @@ public class GameController extends Board implements ActionListener {
 		Point ini = points.get(0);
 		for (int z = dots; z > 0; z--) {
 		Point at = points.get(z);
-			if ((z > 4) && (ini.getX() == at.getX()) && (ini.getY() == at.getY())) {
+			if (ini.getX() == at.getX() && ini.getY() == at.getY()) {
 				inGame = false;
 			}
 		}

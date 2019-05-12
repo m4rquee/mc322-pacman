@@ -6,14 +6,14 @@ class Pacman {
 	private Point pos;
 	private int maxLife;
 //	private Direction direction;
-////	private bool isOnPowerUp;
+//	private bool isOnPowerUp;
 //	private final char[] symbols;
 
 	public Pacman(int l, Point p, char up, char down, char left, char right) {
 		this.life = l;
 		this.pos = p;
 //		this.maxLife = l;
-////		this.isOnPowerUp = false;
+//		this.isOnPowerUp = false;
 //		this.symbols = new char[4] {up, down, left, right};
 	}
 
@@ -31,6 +31,6 @@ class Pacman {
 
 //	public void draw(Console c) {
 //		c.gotoxy(this.pos);
-////		c.place(this.symbols[this.direction.ordinal()]);
+//		c.place(this.symbols[this.direction.ordinal()]);
 //	}
 }

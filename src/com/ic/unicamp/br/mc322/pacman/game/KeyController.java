@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 public class KeyController extends KeyAdapter {
     static Boolean leftDirection = false;
-    static Boolean rightDirection = false;
+    static Boolean rightDirection = true;
     static Boolean upDirection = false;
     static Boolean downDirection = false;
 
