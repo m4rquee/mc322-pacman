@@ -1,6 +1,6 @@
-package com.ic.unicamp.br.mc322.pacman;
+package com.ic.unicamp.br.mc322.pacman.game.runner;
 
-import com.ic.unicamp.br.mc322.pacman.game.GameController;
+import com.ic.unicamp.br.mc322.pacman.game.controller.GameController;
 
 import javax.swing.*;
 import java.awt.*;

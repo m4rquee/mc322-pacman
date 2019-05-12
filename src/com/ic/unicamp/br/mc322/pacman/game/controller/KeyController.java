@@ -1,4 +1,4 @@
-package com.ic.unicamp.br.mc322.pacman.game;
+package com.ic.unicamp.br.mc322.pacman.game.controller;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -13,28 +13,32 @@ public class KeyController extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        if ((key == KeyEvent.VK_LEFT) && (!rightDirection)) {
+        if (key == KeyEvent.VK_LEFT) {
             leftDirection = true;
             upDirection = false;
             downDirection = false;
+            rightDirection = false;
         }
 
-        if ((key == KeyEvent.VK_RIGHT) && (!leftDirection)) {
+        if (key == KeyEvent.VK_RIGHT) {
             rightDirection = true;
             upDirection = false;
             downDirection = false;
+            leftDirection = false;
         }
 
-        if ((key == KeyEvent.VK_UP) && (!downDirection)) {
+        if (key == KeyEvent.VK_UP) {
             upDirection = true;
             rightDirection = false;
             leftDirection = false;
+            downDirection = false;
         }
 
-        if ((key == KeyEvent.VK_DOWN) && (!upDirection)) {
+        if (key == KeyEvent.VK_DOWN) {
             downDirection = true;
             rightDirection = false;
             leftDirection = false;
+            upDirection = false;
         }
     }
 }
