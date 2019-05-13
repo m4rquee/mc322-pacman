@@ -6,22 +6,13 @@ import java.awt.*;
 
 public class Rectangle extends Obstacle {
 
-	private Point point;
 	private int width;
 	private int height;
 
-	public Rectangle(Point point, int width, int height) {
-		this.point = point;
+	public Rectangle(Point pos, int width, int height) {
+		this.pos = pos;
 		this.width = width;
 		this.height = height;
-	}
-
-	public Point getPoint() {
-		return point;
-	}
-
-	public void setPoint(Point point) {
-		this.point = point;
 	}
 
 	public int getWidth() {
@@ -42,15 +33,15 @@ public class Rectangle extends Obstacle {
 
 	@Override
 	public void drawMe(Graphics g) {
-		g.drawRect(point.getX(), point.getY(), width, height);
+		g.drawRect(pos.getX(), pos.getY(), width, height);
 	}
 
 	@Override
 	public boolean collision(Character character) {
 		int posX = character.getPos().getX();
 		int posY = character.getPos().getY();
-		return posX + character.getSize() > point.getX() && posX < point.getX() + width &&
-				posY + character.getSize() > point.getY() && posY < point.getY() + height;
+		return posX + character.getSize() > pos.getX() && posX < pos.getX() + width &&
+				posY + character.getSize() > pos.getY() && posY < pos.getY() + height;
 	}
 
 	@Override
@@ -58,8 +49,8 @@ public class Rectangle extends Obstacle {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Rectangle retangulo = (Rectangle) o;
-		return point.getX() == retangulo.point.getX() &&
-				point.getY() == retangulo.point.getY() &&
+		return pos.getX() == retangulo.pos.getX() &&
+				pos.getY() == retangulo.pos.getY() &&
 				width == retangulo.width &&
 				height == retangulo.height;
 	}

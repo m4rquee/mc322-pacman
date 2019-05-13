@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.Objects;
 
 public abstract class Character extends GameObject {
-    Point pos = new Point(0,0);
+
     private Image image;
     private Direction direction;
     private int size;
@@ -19,14 +19,6 @@ public abstract class Character extends GameObject {
     public Character(Point pos, Image imageIcon) {
         this.pos = pos;
         this.image = imageIcon;
-    }
-
-    public Point getPos() {
-        return pos;
-    }
-
-    public void setPos(Point pos) {
-        this.pos = pos;
     }
 
     public Image getImage() {
