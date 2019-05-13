@@ -1,6 +1,6 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
-import com.ic.unicamp.br.mc322.pacman.game.character.Character;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
 

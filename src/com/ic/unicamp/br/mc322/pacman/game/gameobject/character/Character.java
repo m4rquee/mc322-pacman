@@ -1,12 +1,13 @@
-package com.ic.unicamp.br.mc322.pacman.game.character;
+package com.ic.unicamp.br.mc322.pacman.game.gameobject.character;
 
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.GameObject;
 import com.ic.unicamp.br.mc322.pacman.game.utilities.Direction;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 
 import java.awt.*;
 import java.util.Objects;
 
-public abstract class Character {
+public abstract class Character extends GameObject {
     Point pos = new Point(0,0);
     private Image image;
     private Direction direction;

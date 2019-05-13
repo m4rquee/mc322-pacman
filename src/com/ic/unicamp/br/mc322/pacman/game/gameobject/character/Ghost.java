@@ -1,4 +1,4 @@
-package com.ic.unicamp.br.mc322.pacman.game.character;
+package com.ic.unicamp.br.mc322.pacman.game.gameobject.character;
 
 import java.awt.*;
 
