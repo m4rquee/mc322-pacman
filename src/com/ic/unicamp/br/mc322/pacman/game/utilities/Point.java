@@ -1,4 +1,4 @@
-package com.ic.unicamp.br.mc322.pacman.game.gameobject;
+package com.ic.unicamp.br.mc322.pacman.game.utilities;
 
 public class Point {
 	private int x;
@@ -10,21 +10,21 @@ public class Point {
 	}
 
 	public int getX() {
-		return this.x;	
+		return this.x;
 	}
-	
+
 	public int getY() {
-		return this.y;	
+		return this.y;
 	}
-	
+
 	public void setX(int x) {
-		this.x = x;	
+		this.x = x;
 	}
-	
+
 	public void setY(int y) {
-		this.y = y;	
+		this.y = y;
 	}
-	
+
 	public void move(Point vector) {
 		this.x += vector.x;
 		this.y += vector.y;
