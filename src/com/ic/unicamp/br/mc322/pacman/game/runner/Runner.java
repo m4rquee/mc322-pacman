@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Runner extends JFrame {
 
-	public Runner() {
+	private Runner() {
 		initUI();
 	}
 
@@ -24,9 +24,6 @@ public class Runner extends JFrame {
 
 
 	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> {
-			JFrame ex = new Runner();
-			ex.setVisible(true);
-		});
+		EventQueue.invokeLater(() -> new Runner().setVisible(true));
 	}
 }
