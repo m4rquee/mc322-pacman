@@ -1,6 +1,7 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
 import com.ic.unicamp.br.mc322.pacman.game.character.Character;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
 
 import javax.swing.*;
@@ -30,7 +31,7 @@ public class BoardController extends JPanel {
     private void buildObstacles() {
         for (int y = 20; y < B_HEIGHT; y += 35) {
             for (int x = 20; x < B_WIDTH - 20; x += 70) {
-                obstacleController.add(new Rectangle(x, y, 50, 10));
+                obstacleController.add(new Rectangle(new Point(x, y), 50, 10));
             }
         }
     }
