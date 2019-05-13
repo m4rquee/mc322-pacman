@@ -4,6 +4,8 @@ import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Ghost;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
 import com.ic.unicamp.br.mc322.pacman.game.utilities.Direction;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
+import com.ic.unicamp.br.mc322.pacman.game.view.GameView;
+import com.ic.unicamp.br.mc322.pacman.game.model.GameModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class GameController extends BoardController implements ActionListener {
+public class GameController implements ActionListener {
+
+	private GameView view;
+	private GameModel model;
 
 	public static final int DOT_SIZE = 1;
 	private static final int DELAY = 15;
@@ -23,8 +28,8 @@ public class GameController extends BoardController implements ActionListener {
 
 	private Timer timer;
 
-	public GameController() {
-		super.initBoard();
+	public GameController(GameView view, GameModel model) {
+		model.initBoard();
 		initGame();
 	}
 

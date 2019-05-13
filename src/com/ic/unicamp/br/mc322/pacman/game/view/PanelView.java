@@ -1,5 +1,8 @@
-package com.ic.unicamp.br.mc322.pacman.game.controller;
+package com.ic.unicamp.br.mc322.pacman.game.view;
 
+import com.ic.unicamp.br.mc322.pacman.game.controller.KeyController;
+import com.ic.unicamp.br.mc322.pacman.game.controller.ObstacleController;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.GameObject;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
@@ -7,33 +10,18 @@ import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
 import javax.swing.*;
 import java.awt.*;
 
-public class BoardController extends JPanel {
+public class PanelView extends JPanel implements GameView {
 
     static final int B_WIDTH = 300;
     static final int B_HEIGHT = 300;
 
     protected ObstacleController obstacleController = new ObstacleController();
 
-    BoardController() {
-        initBoard();
-    }
-
-    void initBoard() {
+    PanelView() {
         addKeyListener(new KeyController());
-
         setBackground(Color.black);
         setFocusable(true);
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
-
-        buildObstacles();
-    }
-
-    private void buildObstacles() {
-        for (int y = 20; y < B_HEIGHT; y += 35) {
-            for (int x = 20; x < B_WIDTH - 20; x += 70) {
-                obstacleController.add(new Rectangle(new Point(x, y), 50, 10));
-            }
-        }
     }
 
     void doDrawing(Graphics g, Character... characters) {
