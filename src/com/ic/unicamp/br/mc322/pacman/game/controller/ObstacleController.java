@@ -1,7 +1,7 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
 import com.ic.unicamp.br.mc322.pacman.game.character.Character;
-import com.ic.unicamp.br.mc322.pacman.game.gameObject.Obstacle;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Obstacle;
 
 import java.awt.*;
 import java.util.LinkedList;

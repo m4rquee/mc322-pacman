@@ -1,7 +1,7 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
 import com.ic.unicamp.br.mc322.pacman.game.character.Character;
-import com.ic.unicamp.br.mc322.pacman.game.gameObject.Rectangle;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
 
 import javax.swing.*;
 import java.awt.*;

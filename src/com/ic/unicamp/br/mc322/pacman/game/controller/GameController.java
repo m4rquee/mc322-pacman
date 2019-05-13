@@ -3,7 +3,7 @@ package com.ic.unicamp.br.mc322.pacman.game.controller;
 import com.ic.unicamp.br.mc322.pacman.game.character.Ghost;
 import com.ic.unicamp.br.mc322.pacman.game.character.Pacman;
 import com.ic.unicamp.br.mc322.pacman.game.utilities.Direction;
-import com.ic.unicamp.br.mc322.pacman.game.gameObject.Point;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 
 import javax.swing.*;
 import java.awt.*;

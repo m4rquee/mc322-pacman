@@ -1,7 +1,7 @@
 package com.ic.unicamp.br.mc322.pacman.game.character;
 
 import com.ic.unicamp.br.mc322.pacman.game.controller.GameController;
-import com.ic.unicamp.br.mc322.pacman.game.gameObject.Point;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 
 import javax.swing.*;
 import java.awt.*;

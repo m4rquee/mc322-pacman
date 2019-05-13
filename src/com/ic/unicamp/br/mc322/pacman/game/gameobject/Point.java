@@ -1,4 +1,4 @@
-package com.ic.unicamp.br.mc322.pacman.game.gameObject;
+package com.ic.unicamp.br.mc322.pacman.game.gameobject;
 
 public class Point {
 	private int x;
