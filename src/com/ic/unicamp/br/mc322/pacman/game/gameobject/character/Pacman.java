@@ -1,14 +1,14 @@
 package com.ic.unicamp.br.mc322.pacman.game.gameobject.character;
 
 import com.ic.unicamp.br.mc322.pacman.game.controller.GameController;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
+import com.ic.unicamp.br.mc322.pacman.game.utilities.Point;
 
 import javax.swing.*;
 import java.awt.*;
 
 import static com.ic.unicamp.br.mc322.pacman.game.controller.GameController.DOT_SIZE;
 
-public class Pacman extends Character{
+public class Pacman extends Character {
 
 	private int life;
 	private static final int SIZE = 10;
@@ -17,7 +17,7 @@ public class Pacman extends Character{
 //	private bool isOnPowerUp;
 
 	public Pacman() {
-		super(new Point(0, 0),  new ImageIcon("resources/greenPacman.png").getImage());
+		super(new Point(0, 0), new ImageIcon("resources/greenPacman.png").getImage());
 		this.life = MAX_LIFE;
 	}
 
@@ -44,20 +44,7 @@ public class Pacman extends Character{
 	}
 
 	public void move() {
-		switch (this.getDirection()) {
-			case LEFT:
-				this.setPos(new Point(this.getPos().getX() - 1, this.getPos().getY()));
-				break;
-			case RIGHT:
-				this.setPos(new Point(this.getPos().getX() + 1, this.getPos().getY()));
-				break;
-			case UP:
-				this.setPos(new Point(this.getPos().getX(), this.getPos().getY() - 1));
-				break;
-			case DOWN:
-				this.setPos(new Point(this.getPos().getX(), this.getPos().getY() + 1));
-				break;
-		}
+		this.setPos(this.getDirection().deltaVector());
 	}
 
 	public void takeHit(int damage) {
@@ -68,23 +55,8 @@ public class Pacman extends Character{
 		this.life = MAX_LIFE;
 	}
 
-	public Pacman withFuturePosition(){
-		Point futurePosition;
-		switch (this.getDirection()) {
-			case LEFT:
-				futurePosition = new Point(this.pos.getX() - DOT_SIZE, this.getPos().getY());
-				return new Pacman(this.life, this.getImage(), futurePosition);
-			case RIGHT:
-				futurePosition = new Point(this.pos.getX() + DOT_SIZE, this.getPos().getY());
-				return new Pacman(this.life, this.getImage(), futurePosition);
-			case UP:
-				futurePosition = new Point(this.pos.getX(), this.getPos().getY() - DOT_SIZE);
-				return new Pacman(this.life, this.getImage(), futurePosition);
-			case DOWN:
-				futurePosition = new Point(this.pos.getX(), this.getPos().getY() + DOT_SIZE);
-				return new Pacman(this.life, this.getImage(), futurePosition);
-			default:
-				return null;
-		}
+	public Pacman withFuturePosition() {
+		Point futurePosition = this.pos.translate(this.getDirection().deltaVector().times(DOT_SIZE));
+		return new Pacman(this.life, this.getImage(), futurePosition);
 	}
 }
