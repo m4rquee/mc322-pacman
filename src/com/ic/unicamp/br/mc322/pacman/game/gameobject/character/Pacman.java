@@ -17,7 +17,7 @@ public class Pacman extends Character{
 //	private bool isOnPowerUp;
 
 	public Pacman() {
-		super(new Point(0, 0),  new ImageIcon("src/resources/greenPacman.png").getImage());
+		super(new Point(0, 0),  new ImageIcon("resources/greenPacman.png").getImage());
 		this.life = MAX_LIFE;
 	}
 
