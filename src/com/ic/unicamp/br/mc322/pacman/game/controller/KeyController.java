@@ -13,32 +13,9 @@ public class KeyController extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT) {
-            leftDirection = true;
-            upDirection = false;
-            downDirection = false;
-            rightDirection = false;
-        }
-
-        if (key == KeyEvent.VK_RIGHT) {
-            rightDirection = true;
-            upDirection = false;
-            downDirection = false;
-            leftDirection = false;
-        }
-
-        if (key == KeyEvent.VK_UP) {
-            upDirection = true;
-            rightDirection = false;
-            leftDirection = false;
-            downDirection = false;
-        }
-
-        if (key == KeyEvent.VK_DOWN) {
-            downDirection = true;
-            rightDirection = false;
-            leftDirection = false;
-            upDirection = false;
-        }
+        leftDirection = key == KeyEvent.VK_LEFT;
+        upDirection = key == KeyEvent.VK_UP;
+        downDirection = key == KeyEvent.VK_DOWN;
+        rightDirection = key == KeyEvent.VK_RIGHT;
     }
 }
