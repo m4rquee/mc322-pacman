@@ -44,7 +44,11 @@ public class Pacman extends Character {
 	}
 
 	public void move() {
-		this.setPos(this.getDirection().deltaVector());
+		this.pos.move(this.getDirection().deltaVector());
+	}
+
+	public void moveTo(Point pos) {
+		this.pos = pos;
 	}
 
 	public void takeHit(int damage) {

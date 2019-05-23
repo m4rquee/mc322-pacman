@@ -1,6 +1,6 @@
 package com.ic.unicamp.br.mc322.pacman.game.utilities;
 
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Board;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.BoardMap;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Obstacle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
 
@@ -10,7 +10,7 @@ import java.util.Random;
 public class BoardGenerator {
 
 	private static final int PREFIXED_BOARDS = 3;
-	private static final Random randomGenerator = new Random();
+	private static final Random RANDOM_GENERATOR = new Random();
 
 	private int boardHeight;
 	private int boardWith;
@@ -25,26 +25,26 @@ public class BoardGenerator {
 		for (int i = 0; i < PREFIXED_BOARDS; i++)
 			this.obstacles.add(new ArrayList<>());
 
-		init();
+		initPrefixedBoards();
 	}
 
-	private void init() { // Prefixed boards
+	private void initPrefixedBoards() { // Prefixed boards
 		for (int y = 20; y < this.boardHeight; y += 35)
 			for (int x = 20; x < this.boardWith - 20; x += 70)
 				this.obstacles.get(0).add(new Rectangle(new Point(x, y), 50, 10));
 	}
 
-	public Board generateBoard() {
+	public BoardMap generateBoard() {
 		return this.rnd ? generatedBoard() : prefixedBoard();
 	}
 
-	private Board generatedBoard() {
+	private BoardMap generatedBoard() {
 		return null;
 	}
 
-	private Board prefixedBoard() {
-		Board ret = new Board(this.boardHeight, this.boardWith, 5);
-		int option = 0; // randomGenerator.nextInt(PREFIXED_BOARDS);
+	private BoardMap prefixedBoard() {
+		BoardMap ret = new BoardMap(this.boardHeight, this.boardWith, 5);
+		int option = 0; // RANDOM_GENERATOR.nextInt(PREFIXED_BOARDS);
 		this.obstacles.get(option).forEach(ret::addObstacle);
 		return ret;
 	}

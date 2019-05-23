@@ -3,15 +3,14 @@ package com.ic.unicamp.br.mc322.pacman.game.controller;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Ghost;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
 import com.ic.unicamp.br.mc322.pacman.game.utilities.Direction;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
+import com.ic.unicamp.br.mc322.pacman.game.utilities.Point;
 import com.ic.unicamp.br.mc322.pacman.game.view.GameView;
 import com.ic.unicamp.br.mc322.pacman.game.model.GameModel;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.awt.event.*;
+import java.util.*;
+import java.util.Timer;
 
 public class GameController implements ActionListener {
 

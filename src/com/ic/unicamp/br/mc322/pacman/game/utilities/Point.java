@@ -25,8 +25,16 @@ public class Point {
 		this.y = y;
 	}
 
+	public Point times(int k) {
+		return new Point(k * this.x, k * this.y);
+	}
+
 	public void move(Point vector) {
 		this.x += vector.x;
 		this.y += vector.y;
+	}
+
+	public Point translate(Point vector) {
+		return new Point(this.x + vector.x, this.y + vector.y);
 	}
 }

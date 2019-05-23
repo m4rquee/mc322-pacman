@@ -1,6 +1,7 @@
 package com.ic.unicamp.br.mc322.pacman.game.gameobject;
 
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
+import com.ic.unicamp.br.mc322.pacman.game.utilities.Point;
 
 import java.awt.*;
 

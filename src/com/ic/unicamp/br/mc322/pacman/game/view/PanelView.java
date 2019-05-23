@@ -2,10 +2,7 @@ package com.ic.unicamp.br.mc322.pacman.game.view;
 
 import com.ic.unicamp.br.mc322.pacman.game.controller.KeyController;
 import com.ic.unicamp.br.mc322.pacman.game.controller.ObstacleController;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.GameObject;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
 
 import javax.swing.*;
 import java.awt.*;
