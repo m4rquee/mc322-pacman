@@ -33,6 +33,7 @@ public class ObstacleController {
     }
 
     public void drawAllObstacles(Graphics g) {
+        g.setColor(Color.BLUE);
         for (Obstacle at : obstacles) {
             at.drawMe(g);
         }

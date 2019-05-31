@@ -40,8 +40,8 @@ public class Rectangle extends Obstacle {
 	public boolean collision(Character character) {
 		int posX = character.getPos().getX();
 		int posY = character.getPos().getY();
-		return posX + character.getSize() > pos.getX() && posX < pos.getX() + width &&
-				posY + character.getSize() > pos.getY() && posY < pos.getY() + height;
+		return posX + character.getSize()-5 > pos.getX() && posX < pos.getX() + width+1 &&
+				posY + character.getSize()-5 > pos.getY() && posY < pos.getY() + height+1;
 	}
 
 	@Override

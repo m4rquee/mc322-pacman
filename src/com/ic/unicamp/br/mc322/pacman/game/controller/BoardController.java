@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class BoardController extends JPanel {
 
-    static final int B_WIDTH = 300;
-    static final int B_HEIGHT = 300;
+    static final int B_WIDTH = 900;
+    static final int B_HEIGHT = 900;
 
     protected ObstacleController obstacleController = new ObstacleController();
 
@@ -29,24 +29,28 @@ public class BoardController extends JPanel {
     }
 
     private void buildObstacles() {
-        for (int y = 20; y < B_HEIGHT; y += 35) {
-            for (int x = 20; x < B_WIDTH - 20; x += 70) {
-                obstacleController.add(new Rectangle(new Point(x, y), 50, 10));
+        for (int y = 100; y < 300; y += 60) {
+            for (int x = 100; x < 300; x += 60) {
+                obstacleController.add(new Rectangle(new Point(x, y), 30, 30));
             }
         }
     }
 
     void doDrawing(Graphics g, Character... characters) {
-        g.setColor(Color.RED);
-        g.drawRect(1, 1, 298, 298);
-        g.drawRect(0, 0, 298, 298);
-        g.setColor(Color.BLUE);
+        drawBoundaries(g);
         obstacleController.drawAllObstacles(g);
         for (Character character : characters) {
             character.drawMe(g);
         }
 
         Toolkit.getDefaultToolkit().sync();
+    }
+
+    private void drawBoundaries(Graphics g) {
+        obstacleController.add(new Rectangle(new Point(0, 0), 900, 20));
+        obstacleController.add(new Rectangle(new Point(0, 0), 20, 900));
+        obstacleController.add(new Rectangle(new Point(0, 880), 900, 20));
+        obstacleController.add(new Rectangle(new Point(880, 0), 20, 900));
     }
 
     void gameOver(Graphics g) {
