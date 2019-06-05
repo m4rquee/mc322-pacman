@@ -13,87 +13,93 @@ import java.util.ArrayList;
 
 public class GameController extends BoardController implements ActionListener {
 
-	public static final int DOT_SIZE = 1;
-	private static final int DELAY = 15;
+    public static final int DOT_SIZE = 1;
+    private static final int DELAY = 2;
 
-	private Pacman pacman = new Pacman();
-	private ArrayList<Ghost> ghosts = new ArrayList<>();
+    private Pacman pacman = new Pacman();
+    private ArrayList<Ghost> ghosts = new ArrayList<>();
 
-	private boolean inGame = true;
+    private boolean inGame = true;
 
-	private Timer timer;
+    private Timer timer;
 
-	public GameController() {
-		super.initBoard();
-		initGame();
-	}
+    public GameController() {
+        super.initBoard();
+        initGame();
+    }
 
-	private void initGame() {
-		timer = new Timer(DELAY, this);
-		timer.start();
-	}
+    private void initGame() {
+        timer = new Timer(DELAY, this);
+        timer.start();
+    }
 
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
-		doDrawing(g);
-	}
+        doDrawing(g);
+    }
 
-	public void doDrawing(Graphics g) {
-		if (inGame) {
-			super.doDrawing(g, pacman);
-		} else {
-			super.gameOver(g);
-		}
-	}
+    public void doDrawing(Graphics g) {
+        if (inGame) {
+            super.doDrawing(g, pacman);
+        } else {
+            super.gameOver(g);
+        }
+    }
 
-	private void move() {
-		if (KeyController.leftDirection) {
-			pacman.setDirection(Direction.LEFT);
-		} else if (KeyController.rightDirection) {
-			pacman.setDirection(Direction.RIGHT);
-		} else if (KeyController.upDirection) {
-			pacman.setDirection(Direction.UP);
-		} else if (KeyController.downDirection) {
-			pacman.setDirection(Direction.DOWN);
-		}
+    private void move() {
+        Direction oldDirection = pacman.getDirection();
+        if (KeyController.leftDirection) {
+            pacman.setDirection(Direction.LEFT);
+        } else if (KeyController.rightDirection) {
+            pacman.setDirection(Direction.RIGHT);
+        } else if (KeyController.upDirection) {
+            pacman.setDirection(Direction.UP);
+        } else if (KeyController.downDirection) {
+            pacman.setDirection(Direction.DOWN);
+        }
+        if (!obstacleController.collisionDetected(pacman.withFuturePosition())) {
+            pacman.move();
+        } else {
+            Direction aux = oldDirection;
+            pacman.setDirection(aux);
+            if(!obstacleController.collisionDetected(pacman.withFuturePosition())) {
+                pacman.move();
+            }
+        }
+    }
 
-		if (!obstacleController.collisionDetected(pacman.withFuturePosition())) {
-			pacman.move();
-		}
-	}
+    private void checkBoardLimitDiyingArea() {
+        Point ini = pacman.getPos();
 
-	private void checkBoardLimitDiyingArea() {
-		Point ini = pacman.getPos();
+        if (ini.getY() + pacman.getSize() / 2 >= B_HEIGHT) {
+            inGame = false;
+        }
 
-		if (ini.getY() + pacman.getSize()/2 >= B_HEIGHT) {
-			inGame = false;
-		}
+        if (ini.getY() + pacman.getSize() / 2 < 0) {
+            inGame = false;
+        }
 
-		if (ini.getY() + pacman.getSize()/2 < 0) {
-			inGame = false;
-		}
+        if (ini.getX() + pacman.getSize() / 2 >= B_WIDTH) {
+            inGame = false;
+        }
 
-		if (ini.getX() + pacman.getSize()/2 >= B_WIDTH) {
-			inGame = false;
-		}
+        if (ini.getX() + pacman.getSize() / 2 < 0) {
+            inGame = false;
+        }
 
-		if (ini.getX() + pacman.getSize() / 2 < 0) {
-			inGame = false;
-		}
+        if (!inGame) {
+            timer.stop();
+        }
+    }
 
-		if (!inGame) {
-			timer.stop();
-		}
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (inGame) {
-			checkBoardLimitDiyingArea();
-			move();
-		}
-		repaint();
-	}
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (inGame) {
+            checkBoardLimitDiyingArea();
+            move();
+        }
+        repaint();
+    }
 }

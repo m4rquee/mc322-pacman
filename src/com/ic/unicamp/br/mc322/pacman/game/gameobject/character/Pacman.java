@@ -5,17 +5,20 @@ import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 
 import static com.ic.unicamp.br.mc322.pacman.game.controller.GameController.DOT_SIZE;
 
 public class Pacman extends Character {
 
     private int life;
-    private static final int SIZE = 25;
+    private static final int SIZE = 20;
     private static final int MAX_LIFE = 100;
 
     public Pacman() {
-        super(new Point(20, 20), new ImageIcon("resources/greenPacman.png").getImage());
+        super(new Point(20, 20), new ImageIcon("resources/pacmanWithAMouth.png").getImage());
         this.life = MAX_LIFE;
     }
 
@@ -26,9 +29,8 @@ public class Pacman extends Character {
 
     @Override
     public void drawMe(Graphics g) {
-        g.drawImage(this.getImage(), this.getPos()
-                                         .getX(), this.getPos()
-                                                      .getY(), 20, 20, new GameController());
+        g.drawImage(this.getImage(), this.getPos().getX(), this.getPos().getY(), 20, 20, new GameController());
+//        g.drawImage(this.getImage(), this.withFuturePosition().getPos().getX(), this.withFuturePosition().getPos().getY(), 20, 20, new GameController());
     }
 
     public int getSize() {

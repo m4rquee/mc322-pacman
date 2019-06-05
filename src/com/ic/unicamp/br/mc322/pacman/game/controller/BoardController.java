@@ -29,8 +29,8 @@ public class BoardController extends JPanel {
     }
 
     private void buildObstacles() {
-        for (int y = 100; y < 300; y += 60) {
-            for (int x = 100; x < 300; x += 60) {
+        for (int y = 40; y < 860; y += 50) {
+            for (int x = 40; x < 860; x += 50) {
                 obstacleController.add(new Rectangle(new Point(x, y), 30, 30));
             }
         }
