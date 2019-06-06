@@ -11,7 +11,7 @@ import java.util.Objects;
 public class ObstacleController {
     private List<Obstacle> obstacles;
 
-    public ObstacleController() {
+    ObstacleController() {
         this.obstacles = new LinkedList<>();
     }
 
@@ -23,23 +23,24 @@ public class ObstacleController {
         this.obstacles = obstacles;
     }
 
-    public boolean collisionDetected(Character character) {
+    boolean collisionDetected(Character character) {
         for (Obstacle at : obstacles) {
-            if (at.collision(character)) {
-                return true;
-            }
+            if (Math.abs(at.getPos().getY() - character.getPos().getY()) < 100)
+                if (Math.abs(at.getPos().getX() - character.getPos().getX()) < 100)
+                    if (at.collision(character))
+                        return true;
         }
         return false;
     }
 
-    public void drawAllObstacles(Graphics g) {
+    void drawAllObstacles(Graphics g) {
         g.setColor(Color.BLUE);
         for (Obstacle at : obstacles) {
             at.drawMe(g);
         }
     }
 
-    public void add (Obstacle obstacle) {
+    void add(Obstacle obstacle) {
         this.obstacles.add(obstacle);
     }
 

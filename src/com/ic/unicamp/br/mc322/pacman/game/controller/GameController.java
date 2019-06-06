@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class GameController extends BoardController implements ActionListener {
 
     public static final int DOT_SIZE = 1;
-    private static final int DELAY = 2;
+    private static final int DELAY = 20;
 
     private Pacman pacman = new Pacman();
     private ArrayList<Ghost> ghosts = new ArrayList<>();
@@ -62,8 +62,7 @@ public class GameController extends BoardController implements ActionListener {
         if (!obstacleController.collisionDetected(pacman.withFuturePosition())) {
             pacman.move();
         } else {
-            Direction aux = oldDirection;
-            pacman.setDirection(aux);
+            pacman.setDirection(oldDirection);
             if(!obstacleController.collisionDetected(pacman.withFuturePosition())) {
                 pacman.move();
             }

@@ -15,22 +15,6 @@ public class Rectangle extends Obstacle {
         this.height = height;
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
     @Override
     public void drawMe(Graphics g) {
         g.drawRect(pos.getX(), pos.getY(), width, height);
@@ -38,16 +22,11 @@ public class Rectangle extends Obstacle {
 
     @Override
     public boolean collision(Character character) {
-        int charX = character.getPos()
-                             .getX();
-        int charY = character.getPos()
-                             .getY();
+        int charX = character.getPos().getX();
+        int charY = character.getPos().getY();
 
         return !(charX + character.getSize() <= pos.getX() || charY + character.getSize() <= pos.getY() || charX >= pos.getX() + width
                 || charY >= pos.getY() + height);
-
-        //return posX + character.getSize() > pos.getX() && posX < pos.getX() + width+1 &&
-        //		posY + character.getSize() > pos.getY() && posY < pos.getY() + height+1;
     }
 
     @Override
