@@ -11,34 +11,26 @@ import java.util.Objects;
 public class ObstacleController {
     private List<Obstacle> obstacles;
 
-    public ObstacleController() {
+    ObstacleController() {
         this.obstacles = new LinkedList<>();
     }
 
-    public List<Obstacle> getObstacles() {
-        return obstacles;
-    }
-
-    public void setObstacles(List<Obstacle> obstacles) {
-        this.obstacles = obstacles;
-    }
-
-    public boolean collisionDetected(Character character) {
+    boolean collisionDetected(Character character) {
         for (Obstacle at : obstacles) {
-            if (at.collision(character)) {
-                return true;
-            }
+            if (at.collision(character))
+                return false;
         }
-        return false;
+        return true;
     }
 
-    public void drawAllObstacles(Graphics g) {
+    void drawAllObstacles(Graphics g) {
+        g.setColor(Color.BLUE);
         for (Obstacle at : obstacles) {
             at.drawMe(g);
         }
     }
 
-    public void add (Obstacle obstacle) {
+    void add(Obstacle obstacle) {
         this.obstacles.add(obstacle);
     }
 
