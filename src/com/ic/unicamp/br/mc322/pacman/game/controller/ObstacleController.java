@@ -15,22 +15,12 @@ public class ObstacleController {
         this.obstacles = new LinkedList<>();
     }
 
-    public List<Obstacle> getObstacles() {
-        return obstacles;
-    }
-
-    public void setObstacles(List<Obstacle> obstacles) {
-        this.obstacles = obstacles;
-    }
-
     boolean collisionDetected(Character character) {
         for (Obstacle at : obstacles) {
-            if (Math.abs(at.getPos().getY() - character.getPos().getY()) < 100)
-                if (Math.abs(at.getPos().getX() - character.getPos().getX()) < 100)
-                    if (at.collision(character))
-                        return true;
+            if (at.collision(character))
+                return false;
         }
-        return false;
+        return true;
     }
 
     void drawAllObstacles(Graphics g) {

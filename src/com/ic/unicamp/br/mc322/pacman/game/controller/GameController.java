@@ -59,11 +59,11 @@ public class GameController extends BoardController implements ActionListener {
         } else if (KeyController.downDirection) {
             pacman.setDirection(Direction.DOWN);
         }
-        if (!obstacleController.collisionDetected(pacman.withFuturePosition())) {
+        if (obstacleController.collisionDetected(pacman.withFuturePosition())) {
             pacman.move();
         } else {
             pacman.setDirection(oldDirection);
-            if(!obstacleController.collisionDetected(pacman.withFuturePosition())) {
+            if(obstacleController.collisionDetected(pacman.withFuturePosition())) {
                 pacman.move();
             }
         }

@@ -8,11 +8,18 @@ public class Rectangle extends Obstacle {
 
     private int width;
     private int height;
+    private static final int DEFAULT_SIZE = 30;
 
     public Rectangle(Point pos, int width, int height) {
         this.pos = pos;
         this.width = width;
         this.height = height;
+    }
+
+    public Rectangle(Point pos) {
+        this.pos = pos;
+        this.width = DEFAULT_SIZE;
+        this.height = DEFAULT_SIZE;
     }
 
     @Override
