@@ -4,19 +4,19 @@ import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 
 import java.awt.*;
 
-public class Rectangle extends Obstacle {
+public class Circle extends Obstacle {
 
     private int width;
     private int height;
-    private static final int DEFAULT_SIZE = 30;
+    private static final int DEFAULT_SIZE = 10;
 
-    public Rectangle(Point pos, int width, int height) {
+    public Circle(Point pos, int width, int height) {
         this.pos = pos;
         this.width = width;
         this.height = height;
     }
 
-    public Rectangle(Point pos) {
+    public Circle(Point pos) {
         this.pos = pos;
         this.width = DEFAULT_SIZE;
         this.height = DEFAULT_SIZE;
@@ -24,8 +24,8 @@ public class Rectangle extends Obstacle {
 
     @Override
     public void drawMe(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.drawRect(pos.getX(), pos.getY(), width, height);
+        g.setColor(Color.YELLOW);
+        g.fillOval(this.pos.getX(), this.pos.getY(), width, height);
     }
 
     @Override
@@ -35,15 +35,5 @@ public class Rectangle extends Obstacle {
 
         return !(charX + character.getSize() <= pos.getX() || charY + character.getSize() <= pos.getY() || charX >= pos.getX() + width
                 || charY >= pos.getY() + height);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Rectangle retangulo = (Rectangle) o;
-        return pos.getX() == retangulo.pos.getX() && pos.getY() == retangulo.pos.getY() && width == retangulo.width && height == retangulo.height;
     }
 }

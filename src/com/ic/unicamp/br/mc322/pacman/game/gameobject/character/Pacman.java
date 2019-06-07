@@ -20,9 +20,10 @@ public class Pacman extends Character {
     private static final int SIZE = 20;
     private static final int MAX_LIFE = 100;
     private Map<Direction, Image> images;
+    private static final Point DEFAULT_START_POINT = new Point(20, 40);
 
     public Pacman() {
-        super(new Point(20, 20), new ImageIcon("resources/pacmanWithAMouth.png").getImage());
+        super(DEFAULT_START_POINT, new ImageIcon("resources/pacmanWithAMouth.png").getImage());
         this.life = MAX_LIFE;
         initImages();
     }

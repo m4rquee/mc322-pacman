@@ -1,8 +1,10 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Circle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,14 +31,21 @@ public class BoardController extends JPanel {
     }
 
     private void buildObstacles() {
-        for (int y = 40; y < 860; y += 50) {
+        for (int y = 60; y < 860; y += 50) {
             for (int x = 40; x < 860; x += 50) {
+                if(x > 200 && y > 200) {
+                    obstacleController.add(new Circle(new Point(x-15,y-15)));
+                }
                 obstacleController.add(new Rectangle(new Point(x, y)));
             }
         }
     }
 
-    void doDrawing(Graphics g, Character... characters) {
+    void doDrawing(Graphics g, int levelNumber, Character... characters) {
+        g.setColor(Color.WHITE);
+        g.setFont(new Font(null, Font.PLAIN, 20));
+        g.drawString("Level: " + levelNumber, 5,18);
+        g.drawString("Points: 0", B_WIDTH-100,18);
         drawBoundaries(g);
         obstacleController.drawAllObstacles(g);
         for (Character character : characters) {
@@ -47,10 +56,10 @@ public class BoardController extends JPanel {
     }
 
     private void drawBoundaries(Graphics g) {
-        obstacleController.add(new Rectangle(new Point(0, 0), 900, 20));
-        obstacleController.add(new Rectangle(new Point(0, 0), 20, 900));
-        obstacleController.add(new Rectangle(new Point(0, 880), 900, 20));
-        obstacleController.add(new Rectangle(new Point(880, 0), 20, 900));
+        obstacleController.add(new Rectangle(new Point(0, 20), B_WIDTH-20, 20));
+        obstacleController.add(new Rectangle(new Point(0, 20), 20, B_HEIGHT-20));
+        obstacleController.add(new Rectangle(new Point(0, B_HEIGHT-20), B_WIDTH-20, 20));
+        obstacleController.add(new Rectangle(new Point(B_WIDTH-20, 20), 20, B_HEIGHT-20));
     }
 
     void gameOver(Graphics g) {

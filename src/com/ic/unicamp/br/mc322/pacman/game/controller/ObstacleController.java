@@ -1,5 +1,7 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Circle;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Obstacle;
 
@@ -24,7 +26,6 @@ public class ObstacleController {
     }
 
     void drawAllObstacles(Graphics g) {
-        g.setColor(Color.BLUE);
         for (Obstacle at : obstacles) {
             at.drawMe(g);
         }

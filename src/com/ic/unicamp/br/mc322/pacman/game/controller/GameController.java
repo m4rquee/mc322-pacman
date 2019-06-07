@@ -22,6 +22,7 @@ public class GameController extends BoardController implements ActionListener {
     private boolean inGame = true;
 
     private Timer timer;
+    private int levelNumber;
 
     public GameController() {
         super.initBoard();
@@ -31,6 +32,7 @@ public class GameController extends BoardController implements ActionListener {
     private void initGame() {
         timer = new Timer(DELAY, this);
         timer.start();
+        levelNumber = 1;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class GameController extends BoardController implements ActionListener {
 
     public void doDrawing(Graphics g) {
         if (inGame) {
-            super.doDrawing(g, pacman);
+            super.doDrawing(g, this.levelNumber, pacman);
         } else {
             super.gameOver(g);
         }
