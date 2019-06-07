@@ -2,12 +2,15 @@ package com.ic.unicamp.br.mc322.pacman.game.gameobject.character;
 
 import com.ic.unicamp.br.mc322.pacman.game.controller.GameController;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
+import com.ic.unicamp.br.mc322.pacman.game.utilities.Direction;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.ic.unicamp.br.mc322.pacman.game.controller.GameController.DOT_SIZE;
 
@@ -16,21 +19,31 @@ public class Pacman extends Character {
     private int life;
     private static final int SIZE = 20;
     private static final int MAX_LIFE = 100;
+    private Map<Direction, Image> images;
 
     public Pacman() {
         super(new Point(20, 20), new ImageIcon("resources/pacmanWithAMouth.png").getImage());
         this.life = MAX_LIFE;
+        initImages();
     }
 
     public Pacman(int life, Image image, Point pos) {
         super(pos, image);
         this.life = life;
+        initImages();
+    }
+
+    private void initImages() {
+        images = new HashMap<>();
+        images.put(Direction.DOWN, new ImageIcon("resources/pacmanWithAMouthDown.png").getImage());
+        images.put(Direction.UP,new ImageIcon("resources/pacmanWithAMouthUp.png").getImage());
+        images.put(Direction.LEFT,new ImageIcon("resources/pacmanWithAMouthLeft.png").getImage());
+        images.put(Direction.RIGHT,new ImageIcon("resources/pacmanWithAMouth.png").getImage());
     }
 
     @Override
     public void drawMe(Graphics g) {
         g.drawImage(this.getImage(), this.getPos().getX(), this.getPos().getY(), 20, 20, new GameController());
-//        g.drawImage(this.getImage(), this.withFuturePosition().getPos().getX(), this.withFuturePosition().getPos().getY(), 20, 20, new GameController());
     }
 
     public int getSize() {
@@ -38,7 +51,10 @@ public class Pacman extends Character {
     }
 
     public void move() {
-        switch (this.getDirection()) {
+        Direction direction = this.getDirection();
+        this.setImage(this.images.get(direction));
+
+        switch (direction) {
         case LEFT:
             this.setPos(new Point(this.getPos()
                                       .getX() - 1, this.getPos()
