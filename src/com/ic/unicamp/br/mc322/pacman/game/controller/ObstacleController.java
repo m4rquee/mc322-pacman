@@ -17,6 +17,10 @@ public class ObstacleController {
         this.obstacles = new LinkedList<>();
     }
 
+    public void removeObstacle(Obstacle obstacle) {
+        obstacles.remove(obstacle);
+    }
+
     boolean collisionDetected(Character character) {
         for (Obstacle at : obstacles) {
             if (at.collision(character))

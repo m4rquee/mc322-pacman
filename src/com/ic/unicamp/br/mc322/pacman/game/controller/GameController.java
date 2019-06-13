@@ -23,6 +23,15 @@ public class GameController extends BoardController implements ActionListener {
 
     private Timer timer;
     private int levelNumber;
+    private int points;
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
 
     public GameController() {
         super.initBoard();
@@ -44,7 +53,7 @@ public class GameController extends BoardController implements ActionListener {
 
     public void doDrawing(Graphics g) {
         if (inGame) {
-            super.doDrawing(g, this.levelNumber, pacman);
+            super.doDrawing(g, this.levelNumber, this.points, pacman);
         } else {
             super.gameOver(g);
         }

@@ -41,7 +41,7 @@ public class BoardController extends JPanel {
         }
     }
 
-    void doDrawing(Graphics g, int levelNumber, Character... characters) {
+    void doDrawing(Graphics g, int levelNumber, int points, Character... characters) {
         g.setColor(Color.WHITE);
         g.setFont(new Font(null, Font.PLAIN, 20));
         g.drawString("Level: " + levelNumber, 5,18);
