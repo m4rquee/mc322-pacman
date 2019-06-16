@@ -1,7 +1,5 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Circle;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Obstacle;
 
@@ -37,6 +35,10 @@ public class ObstacleController {
 
     void add(Obstacle obstacle) {
         this.obstacles.add(obstacle);
+    }
+
+    void add(List<Obstacle> obstacles) {
+        this.obstacles.addAll(obstacles);
     }
 
     @Override
