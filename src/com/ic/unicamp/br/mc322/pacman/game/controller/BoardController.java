@@ -10,14 +10,14 @@ import com.ic.unicamp.br.mc322.pacman.game.utilities.ObstacleBuilder;
 import javax.swing.*;
 import java.awt.*;
 
-public class BoardController extends JPanel {
+class BoardController extends JPanel {
 
-    static final int B_WIDTH = 900;
-    static final int B_HEIGHT = 900;
+    private static final int B_WIDTH = 910;
+    private static final int B_HEIGHT = 885;
     private static final int N = 3;
     private static final int SQUARE_SIZE = 30;
 
-    protected ObstacleController obstacleController = new ObstacleController();
+    ObstacleController obstacleController = new ObstacleController();
 
     BoardController() {
         initBoard();
@@ -34,17 +34,33 @@ public class BoardController extends JPanel {
     }
 
     private void buildObstacles() {
-        for (int y = 200; y < 860; y += 50)
-            for (int x = 200; x < 860; x += 50)
-                obstacleController.add(new Circle(new Point(x - 15, y - 15)));
-        obstacleController.add(ObstacleBuilder.buildObstacles(MapGenerator.generateMap(N), SQUARE_SIZE));
+        for (int y = 60; y < B_HEIGHT - 40; y += 50) {
+            for (int x = 40; x < B_WIDTH - 40; x += 50) {
+                if (x > 50 || y > 70) {
+                    obstacleController.add(new Circle(new Point(x - 15, y - 15)));
+                    obstacleController.add(new Circle(new Point(x + 10, y - 15)));
+                    obstacleController.add(new Circle(new Point(x - 15, y + 10)));
+                }
+                if (x > B_HEIGHT - 90) {
+                    obstacleController.add(new Circle(new Point(x + 35, y - 15)));
+                    obstacleController.add(new Circle(new Point(x + 35, y + 10)));
+                    obstacleController.add(new Circle(new Point(x + 35, y + 35)));
+                }
+                if (y > B_HEIGHT - 90) {
+                    obstacleController.add(new Circle(new Point(x - 15, y + 35)));
+                    obstacleController.add(new Circle(new Point(x + 10, y + 35)));
+                    obstacleController.add(new Circle(new Point(x + 35, y + 35)));
+                }
+                obstacleController.add(ObstacleBuilder.buildObstacles(MapGenerator.generateMap(N), SQUARE_SIZE));
+            }
+        }
     }
 
     void doDrawing(Graphics g, int levelNumber, int points, Character... characters) {
         g.setColor(Color.WHITE);
         g.setFont(new Font(null, Font.PLAIN, 20));
         g.drawString("Level: " + levelNumber, 5, 18);
-        g.drawString("Points: 0", B_WIDTH - 100, 18);
+        g.drawString("Points: " + points, B_WIDTH - 120, 18);
         drawBoundaries(g);
         obstacleController.drawAllObstacles(g);
         for (Character character : characters) {

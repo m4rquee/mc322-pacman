@@ -21,6 +21,7 @@ public class Pacman extends Character {
     private static final int MAX_LIFE = 100;
     private Map<Direction, Image> images;
     private static final Point DEFAULT_START_POINT = new Point(20, 40);
+    private int points = 0;
 
     public Pacman() {
         super(DEFAULT_START_POINT, new ImageIcon("resources/pacmanWithAMouth.png").getImage());
@@ -32,6 +33,14 @@ public class Pacman extends Character {
         super(pos, image);
         this.life = life;
         initImages();
+    }
+
+    public void pontuate(int points) {
+        this.points += points;
+    }
+
+    public int getPoints() {
+        return points;
     }
 
     private void initImages() {

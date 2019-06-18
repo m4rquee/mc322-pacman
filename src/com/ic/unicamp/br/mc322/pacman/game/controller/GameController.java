@@ -23,15 +23,6 @@ public class GameController extends BoardController implements ActionListener {
 
     private Timer timer;
     private int levelNumber;
-    private int points;
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
 
     public GameController() {
         super.initBoard();
@@ -51,9 +42,9 @@ public class GameController extends BoardController implements ActionListener {
         doDrawing(g);
     }
 
-    public void doDrawing(Graphics g) {
+    private void doDrawing(Graphics g) {
         if (inGame) {
-            super.doDrawing(g, this.levelNumber, this.points, pacman);
+            super.doDrawing(g, this.levelNumber, pacman.getPoints(), pacman);
         } else {
             super.gameOver(g);
         }
@@ -70,44 +61,23 @@ public class GameController extends BoardController implements ActionListener {
         } else if (KeyController.downDirection) {
             pacman.setDirection(Direction.DOWN);
         }
-        if (obstacleController.collisionDetected(pacman.withFuturePosition())) {
+        if (!obstacleController.collisionDetected(pacman.withFuturePosition())) {
             pacman.move();
         } else {
             pacman.setDirection(oldDirection);
-            if(obstacleController.collisionDetected(pacman.withFuturePosition())) {
+            if(!obstacleController.collisionDetected(pacman.withFuturePosition())) {
                 pacman.move();
             }
-        }
-    }
-
-    private void checkBoardLimitDiyingArea() {
-        Point ini = pacman.getPos();
-
-        if (ini.getY() + pacman.getSize() / 2 >= B_HEIGHT) {
-            inGame = false;
-        }
-
-        if (ini.getY() + pacman.getSize() / 2 < 0) {
-            inGame = false;
-        }
-
-        if (ini.getX() + pacman.getSize() / 2 >= B_WIDTH) {
-            inGame = false;
-        }
-
-        if (ini.getX() + pacman.getSize() / 2 < 0) {
-            inGame = false;
-        }
-
-        if (!inGame) {
-            timer.stop();
+            if(obstacleController.getPontuate()) {
+                pacman.pontuate(10);
+                obstacleController.setPontuate(false);
+            }
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (inGame) {
-            checkBoardLimitDiyingArea();
             move();
         }
         repaint();
