@@ -8,7 +8,7 @@ public class Rectangle extends Obstacle {
 
     private int width;
     private int height;
-    private static final int DEFAULT_SIZE = 30;
+    public static final int DEFAULT_SIZE = 30;
 
     public Rectangle(Point pos, int width, int height) {
         this.pos = pos;

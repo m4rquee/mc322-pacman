@@ -1,5 +1,6 @@
 package com.ic.unicamp.br.mc322.pacman.game.utilities;
 
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Circle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Obstacle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
@@ -13,8 +14,11 @@ public class ObstacleBuilder {
         List<Obstacle> ret = new LinkedList<>();
         for (int i = 0; i < map.length; i++)
             for (int j = 0; j < map[i].length; j++)
-                if (map[i][j] == 1)
-                    ret.add(new Rectangle(new Point(20 + i * 30, 30 + j * 30)));
+                if (map[i][j] == 1) {
+                    ret.add(new Rectangle(new Point(20 + i * squareSize, 20 + j * squareSize)));
+                } else if (i != 0 || j != 0) {
+                    ret.add(new Circle(new Point(28 + i * squareSize, 28 + j * squareSize)));
+                }
         return ret;
     }
 }

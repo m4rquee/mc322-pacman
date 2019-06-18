@@ -17,10 +17,10 @@ import static com.ic.unicamp.br.mc322.pacman.game.controller.GameController.DOT_
 public class Pacman extends Character {
 
     private int life;
-    private static final int SIZE = 20;
+    private static final int SIZE = 30;
     private static final int MAX_LIFE = 100;
     private Map<Direction, Image> images;
-    private static final Point DEFAULT_START_POINT = new Point(20, 40);
+    private static final Point DEFAULT_START_POINT = new Point(18, 20);
     private int points = 0;
 
     public Pacman() {
@@ -53,7 +53,7 @@ public class Pacman extends Character {
 
     @Override
     public void drawMe(Graphics g) {
-        g.drawImage(this.getImage(), this.getPos().getX(), this.getPos().getY(), 20, 20, new GameController());
+        g.drawImage(this.getImage(), this.getPos().getX(), this.getPos().getY(), SIZE, SIZE, new GameController());
     }
 
     public int getSize() {

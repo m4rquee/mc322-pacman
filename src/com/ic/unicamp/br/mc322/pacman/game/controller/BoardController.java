@@ -1,6 +1,7 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Circle;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Line;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
@@ -12,10 +13,9 @@ import java.awt.*;
 
 class BoardController extends JPanel {
 
-    private static final int B_WIDTH = 910;
-    private static final int B_HEIGHT = 885;
+    private static final int B_WIDTH = 1030;
+    private static final int B_HEIGHT = 1030;
     private static final int N = 3;
-    private static final int SQUARE_SIZE = 30;
 
     ObstacleController obstacleController = new ObstacleController();
 
@@ -34,26 +34,7 @@ class BoardController extends JPanel {
     }
 
     private void buildObstacles() {
-        for (int y = 60; y < B_HEIGHT - 40; y += 50) {
-            for (int x = 40; x < B_WIDTH - 40; x += 50) {
-                if (x > 50 || y > 70) {
-                    obstacleController.add(new Circle(new Point(x - 15, y - 15)));
-                    obstacleController.add(new Circle(new Point(x + 10, y - 15)));
-                    obstacleController.add(new Circle(new Point(x - 15, y + 10)));
-                }
-                if (x > B_HEIGHT - 90) {
-                    obstacleController.add(new Circle(new Point(x + 35, y - 15)));
-                    obstacleController.add(new Circle(new Point(x + 35, y + 10)));
-                    obstacleController.add(new Circle(new Point(x + 35, y + 35)));
-                }
-                if (y > B_HEIGHT - 90) {
-                    obstacleController.add(new Circle(new Point(x - 15, y + 35)));
-                    obstacleController.add(new Circle(new Point(x + 10, y + 35)));
-                    obstacleController.add(new Circle(new Point(x + 35, y + 35)));
-                }
-                obstacleController.add(ObstacleBuilder.buildObstacles(MapGenerator.generateMap(N), SQUARE_SIZE));
-            }
-        }
+        obstacleController.add(ObstacleBuilder.buildObstacles(MapGenerator.generateMap(N), Rectangle.DEFAULT_SIZE));
     }
 
     void doDrawing(Graphics g, int levelNumber, int points, Character... characters) {
@@ -71,7 +52,7 @@ class BoardController extends JPanel {
     }
 
     private void drawBoundaries(Graphics g) {
-        obstacleController.add(new Rectangle(new Point(0, 20), B_WIDTH - 20, 20));
+        obstacleController.add(new Line(new Point(0, 20), new Point(B_WIDTH - 20, 20)));
         obstacleController.add(new Rectangle(new Point(0, 20), 20, B_HEIGHT - 20));
         obstacleController.add(new Rectangle(new Point(0, B_HEIGHT - 20), B_WIDTH - 20, 20));
         obstacleController.add(new Rectangle(new Point(B_WIDTH - 20, 20), 20, B_HEIGHT - 20));

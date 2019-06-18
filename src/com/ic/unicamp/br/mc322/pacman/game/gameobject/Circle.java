@@ -8,7 +8,7 @@ public class Circle extends Obstacle {
 
     private int width;
     private int height;
-    private static final int DEFAULT_SIZE = 10;
+    private static final int DEFAULT_SIZE = 15;
     private Color color = Color.YELLOW;
 
     public Circle(Point pos, int width, int height) {
