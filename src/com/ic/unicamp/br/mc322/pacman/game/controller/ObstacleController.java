@@ -1,9 +1,7 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Circle;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Obstacle;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -17,16 +15,31 @@ public class ObstacleController {
         this.obstacles = new LinkedList<>();
     }
 
+    private boolean pontuate;
+
+    public void setPontuate(boolean pontuate) {
+        this.pontuate = pontuate;
+    }
+
+    public boolean getPontuate() {
+        return this.pontuate;
+    }
+
     public void removeObstacle(Obstacle obstacle) {
         obstacles.remove(obstacle);
     }
 
     boolean collisionDetected(Character character) {
         for (Obstacle at : obstacles) {
-            if (at.collision(character))
-                return false;
+            if (at.collision(character)) {
+                if (at.shouldPontuate) {
+                    removeObstacle(at);
+                    pontuate = true;
+                }
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     void drawAllObstacles(Graphics g) {

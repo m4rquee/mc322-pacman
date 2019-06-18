@@ -14,6 +14,7 @@ public class Rectangle extends Obstacle {
         this.pos = pos;
         this.width = width;
         this.height = height;
+        this.shouldPontuate = false;
     }
 
     public Rectangle(Point pos) {
