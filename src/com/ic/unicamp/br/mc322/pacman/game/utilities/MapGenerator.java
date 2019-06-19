@@ -66,6 +66,10 @@ public class MapGenerator {
         int map_size = 2 * tile_size + 1;
         int[][] ret = new int[map_size][map_size];
 
+        for (int i = 0; i < map_size; i++)
+          for (int j = 0; j < map_size; j++)
+            ret[i][j] = 0;
+
         for (int i = 1; i < map_size; i += 2)
             for (int j = 1; j < map_size; j += 2)
                 ret[i][j] = 1;

@@ -25,7 +25,6 @@ public class GameController extends BoardController implements ActionListener {
     private int levelNumber;
 
     public GameController() {
-        super.initBoard();
         initGame();
     }
 

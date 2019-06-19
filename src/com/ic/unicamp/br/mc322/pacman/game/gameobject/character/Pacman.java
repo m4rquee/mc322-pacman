@@ -53,6 +53,7 @@ public class Pacman extends Character {
 
     @Override
     public void drawMe(Graphics g) {
+        // Tirar new GameController()
         g.drawImage(this.getImage(), this.getPos().getX(), this.getPos().getY(), SIZE, SIZE, new GameController());
     }
 
