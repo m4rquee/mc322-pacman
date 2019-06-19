@@ -1,5 +1,6 @@
 package com.ic.unicamp.br.mc322.pacman.game.utilities;
 
+import com.ic.unicamp.br.mc322.pacman.game.controller.GameController;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Circle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Obstacle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
@@ -18,6 +19,7 @@ public class ObstacleBuilder {
                     ret.add(new Rectangle(new Point(20 + i * squareSize, 20 + j * squareSize)));
                 } else if (i != 0 || j != 0) {
                     ret.add(new Circle(new Point(28 + i * squareSize, 28 + j * squareSize)));
+                    GameController.MAX_POINTS += 10;
                 }
         return ret;
     }

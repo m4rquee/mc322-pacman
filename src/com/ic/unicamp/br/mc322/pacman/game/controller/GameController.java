@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public class GameController extends BoardController implements ActionListener {
 
     public static final int DOT_SIZE = 1;
-    private static final int DELAY = 2;
+    private static final int DELAY = 16;
+    public static int MAX_POINTS = 0;
 
     private Pacman pacman = new Pacman();
     private ArrayList<Ghost> ghosts = new ArrayList<>();
@@ -45,7 +46,9 @@ public class GameController extends BoardController implements ActionListener {
         if (inGame) {
             super.doDrawing(g, this.levelNumber, pacman.getPoints(), pacman);
         } else {
-            super.gameOver(g);
+            super.nextLevel(g);
+            levelNumber++;
+            inGame = true;
         }
     }
 
@@ -70,6 +73,9 @@ public class GameController extends BoardController implements ActionListener {
             if(obstacleController.getPontuate()) {
                 pacman.pontuate(10);
                 obstacleController.setPontuate(false);
+                if(pacman.getPoints() >= MAX_POINTS) {
+                    inGame = false;
+                }
             }
         }
     }

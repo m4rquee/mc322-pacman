@@ -58,13 +58,12 @@ class BoardController extends JPanel {
         obstacleController.add(new Rectangle(new Point(B_WIDTH - 20, 20), 20, B_HEIGHT - 20));
     }
 
-    void gameOver(Graphics g) {
-        String msg = "Game Over";
-        Font small = new Font("Helvetica", Font.BOLD, 14);
-        FontMetrics metr = getFontMetrics(small);
-
+    void nextLevel(Graphics g) {
+        String msg = "Level up";
+        FontMetrics metr = getFontMetrics(new Font("Helvetica", Font.BOLD, 30));
         g.setColor(Color.white);
-        g.setFont(small);
+        g.setFont(new Font("Helvetica", Font.BOLD, 30));
         g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
+        obstacleController.removeObstacles();
     }
 }

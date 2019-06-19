@@ -4,6 +4,7 @@ import com.ic.unicamp.br.mc322.pacman.game.gameobject.Obstacle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 
 import java.awt.*;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -27,6 +28,10 @@ public class ObstacleController {
 
     public void removeObstacle(Obstacle obstacle) {
         obstacles.remove(obstacle);
+    }
+
+    public void removeObstacles() {
+        obstacles.removeAll(new LinkedList<Obstacle>());
     }
 
     boolean collisionDetected(Character character) {

@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,14 +19,12 @@ public class Pacman extends Character {
 
     private int life;
     private static final int SIZE = 30;
-    private static final int MAX_LIFE = 100;
     private Map<Direction, Image> images;
     private static final Point DEFAULT_START_POINT = new Point(18, 20);
     private int points = 0;
 
     public Pacman() {
         super(DEFAULT_START_POINT, new ImageIcon("resources/pacmanWithAMouth.png").getImage());
-        this.life = MAX_LIFE;
         initImages();
     }
 
@@ -54,7 +53,7 @@ public class Pacman extends Character {
     @Override
     public void drawMe(Graphics g) {
         // Tirar new GameController()
-        g.drawImage(this.getImage(), this.getPos().getX(), this.getPos().getY(), SIZE, SIZE, new GameController());
+        g.drawImage(this.getImage(), this.getPos().getX(), this.getPos().getY(), SIZE, SIZE, (Image img, int infoflags, int x, int y, int width, int height) -> false);
     }
 
     public int getSize() {
