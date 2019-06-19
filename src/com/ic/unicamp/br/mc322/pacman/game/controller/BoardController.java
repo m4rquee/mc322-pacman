@@ -65,5 +65,6 @@ class BoardController extends JPanel {
         g.setFont(new Font("Helvetica", Font.BOLD, 30));
         g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
         obstacleController.removeObstacles();
+        buildObstacles();
     }
 }

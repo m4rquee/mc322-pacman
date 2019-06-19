@@ -15,7 +15,7 @@ public class GameController extends BoardController implements ActionListener {
 
     public static final int DOT_SIZE = 1;
     private static final int DELAY = 16;
-    public static int MAX_POINTS = 0;
+    public static int MAX_POINTS = 40;
 
     private Pacman pacman = new Pacman();
     private ArrayList<Ghost> ghosts = new ArrayList<>();
@@ -49,6 +49,7 @@ public class GameController extends BoardController implements ActionListener {
             super.nextLevel(g);
             levelNumber++;
             inGame = true;
+            pacman.setPos(new Point(Pacman.DEFAULT_START_POINT));
         }
     }
 

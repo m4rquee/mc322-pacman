@@ -20,7 +20,7 @@ public class Pacman extends Character {
     private int life;
     private static final int SIZE = 30;
     private Map<Direction, Image> images;
-    private static final Point DEFAULT_START_POINT = new Point(18, 20);
+    public static final Point DEFAULT_START_POINT = new Point(18, 20);
     private int points = 0;
 
     public Pacman() {
@@ -28,10 +28,14 @@ public class Pacman extends Character {
         initImages();
     }
 
-    public Pacman(int life, Image image, Point pos) {
+    public Pacman(int points, Image image, Point pos) {
         super(pos, image);
-        this.life = life;
+        pontuate(points);
         initImages();
+    }
+
+    public Pacman(Image image, Point pos) {
+        super(pos, image);
     }
 
     public void pontuate(int points) {
@@ -98,19 +102,19 @@ public class Pacman extends Character {
         case LEFT:
             futurePosition = new Point(this.pos.getX() - DOT_SIZE, this.getPos()
                                                                        .getY());
-            return new Pacman(this.life, this.getImage(), futurePosition);
+            return new Pacman(this.getImage(), futurePosition);
         case RIGHT:
             futurePosition = new Point(this.pos.getX() + DOT_SIZE, this.getPos()
                                                                        .getY());
-            return new Pacman(this.life, this.getImage(), futurePosition);
+            return new Pacman(this.getImage(), futurePosition);
         case UP:
             futurePosition = new Point(this.pos.getX(), this.getPos()
                                                             .getY() - DOT_SIZE);
-            return new Pacman(this.life, this.getImage(), futurePosition);
+            return new Pacman(this.getImage(), futurePosition);
         case DOWN:
             futurePosition = new Point(this.pos.getX(), this.getPos()
                                                             .getY() + DOT_SIZE);
-            return new Pacman(this.life, this.getImage(), futurePosition);
+            return new Pacman(this.getImage(), futurePosition);
         default:
             return null;
         }
