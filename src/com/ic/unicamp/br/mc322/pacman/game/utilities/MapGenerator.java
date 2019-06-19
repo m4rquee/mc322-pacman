@@ -77,17 +77,17 @@ public class MapGenerator {
 
                 if (curr == 0)
                     ret[scaled_i][scaled_j] = -1; // Place the spawn point
-
-                // If a neighbor cell is part of this tile the wall is extended towards it:
-
-                if (safeGet(tile_map, i - 1, j) == curr)
-                    ret[scaled_i - 1][scaled_j] = 1;
-                if (safeGet(tile_map, i, j - 1) == curr)
-                    ret[scaled_i][scaled_j - 1] = 1;
-                if (safeGet(tile_map, i, j + 1) == curr)
-                    ret[scaled_i][scaled_j + 1] = 1;
-                if (safeGet(tile_map, i + 1, j) == curr)
-                    ret[scaled_i + 1][scaled_j] = 1;
+                else {
+                  // If a neighbor cell is part of this tile the wall is extended towards it:
+                  if (safeGet(tile_map, i - 1, j) == curr)
+                      ret[scaled_i - 1][scaled_j] = 1;
+                  if (safeGet(tile_map, i, j - 1) == curr)
+                      ret[scaled_i][scaled_j - 1] = 1;
+                  if (safeGet(tile_map, i, j + 1) == curr)
+                      ret[scaled_i][scaled_j + 1] = 1;
+                  if (safeGet(tile_map, i + 1, j) == curr)
+                      ret[scaled_i + 1][scaled_j] = 1;
+                }
             }
 
         return ret;
