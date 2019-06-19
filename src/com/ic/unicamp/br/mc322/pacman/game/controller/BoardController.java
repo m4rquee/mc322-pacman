@@ -54,7 +54,7 @@ class BoardController extends JPanel {
     private void drawBoundaries(Graphics g) {
         obstacleController.add(new Line(new Point(0, 20), new Point(B_WIDTH - 20, 20)));
         obstacleController.add(new Rectangle(new Point(0, 20), 20, B_HEIGHT - 20));
-        obstacleController.add(new Rectangle(new Point(0, B_HEIGHT - 20), B_WIDTH - 20, 20));
+        obstacleController.add(new Rectangle(new Point(20, B_HEIGHT - 20), B_WIDTH - 40, 20));
         obstacleController.add(new Rectangle(new Point(B_WIDTH - 20, 20), 20, B_HEIGHT - 20));
     }
 
