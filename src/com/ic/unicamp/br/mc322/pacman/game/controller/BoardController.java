@@ -13,9 +13,9 @@ import java.awt.*;
 
 class BoardController extends JPanel {
 
-    private static final int B_WIDTH = 1030;
-    private static final int B_HEIGHT = 1030;
-    private static final int N = 3;
+    private static final int B_WIDTH = 550;
+    private static final int B_HEIGHT = 550;
+    private static final int N = 2;
 
     ObstacleController obstacleController = new ObstacleController();
 
@@ -33,9 +33,20 @@ class BoardController extends JPanel {
         buildObstacles();
     }
 
-    private void buildObstacles() {
-        obstacleController.add(ObstacleBuilder.buildObstacles(MapGenerator.generateMap(N), Rectangle.DEFAULT_SIZE));
-    }
+    public void buildObstacles() {
+        int[][] map = null;
+        boolean hasSpawn = false;
+        while (!hasSpawn) {
+            map = MapGenerator.generateMap(N);
+            for (int i = 0; i < map.length; i++) {
+                for (int j =0; j < map[i].length; j++) {
+                    if(map[i][j] == -1)
+                        hasSpawn = true;
+                }
+            }
+        }
+        obstacleController.add(ObstacleBuilder.buildObstacles(map,Rectangle.DEFAULT_SIZE));
+}
 
     void doDrawing(Graphics g, int levelNumber, int points, Character... characters) {
         g.setColor(Color.WHITE);
@@ -58,13 +69,12 @@ class BoardController extends JPanel {
         obstacleController.add(new Rectangle(new Point(B_WIDTH - 20, 20), 20, B_HEIGHT - 20));
     }
 
-    void nextLevel(Graphics g) {
+    void nextLevel(Graphics g){
+        obstacleController.removeObstacles();
         String msg = "Level up";
         FontMetrics metr = getFontMetrics(new Font("Helvetica", Font.BOLD, 30));
         g.setColor(Color.white);
         g.setFont(new Font("Helvetica", Font.BOLD, 30));
         g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
-        obstacleController.removeObstacles();
-        buildObstacles();
     }
 }

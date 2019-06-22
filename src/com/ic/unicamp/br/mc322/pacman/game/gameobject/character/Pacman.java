@@ -20,7 +20,7 @@ public class Pacman extends Character {
     private int life;
     private static final int SIZE = 30;
     private Map<Direction, Image> images;
-    public static final Point DEFAULT_START_POINT = new Point(18, 20);
+    public static final Point DEFAULT_START_POINT = new Point(20, 20);
     private int points = 0;
 
     public Pacman() {

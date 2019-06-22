@@ -14,13 +14,13 @@ import java.util.ArrayList;
 public class GameController extends BoardController implements ActionListener {
 
     public static final int DOT_SIZE = 1;
-    private static final int DELAY = 16;
-    public static int MAX_POINTS = 40;
+    private static final int DELAY = 20;
+    public static int MAX_POINTS = 120;
 
     private Pacman pacman = new Pacman();
     private ArrayList<Ghost> ghosts = new ArrayList<>();
 
-    private boolean inGame = true;
+    public static boolean inGame = true;
 
     private Timer timer;
     private int levelNumber;
@@ -47,9 +47,7 @@ public class GameController extends BoardController implements ActionListener {
             super.doDrawing(g, this.levelNumber, pacman.getPoints(), pacman);
         } else {
             super.nextLevel(g);
-            levelNumber++;
-            inGame = true;
-            pacman.setPos(new Point(Pacman.DEFAULT_START_POINT));
+            buildObstacles();
         }
     }
 
@@ -68,14 +66,18 @@ public class GameController extends BoardController implements ActionListener {
             pacman.move();
         } else {
             pacman.setDirection(oldDirection);
-            if(!obstacleController.collisionDetected(pacman.withFuturePosition())) {
+            if (!obstacleController.collisionDetected(pacman.withFuturePosition())) {
                 pacman.move();
             }
-            if(obstacleController.getPontuate()) {
+            if (obstacleController.getPontuate()) {
                 pacman.pontuate(10);
                 obstacleController.setPontuate(false);
-                if(pacman.getPoints() >= MAX_POINTS) {
+                if (pacman.getPoints() >= MAX_POINTS) {
                     inGame = false;
+                    levelNumber++;
+                    pacman.setPos(new Point(Pacman.DEFAULT_START_POINT));
+                    pacman.setDirection(Direction.RIGHT);
+                    MAX_POINTS += 220;
                 }
             }
         }

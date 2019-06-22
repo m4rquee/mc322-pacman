@@ -17,5 +17,12 @@ public class KeyController extends KeyAdapter {
         upDirection = key == KeyEvent.VK_UP;
         downDirection = key == KeyEvent.VK_DOWN;
         rightDirection = key == KeyEvent.VK_RIGHT;
+        if (!GameController.inGame)
+            if (key == 10) {
+                GameController.inGame = true;
+            }
+        if (key == 27) {
+
+        }
     }
 }

@@ -31,7 +31,7 @@ public class ObstacleController {
     }
 
     public void removeObstacles() {
-        obstacles.removeAll(new LinkedList<Obstacle>());
+        obstacles = new LinkedList<>();
     }
 
     boolean collisionDetected(Character character) {
