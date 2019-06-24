@@ -50,8 +50,8 @@ public class MapGenerator {
     private static int[][] generateTileMap(int size) {
         int[][] ret = new int[size][size];
         // Generates a point to start tiling around:
-        int p_x = ThreadLocalRandom.current().nextInt(0, size);
-        int p_y = ThreadLocalRandom.current().nextInt(0, size);
+        int p_x = ThreadLocalRandom.current().nextInt(1, size - 1);
+        int p_y = ThreadLocalRandom.current().nextInt(1, size - 1);
         ret[p_x][p_y] = 0; // Starting point
         generateTileMapRec(ret, size, 0, 0, p_x, p_y, 0);
         return ret;
@@ -79,9 +79,9 @@ public class MapGenerator {
                 int curr = tile_map[i][j];
                 int scaled_i = scaleUp(i), scaled_j = scaleUp(j);
 
-                if (curr == 0)
+                if (curr == 0) {
                     ret[scaled_i][scaled_j] = -1; // Place the spawn point
-                else {
+                } else {
                   // If a neighbor cell is part of this tile the wall is extended towards it:
                   if (safeGet(tile_map, i - 1, j) == curr)
                       ret[scaled_i - 1][scaled_j] = 1;

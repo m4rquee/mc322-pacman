@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class GameController extends BoardController implements ActionListener {
 
     public static final int DOT_SIZE = 1;
-    private static final int DELAY = 20;
+    private static final int DELAY = 5;
     public static int MAX_POINTS = 0;
 
     private Pacman pacman = new Pacman();

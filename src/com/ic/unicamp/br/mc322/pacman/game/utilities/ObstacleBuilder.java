@@ -13,11 +13,11 @@ public class ObstacleBuilder {
 
     public static List<Obstacle> buildObstacles(int[][] map, int squareSize) {
         List<Obstacle> ret = new LinkedList<>();
-        boolean bla = false;
-        for (int i = 1; i < map.length - 1; i++) {
+        boolean foundSpawn = false;
+        for (int i = 1; i < map.length - 1 && !foundSpawn; i++) {
             for (int j = 1; j < map[i].length - 1; j++) {
                 if (map[i][j] == -1) {
-                    map[i][j] = 2;
+                    map[i][j] = -1;
                     map[i - 1][j - 1] = -1;
                     map[i - 1][j] = -1;
                     map[i - 1][j + 1] = -1;
@@ -26,12 +26,10 @@ public class ObstacleBuilder {
                     map[i + 1][j - 1] = -1;
                     map[i + 1][j] = -1;
                     map[i + 1][j + 1] = -1;
-                    bla = true;
+                    foundSpawn = true;
                     break;
                 }
             }
-            if(bla)
-                break;
         }
         for (int i = 0; i < map.length; i++)
             for (int j = 0; j < map[i].length; j++)
