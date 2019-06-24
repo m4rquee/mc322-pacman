@@ -4,7 +4,6 @@ import com.ic.unicamp.br.mc322.pacman.game.gameobject.Obstacle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 
 import java.awt.*;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;

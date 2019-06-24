@@ -36,15 +36,8 @@ class BoardController extends JPanel {
     public void buildObstacles() {
         int[][] map = null;
         boolean hasSpawn = false;
-        while (!hasSpawn) {
-            map = MapGenerator.generateMap(N);
-            for (int i = 0; i < map.length; i++) {
-                for (int j =0; j < map[i].length; j++) {
-                    if(map[i][j] == -1)
-                        hasSpawn = true;
-                }
-            }
-        }
+        map = MapGenerator.generateMap(N);
+        drawBoundaries();
         obstacleController.add(ObstacleBuilder.buildObstacles(map,Rectangle.DEFAULT_SIZE));
 }
 
@@ -53,16 +46,14 @@ class BoardController extends JPanel {
         g.setFont(new Font(null, Font.PLAIN, 20));
         g.drawString("Level: " + levelNumber, 5, 18);
         g.drawString("Points: " + points, B_WIDTH - 120, 18);
-        drawBoundaries(g);
         obstacleController.drawAllObstacles(g);
         for (Character character : characters) {
             character.drawMe(g);
         }
-
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private void drawBoundaries(Graphics g) {
+    private void drawBoundaries() {
         obstacleController.add(new Line(new Point(0, 20), new Point(B_WIDTH - 20, 20)));
         obstacleController.add(new Rectangle(new Point(0, 20), 20, B_HEIGHT - 20));
         obstacleController.add(new Rectangle(new Point(20, B_HEIGHT - 20), B_WIDTH - 40, 20));
