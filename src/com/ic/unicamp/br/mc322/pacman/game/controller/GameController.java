@@ -16,7 +16,7 @@ public class GameController extends BoardController implements ActionListener {
 
     public static final int DOT_SIZE = 1;
     private static final int DELAY = 5;
-    private static final int POINTS_PER_LEVEL = 460;
+    private static final int POINTS_PER_LEVEL = 1740;
     private static final int POINTS_TO_GAIN_LIFE = 5000;
     private int maxPoints = POINTS_PER_LEVEL;
 

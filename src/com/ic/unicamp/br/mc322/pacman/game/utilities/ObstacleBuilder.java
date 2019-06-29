@@ -50,6 +50,7 @@ public class ObstacleBuilder {
 
             int i = 0;
             boolean spawnLine = false;
+            int spawnLineCount = 0;
             while ((linha = bufferedReader.readLine()) != null) {
                 int in;
                 int qtosSub = 0;
@@ -59,14 +60,20 @@ public class ObstacleBuilder {
                         j++;
                         qtosSub++;
                         spawnLine = true;
+
                     } else {
                         in = Integer.parseInt(linha.substring(j, j + 1));
                     }
                     if (i < 17 && j < 17)
                         map[i][j-qtosSub] = in;
                 }
+                if(qtosSub != 0)
+                    spawnLineCount++;
                 if (spawnLine) {
-                    map[i][linha.length()-qtosSub-2] = 1;
+                    if(spawnLineCount == 3)
+                        map[i][linha.length()-qtosSub-2] = 0;
+                    else
+                        map[i][linha.length()-qtosSub-2] = 1;
                 }
                 i++;
                 spawnLine = false;
