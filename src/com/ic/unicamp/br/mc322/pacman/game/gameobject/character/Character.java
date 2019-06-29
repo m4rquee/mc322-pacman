@@ -12,9 +12,7 @@ public abstract class Character extends GameObject {
     private Image image;
     private Direction direction;
     private int size;
-
-    public Character() {
-    }
+    private static final int SIZE = 30;
 
     public Character(Point pos, Image imageIcon) {
         this.pos = pos;
@@ -41,11 +39,38 @@ public abstract class Character extends GameObject {
         return size;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public abstract void drawMe(Graphics g);
+
+    public void move() {
+        Direction direction = this.getDirection();
+        setNextPosition(direction);
     }
 
-    public abstract void drawMe(Graphics g);
+    void setNextPosition(Direction direction) {
+        switch (direction) {
+            case LEFT:
+                this.setPos(new Point(this.getPos()
+                        .getX() - 1, this.getPos()
+                        .getY()));
+                break;
+            case RIGHT:
+                this.setPos(new Point(this.getPos()
+                        .getX() + 1, this.getPos()
+                        .getY()));
+                break;
+            case UP:
+                this.setPos(new Point(this.getPos()
+                        .getX(), this.getPos()
+                        .getY() - 1));
+                break;
+            case DOWN:
+                this.setPos(new Point(this.getPos()
+                        .getX(), this.getPos()
+                        .getY() + 1));
+                break;
+        }
+    }
+
 
     @Override
     public boolean equals(Object o) {

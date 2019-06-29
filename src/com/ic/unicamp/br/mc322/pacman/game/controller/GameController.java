@@ -1,6 +1,8 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Ghost;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.GhostType;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
 import com.ic.unicamp.br.mc322.pacman.game.utilities.Direction;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
@@ -15,8 +17,9 @@ public class GameController extends BoardController implements ActionListener {
 
     public static final int DOT_SIZE = 1;
     private static final int DELAY = 5;
-    static int POINTS_PER_LEVEL = 460;
-    static int MAX_POINTS = POINTS_PER_LEVEL;
+    private static final int POINTS_PER_LEVEL = 460;
+    private static final int POINTS_TO_GAIN_LIFE = 5000;
+    private int maxPoints = POINTS_PER_LEVEL;
 
     private Pacman pacman = new Pacman();
     private ArrayList<Ghost> ghosts = new ArrayList<>();
@@ -26,10 +29,10 @@ public class GameController extends BoardController implements ActionListener {
     private int levelNumber = 1;
 
     public GameController() {
-        ghosts.add(new Ghost());
-        ghosts.add(new Ghost());
-        ghosts.add(new Ghost());
-        ghosts.add(new Ghost());
+        ghosts.add(new Ghost(GhostType.RANDOM));
+        ghosts.add(new Ghost(GhostType.CHASER));
+        ghosts.add(new Ghost(GhostType.EVASIVE));
+        ghosts.add(new Ghost(GhostType.WIZARD));
         initGame();
     }
 
@@ -49,11 +52,13 @@ public class GameController extends BoardController implements ActionListener {
         if (inGame) {
             super.doDrawing(g, levelNumber, pacman.getPoints(), pacman);
         } else {
-            if(waiting) {
+            if (waiting) {
                 buildObstacles();
+                // Resets game control variables
                 GameController.inGame = true;
                 GameController.waiting = false;
             } else {
+                // While waiting, draw level up screen
                 super.nextLevel(g);
                 super.doDrawing(g, levelNumber, pacman.getPoints());
             }
@@ -80,23 +85,42 @@ public class GameController extends BoardController implements ActionListener {
             }
             if (obstacleController.getPontuate()) {
                 pacman.pontuate(10);
+                if(pacman.getPoints() == POINTS_TO_GAIN_LIFE) {
+                    pacman.setLife(pacman.getLife()+1);
+                }
                 obstacleController.setPontuate(false);
-                if (pacman.getPoints() >= MAX_POINTS) {
+                if (pacman.getPoints() >= maxPoints) {
                     inGame = false;
                     levelNumber++;
                     pacman.setPos(new Point(Pacman.DEFAULT_START_POINT));
                     pacman.setDirection(Direction.RIGHT);
                     obstacleController.removeObstacles();
-                    GameController.MAX_POINTS += GameController.POINTS_PER_LEVEL;
+                    maxPoints += POINTS_PER_LEVEL;
                 }
             }
         }
     }
 
+//    private void moveGhosts() {
+//        for (Ghost ghost : ghosts) {
+//            Direction oldDirection = ghost.getDirection();
+//            ghost.setDirection(Direction.DOWN);
+//            if (!obstacleController.collisionDetected(ghost.withFuturePosition())) {
+//                ghost.move();
+//            } else {
+//                ghost.setDirection(oldDirection);
+//                if (!obstacleController.collisionDetected(ghost.withFuturePosition())) {
+//                    ghost.move();
+//                }
+//            }
+//        }
+//    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (inGame) {
             movePacman();
+//            moveGhosts();
         }
         repaint();
     }

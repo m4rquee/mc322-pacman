@@ -23,7 +23,7 @@ class BoardController extends JPanel {
         initBoard();
     }
 
-    void initBoard() {
+    private void initBoard() {
         addKeyListener(new KeyController());
 
         setBackground(Color.black);
