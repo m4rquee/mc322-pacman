@@ -19,7 +19,7 @@ public class Runner extends JFrame {
 
 		setTitle("Pacman");
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
 

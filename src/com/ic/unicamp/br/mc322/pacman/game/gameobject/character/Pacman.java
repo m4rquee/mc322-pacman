@@ -17,7 +17,7 @@ import static com.ic.unicamp.br.mc322.pacman.game.controller.GameController.DOT_
 
 public class Pacman extends Character {
 
-    private int life;
+    private int life = 3;
     private static final int SIZE = 30;
     private Map<Direction, Image> images;
     public static final Point DEFAULT_START_POINT = new Point(20, 20);
@@ -46,6 +46,10 @@ public class Pacman extends Character {
         return points;
     }
 
+    public int getLife() {
+        return this.life;
+    }
+
     private void initImages() {
         images = new HashMap<>();
         images.put(Direction.DOWN, new ImageIcon("resources/pacmanWithAMouthDown.png").getImage());
@@ -57,6 +61,8 @@ public class Pacman extends Character {
     @Override
     public void drawMe(Graphics g) {
         // Tirar new GameController()
+        g.setColor(Color.white);
+        g.drawString("Vidas: " + getLife(), 100, 18);
         g.drawImage(this.getImage(), this.getPos().getX(), this.getPos().getY(), SIZE, SIZE, (Image img, int infoflags, int x, int y, int width, int height) -> false);
     }
 
@@ -93,7 +99,7 @@ public class Pacman extends Character {
     }
 
     public void takeHit(int damage) {
-        this.life -= damage;
+        this.life -= 1;
     }
 
     public Pacman withFuturePosition() {

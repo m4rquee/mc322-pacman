@@ -37,7 +37,6 @@ public class ObstacleBuilder {
                     ret.add(new Rectangle(new Point(20 + i * squareSize, 20 + j * squareSize)));
                 } else if ((i != 0 || j != 0) && map[i][j] == 0) {
                     ret.add(new Circle(new Point(28 + i * squareSize, 28 + j * squareSize)));
-                    GameController.MAX_POINTS += 10;
                 }
         return ret;
     }

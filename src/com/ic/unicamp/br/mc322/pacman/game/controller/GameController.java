@@ -15,24 +15,27 @@ public class GameController extends BoardController implements ActionListener {
 
     public static final int DOT_SIZE = 1;
     private static final int DELAY = 5;
-    public static int MAX_POINTS = 0;
+    static int POINTS_PER_LEVEL = 460;
+    static int MAX_POINTS = POINTS_PER_LEVEL;
 
     private Pacman pacman = new Pacman();
     private ArrayList<Ghost> ghosts = new ArrayList<>();
 
-    public static boolean inGame = true;
-
-    private Timer timer;
-    private int levelNumber;
+    static boolean inGame = true;
+    static boolean waiting = false;
+    private int levelNumber = 1;
 
     public GameController() {
+        ghosts.add(new Ghost());
+        ghosts.add(new Ghost());
+        ghosts.add(new Ghost());
+        ghosts.add(new Ghost());
         initGame();
     }
 
     private void initGame() {
-        timer = new Timer(DELAY, this);
+        Timer timer = new Timer(DELAY, this);
         timer.start();
-        levelNumber = 1;
     }
 
     @Override
@@ -44,14 +47,20 @@ public class GameController extends BoardController implements ActionListener {
 
     private void doDrawing(Graphics g) {
         if (inGame) {
-            super.doDrawing(g, this.levelNumber, pacman.getPoints(), pacman);
+            super.doDrawing(g, levelNumber, pacman.getPoints(), pacman);
         } else {
-            super.nextLevel(g);
-            buildObstacles();
+            if(waiting) {
+                buildObstacles();
+                GameController.inGame = true;
+                GameController.waiting = false;
+            } else {
+                super.nextLevel(g);
+                super.doDrawing(g, levelNumber, pacman.getPoints());
+            }
         }
     }
 
-    private void move() {
+    private void movePacman() {
         Direction oldDirection = pacman.getDirection();
         if (KeyController.leftDirection) {
             pacman.setDirection(Direction.LEFT);
@@ -77,6 +86,8 @@ public class GameController extends BoardController implements ActionListener {
                     levelNumber++;
                     pacman.setPos(new Point(Pacman.DEFAULT_START_POINT));
                     pacman.setDirection(Direction.RIGHT);
+                    obstacleController.removeObstacles();
+                    GameController.MAX_POINTS += GameController.POINTS_PER_LEVEL;
                 }
             }
         }
@@ -85,7 +96,7 @@ public class GameController extends BoardController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (inGame) {
-            move();
+            movePacman();
         }
         repaint();
     }

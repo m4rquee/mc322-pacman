@@ -37,7 +37,7 @@ class BoardController extends JPanel {
         int[][] map = null;
         boolean hasSpawn = false;
         while (!hasSpawn) {
-            map = MapGenerator.generateMap(N);
+            map = MapGenerator.generateMap(1);
             for (int i = 0; i < map.length; i++) {
                 for (int j = 0; j < map[i].length; j++) {
                     if (map[i][j] == -1)
@@ -53,7 +53,14 @@ class BoardController extends JPanel {
         g.setColor(Color.WHITE);
         g.setFont(new Font(null, Font.PLAIN, 20));
         g.drawString("Level: " + levelNumber, 5, 18);
-        g.drawString("Points: " + points, B_WIDTH - 120, 18);
+        if(points < 100)
+            g.drawString("Points: " + points, B_WIDTH - 100, 18);
+        else if (points < 1000)
+            g.drawString("Points: " + points, B_WIDTH - 115, 18);
+        else if (points < 10000)
+            g.drawString("Points: " + points, B_WIDTH - 130, 18);
+        else
+            g.drawString("Points: " + points, B_WIDTH - 145, 18);
         obstacleController.drawAllObstacles(g);
         for (Character character : characters) {
             character.drawMe(g);
@@ -69,8 +76,7 @@ class BoardController extends JPanel {
     }
 
     void nextLevel(Graphics g) {
-        obstacleController.removeObstacles();
-        String msg = "Level up";
+        String msg = "LEVEL UP!";
         FontMetrics metr = getFontMetrics(new Font("Helvetica", Font.BOLD, 30));
         g.setColor(Color.white);
         g.setFont(new Font("Helvetica", Font.BOLD, 30));

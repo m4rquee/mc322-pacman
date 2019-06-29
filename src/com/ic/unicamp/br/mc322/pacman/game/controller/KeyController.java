@@ -12,6 +12,8 @@ public class KeyController extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
+        if(key == 27)
+            System.exit(0);
 
         leftDirection = key == KeyEvent.VK_LEFT;
         upDirection = key == KeyEvent.VK_UP;
@@ -19,10 +21,7 @@ public class KeyController extends KeyAdapter {
         rightDirection = key == KeyEvent.VK_RIGHT;
         if (!GameController.inGame)
             if (key == 10) {
-                GameController.inGame = true;
+                GameController.waiting = true;
             }
-        if (key == 27) {
-
-        }
     }
 }
