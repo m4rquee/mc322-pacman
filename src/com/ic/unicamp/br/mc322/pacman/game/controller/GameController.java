@@ -1,6 +1,5 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Ghost;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.GhostType;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
@@ -29,10 +28,7 @@ public class GameController extends BoardController implements ActionListener {
     private int levelNumber = 1;
 
     public GameController() {
-        ghosts.add(new Ghost(GhostType.RANDOM));
         ghosts.add(new Ghost(GhostType.CHASER));
-        ghosts.add(new Ghost(GhostType.EVASIVE));
-        ghosts.add(new Ghost(GhostType.WIZARD));
         initGame();
     }
 
@@ -50,7 +46,7 @@ public class GameController extends BoardController implements ActionListener {
 
     private void doDrawing(Graphics g) {
         if (inGame) {
-            super.doDrawing(g, levelNumber, pacman.getPoints(), pacman);
+            super.doDrawing(g, levelNumber, pacman.getPoints(), pacman, ghosts);
         } else {
             if (waiting) {
                 buildObstacles();
@@ -60,7 +56,7 @@ public class GameController extends BoardController implements ActionListener {
             } else {
                 // While waiting, draw level up screen
                 super.nextLevel(g);
-                super.doDrawing(g, levelNumber, pacman.getPoints());
+                super.doDrawing(g, levelNumber, pacman.getPoints(), null, null);
             }
         }
     }
@@ -101,26 +97,26 @@ public class GameController extends BoardController implements ActionListener {
         }
     }
 
-//    private void moveGhosts() {
-//        for (Ghost ghost : ghosts) {
-//            Direction oldDirection = ghost.getDirection();
-//            ghost.setDirection(Direction.DOWN);
-//            if (!obstacleController.collisionDetected(ghost.withFuturePosition())) {
-//                ghost.move();
-//            } else {
-//                ghost.setDirection(oldDirection);
-//                if (!obstacleController.collisionDetected(ghost.withFuturePosition())) {
-//                    ghost.move();
-//                }
-//            }
-//        }
-//    }
+    private void moveGhosts() {
+        for (Ghost ghost : ghosts) {
+            Direction oldDirection = ghost.getDirection();
+            ghost.setNextDirection(pacman.getPos());
+            if (!obstacleController.collisionDetected(ghost.withFuturePosition())) {
+                ghost.move();
+            } else {
+                ghost.setDirection(oldDirection);
+                if (!obstacleController.collisionDetected(ghost.withFuturePosition())) {
+                    ghost.move();
+                }
+            }
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (inGame) {
             movePacman();
-//            moveGhosts();
+            moveGhosts();
         }
         repaint();
     }

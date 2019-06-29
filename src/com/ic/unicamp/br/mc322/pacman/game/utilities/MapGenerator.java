@@ -57,8 +57,8 @@ public class MapGenerator {
         return ret;
     }
 
-    public static int[][] generateMap(int N) { // Generates a map with size 2^(N + 1) + 1
-        int tile_size = 2 << N;
+    public static int[][] generateMap() { // Generates a map with size 2^(N + 1) + 1
+        int tile_size = 2 << 2;
         int[][] tile_map = generateTileMap(tile_size);
 
         // Use the generated tiles as the walls of the new map:
