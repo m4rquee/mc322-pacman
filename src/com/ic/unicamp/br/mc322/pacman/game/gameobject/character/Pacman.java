@@ -22,15 +22,17 @@ public class Pacman extends Character {
     private static final int INITIAL_X = 20;
     private static final int INITIAL_Y = 20;
     private Instant shouldFinishPowerUp;
+    private boolean alreadyGainedLife;
 
     public Pacman() {
         super(new Point(INITIAL_X, INITIAL_Y), new ImageIcon("resources/pacmanWithAMouth.png").getImage());
         initImages();
-        points = 0;
+        points = 9900;
         life = 3;
         hasPowerUp = false;
         setDirection(Direction.RIGHT);
         shouldFinishPowerUp = Instant.now().minus(1, ChronoUnit.SECONDS);
+        alreadyGainedLife = false;
     }
 
     private Pacman(Point pos) {
@@ -106,6 +108,11 @@ public class Pacman extends Character {
     }
 
     public void addLife() {
+        alreadyGainedLife = true;
         this.life++;
+    }
+
+    public boolean hasAlreadyGainedLife() {
+        return alreadyGainedLife;
     }
 }

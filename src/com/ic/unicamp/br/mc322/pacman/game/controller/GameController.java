@@ -39,6 +39,7 @@ public class GameController extends BoardController implements ActionListener {
     }
 
     private void initGhosts() {
+        ghosts = new ArrayList<>();
         for (GhostType type : GhostType.values())
             ghosts.add(new Ghost(new Point(ObstacleBuilder.spawn.getX(), ObstacleBuilder.spawn.getY()), type));
     }
@@ -103,14 +104,14 @@ public class GameController extends BoardController implements ActionListener {
             }
             if (obstacleController.getPontuate() != null) {
                 pacman.pontuate(obstacleController.getPontuate().getPontuation());
+                if (pacman.getPoints() >= POINTS_TO_GAIN_LIFE  && !pacman.hasAlreadyGainedLife()) {
+                    pacman.addLife();
+                }
                 if(obstacleController.getPontuate().getPontuation() == 100) {
                     for(Ghost ghost : ghosts) {
                         ghost.setAlreadyEaten(false);
                     }
                     pacman.setPowerUp(true);
-                }
-                if (pacman.getPoints() == POINTS_TO_GAIN_LIFE) {
-                    pacman.addLife();
                 }
                 obstacleController.setPontuate(null);
                 if (obstacleController.endedLevel()) {
