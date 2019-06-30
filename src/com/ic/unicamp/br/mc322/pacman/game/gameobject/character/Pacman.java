@@ -72,7 +72,7 @@ public class Pacman extends Character {
     public void drawMe(Graphics g) {
         g.setColor(Color.white);
         g.drawString("Vidas: " + getLife(), 100, 18);
-        g.drawString(hasPowerUp ? "POWER UP!" : "", 200, 18);
+        g.drawString(hasPowerUp ? "POWER UP!" : "", 220, 18);
         g.drawImage(this.getImage(), this.getPos().getX(), this.getPos().getY(), super.getSize(), super.getSize(), (Image img, int infoflags, int x, int y, int width, int height) -> false);
     }
 

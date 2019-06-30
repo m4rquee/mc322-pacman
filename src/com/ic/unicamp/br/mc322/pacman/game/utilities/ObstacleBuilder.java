@@ -26,7 +26,7 @@ public class ObstacleBuilder {
             for (int j = 0; j < intMap[i].length; j++) {
                 if (intMap[i][j] == -1) {
                     foundSpawn = true;
-                    spawn = new Point(i * Rectangle.DEFAULT_SIZE + 20, j * Rectangle.DEFAULT_SIZE + 20);
+                    spawn = new Point((i+1) * Rectangle.DEFAULT_SIZE + 20, (j+1) * Rectangle.DEFAULT_SIZE + 20);
                     break;
                 }
             }
