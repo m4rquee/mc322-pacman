@@ -1,7 +1,8 @@
-package com.ic.unicamp.br.mc322.pacman.game.gameobject.character;
+package com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost;
 
 import com.ic.unicamp.br.mc322.pacman.game.controller.ObstacleController;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.utilities.Direction;
 
 import javax.swing.*;

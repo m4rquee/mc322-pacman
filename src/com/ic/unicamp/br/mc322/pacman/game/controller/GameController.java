@@ -1,7 +1,7 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Ghost;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.GhostType;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.GhostType;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
 import com.ic.unicamp.br.mc322.pacman.game.utilities.Direction;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
