@@ -110,8 +110,7 @@ public class GameController extends BoardController implements ActionListener {
                 if (pacman.getPoints() >= POINTS_PER_LEVEL * levelNumber) {
                     inGame = false;
                     levelNumber++;
-                    pacman.setPos(new Point(Pacman.DEFAULT_START_POINT));
-                    pacman.setDirection(Direction.RIGHT);
+                    pacman.respawn();
                     obstacleController.removeObstacles();
                 }
             }
