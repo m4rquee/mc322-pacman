@@ -16,6 +16,7 @@ public class BoardController extends JPanel {
 
     private static final int B_WIDTH = 550;
     private static final int B_HEIGHT = 550;
+    private static final int N = 2; // Used to calculate map size
     public static int MAP_STYLE;
 
     ObstacleController obstacleController = new ObstacleController();
@@ -37,8 +38,9 @@ public class BoardController extends JPanel {
     void buildObstacles() {
         int[][] map = null;
         if (MAP_STYLE == 1) {
-            map = MapGenerator.generateMap(2);
-            obstacleController.add(ObstacleBuilder.buildObstacles(map));
+            Point spawn = new Point();
+            map = MapGenerator.generateMap(N, spawn);
+            obstacleController.add(ObstacleBuilder.buildObstacles(map, spawn));
         } else {
             obstacleController.add(ObstacleBuilder.buildObstacles());
         }
