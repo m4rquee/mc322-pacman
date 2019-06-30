@@ -16,10 +16,11 @@ public class Pacman extends Character {
     private int points;
     private Map<Direction, Image> images;
     private static final int SIZE = 30;
-    public static final Point DEFAULT_START_POINT = new Point(20, 20);
+    public static final int INITIAL_X = 20;
+    public static final int INITIAL_Y = 20;
 
     public Pacman() {
-        super(DEFAULT_START_POINT, new ImageIcon("resources/pacmanWithAMouth.png").getImage());
+        super(new Point(INITIAL_X, INITIAL_Y), new ImageIcon("resources/pacmanWithAMouth.png").getImage());
         initImages();
         points = 0;
         life = 5;
@@ -70,7 +71,12 @@ public class Pacman extends Character {
 
     public void takeHit() {
         this.life -= 1;
-        this.setPos(DEFAULT_START_POINT);
+        this.respawn();
+    }
+
+    public void respawn() {
+        this.setPos(new Point(INITIAL_X, INITIAL_Y));
+        this.setDirection(Direction.RIGHT);
     }
 
     public Pacman withFuturePosition() {
