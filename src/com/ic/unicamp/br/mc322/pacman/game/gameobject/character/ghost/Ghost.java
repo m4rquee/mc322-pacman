@@ -22,6 +22,21 @@ public class Ghost extends Character {
 
     public Ghost(Point pos, GhostType type) {
         super(pos, new ImageIcon("resources/Ghost.png").getImage());
+        switch (type) {
+            case RANDOM:
+                this.setImage(new ImageIcon("resources/OrangeGhost.png").getImage());
+                break;
+            case CHASER:
+                this.setImage(new ImageIcon("resources/Ghost.png").getImage());
+                break;
+            case WIZARD:
+                this.setImage(new ImageIcon("resources/BlueGhost.png").getImage());
+                break;
+            case EVASIVE:
+                this.setImage(new ImageIcon("resources/PinkGhost.png").getImage());
+                break;
+        }
+
         this.type = type;
         this.setDirection(Direction.RIGHT);
         lastTimeChangedDirection = Instant.now();
