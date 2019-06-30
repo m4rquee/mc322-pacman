@@ -76,17 +76,17 @@ public class ObstacleController {
         return Objects.hash(obstacles);
     }
 
-    boolean shouldTakeHit(ArrayList<Ghost> ghosts, Pacman pacman) {
+    Ghost hitGhost(ArrayList<Ghost> ghosts, Pacman pacman) {
         boolean ret;
         for (Ghost ghost : ghosts) {
             int charX = ghost.getPos().getX();
             int charY = ghost.getPos().getY();
             ret = !(charX + (ghost.getSize() - 10) <= pacman.getPos().getX() || charY + (ghost.getSize() - 10) <= pacman.getPos().getY()
                     || charX >= pacman.getPos().getX() + (pacman.getSize() - 10) || charY >= pacman.getPos().getY() + (pacman.getSize() - 10));
-            if (ret) {
-                return true;
-            }
+
+            if (ret)
+                return ghost;
         }
-        return false;
+        return null;
     }
 }

@@ -154,20 +154,30 @@ public class GameController extends BoardController implements ActionListener {
         inGame = false;
     }
 
+    private void respawn() {
+        for (Ghost ghost : ghosts)
+            ghost.respawn();
+
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (inGame) {
             movePacman();
             moveGhosts();
-            if (obstacleController.shouldTakeHit(ghosts, pacman)) {
-                pacman.takeHit();
-                for (Ghost ghost : ghosts) {
-                    ghost.setPos(new Point(ObstacleBuilder.spawn.getX(), ObstacleBuilder.spawn.getY()));
-                }
-                try {
-                    Thread.sleep(300);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
+
+            Ghost hitGhost = obstacleController.hitGhost(ghosts, pacman);
+            if (hitGhost != null) {
+                if (pacman.hasPowerUp()) {
+                    hitGhost.respawn();
+                } else {
+                    pacman.takeHit();
+                    respawn();
                 }
             }
 

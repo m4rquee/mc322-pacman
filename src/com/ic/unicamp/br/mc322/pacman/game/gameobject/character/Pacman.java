@@ -14,6 +14,7 @@ public class Pacman extends Character {
 
     private int life;
     private int points;
+    private boolean hasPowerUp;
     private Map<Direction, Image> images;
     private static final int SIZE = 30;
     public static final int INITIAL_X = 20;
@@ -24,11 +25,16 @@ public class Pacman extends Character {
         initImages();
         points = 0;
         life = 5;
+        hasPowerUp = false;
         setDirection(Direction.RIGHT);
     }
 
     public Pacman(Point pos) {
         super(pos, null);
+    }
+
+    public boolean hasPowerUp() {
+        return hasPowerUp;
     }
 
     public void pontuate(int points) {
@@ -75,7 +81,7 @@ public class Pacman extends Character {
     }
 
     public void respawn() {
-        this.setPos(new Point(INITIAL_X, INITIAL_Y));
+        super.respawn();
         this.setDirection(Direction.RIGHT);
     }
 
