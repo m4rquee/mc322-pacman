@@ -1,5 +1,6 @@
-package com.ic.unicamp.br.mc322.pacman.game.gameobject;
+package com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle;
 
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 
 import java.awt.*;
@@ -10,7 +11,7 @@ public class Rectangle extends Obstacle {
     private int height;
     public static final int DEFAULT_SIZE = 30;
 
-    public Rectangle(Point pos, int width, int height) {
+    public Rectangle(com.ic.unicamp.br.mc322.pacman.game.gameobject.Point pos, int width, int height) {
         this.pos = pos;
         this.width = width;
         this.height = height;

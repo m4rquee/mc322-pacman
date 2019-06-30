@@ -1,8 +1,8 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Line;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Line;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Rectangle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
 import com.ic.unicamp.br.mc322.pacman.game.utilities.MapGenerator;

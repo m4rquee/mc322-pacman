@@ -1,5 +1,6 @@
-package com.ic.unicamp.br.mc322.pacman.game.gameobject;
+package com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle;
 
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 
 import java.awt.*;
@@ -9,14 +10,14 @@ public class Line extends Obstacle {
     private int width;
     private int height;
 
-    public Line(Point pos, int width, int height) {
+    public Line(com.ic.unicamp.br.mc322.pacman.game.gameobject.Point pos, int width, int height) {
         this.pos = pos;
         this.width = width;
         this.height = height;
         this.shouldPontuate = false;
     }
 
-    public Line(Point x1, Point x2) {
+    public Line(com.ic.unicamp.br.mc322.pacman.game.gameobject.Point x1, Point x2) {
         this.pos = x1;
         this.width = x2.getX();
         this.height = x2.getY();

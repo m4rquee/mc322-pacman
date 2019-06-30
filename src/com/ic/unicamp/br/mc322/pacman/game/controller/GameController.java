@@ -1,6 +1,5 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.GhostType;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;

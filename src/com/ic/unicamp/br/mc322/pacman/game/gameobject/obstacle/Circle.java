@@ -1,5 +1,6 @@
-package com.ic.unicamp.br.mc322.pacman.game.gameobject;
+package com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle;
 
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
 
@@ -12,7 +13,7 @@ public class Circle extends Obstacle {
     private static final int DEFAULT_SIZE = 15;
     private Color color;
 
-    public Circle(Point pos, int pontuation) {
+    public Circle(com.ic.unicamp.br.mc322.pacman.game.gameobject.Point pos, int pontuation) {
         this.pos = pos;
         this.width = DEFAULT_SIZE;
         this.height = DEFAULT_SIZE;
@@ -36,6 +37,7 @@ public class Circle extends Obstacle {
 
     @Override
     public boolean collision(Character character) {
+        // TODO
         if (!(character instanceof Pacman)) {
             return false;
         }

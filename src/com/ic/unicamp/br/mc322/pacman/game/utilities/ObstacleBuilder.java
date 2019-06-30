@@ -1,9 +1,9 @@
 package com.ic.unicamp.br.mc322.pacman.game.utilities;
 
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Circle;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Obstacle;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Circle;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Obstacle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Rectangle;
 
 import java.awt.*;
 import java.io.BufferedReader;

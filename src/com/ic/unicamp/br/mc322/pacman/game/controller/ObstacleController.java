@@ -1,6 +1,6 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.Obstacle;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Obstacle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;

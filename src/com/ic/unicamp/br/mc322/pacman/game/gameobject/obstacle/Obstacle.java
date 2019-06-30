@@ -1,5 +1,6 @@
-package com.ic.unicamp.br.mc322.pacman.game.gameobject;
+package com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle;
 
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.GameObject;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 
 import java.awt.*;
