@@ -5,14 +5,12 @@ import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Rectangle;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.util.LinkedList;
 import java.util.List;
 
 public class ObstacleBuilder {
 
+    public static final String FILE_NAME = "resources/map1";
     public static Point spawnCoordinates;
 
     // Getting obstacles with random generated map
@@ -25,52 +23,11 @@ public class ObstacleBuilder {
     }
 
     // Reading map from file
-    public static Tuple<List<Wall>, List<Collectable>> buildObstacles(int N) {
-        spawnCoordinates = new Point(11, 3).times(Rectangle.DEFAULT_SIZE).plus(20);
-        int[][] map = new int[(2 << (N + 1)) + 1][(2 << (N + 1)) + 1];
-        String line;
-        try {
-            File mapa = new File("resources/map1");
-            FileReader fileReader = new FileReader(mapa);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            int i = 0;
-            boolean spawnLine = false;
-            int spawnLineCount = 0;
-            while ((line = bufferedReader.readLine()) != null) {
-                int in;
-                int qtosSub = 0;
-                for (int j = 0; j < line.length() - 1; j++) {
-                    if (line.substring(j, j + 1).equals("-")) {
-                        in = Integer.parseInt(line.substring(j, j + 2));
-                        j++;
-                        qtosSub++;
-                        spawnLine = true;
-
-                    } else {
-                        in = Integer.parseInt(line.substring(j, j + 1));
-                    }
-                    if (i < 17 && j < 17)
-                        map[i][j - qtosSub] = in;
-                }
-                if (qtosSub != 0)
-                    spawnLineCount++;
-                if (spawnLine) {
-                    if (spawnLineCount == 3)
-                        map[i][line.length() - qtosSub - 2] = 0;
-                    else
-                        map[i][line.length() - qtosSub - 2] = 1;
-                }
-                i++;
-                spawnLine = false;
-            }
-            bufferedReader.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
+    public static Tuple<List<Wall>, List<Collectable>> buildObstacles() {
+        Tuple<Point, int[][]> mapAndSpawn = MapReader.readMap(FILE_NAME);
+        spawnCoordinates = mapAndSpawn.getA().times(Rectangle.DEFAULT_SIZE).plus(20);
         Tuple<List<Wall>, List<Collectable>> obstacles = new Tuple<>(new LinkedList<>(), new LinkedList<>());
-        fillObstacleList(map, obstacles);
+        fillObstacleList(mapAndSpawn.getB(), obstacles);
         return obstacles;
     }
 

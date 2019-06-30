@@ -39,7 +39,7 @@ public class BoardController extends JPanel {
         if (MAP_STYLE == 1) {
             obstacleController.add(ObstacleBuilder.buildObstacles(MapGenerator.generateMap(N)));
         } else {
-            obstacleController.add(ObstacleBuilder.buildObstacles(N));
+            obstacleController.add(ObstacleBuilder.buildObstacles());
         }
         drawBoundaries();
     }
