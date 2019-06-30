@@ -12,16 +12,17 @@ public class Circle extends Obstacle {
     private static final int DEFAULT_SIZE = 15;
     private Color color;
 
-    public Circle(Point pos) {
+    public Circle(Point pos, int pontuation) {
         this.pos = pos;
         this.width = DEFAULT_SIZE;
         this.height = DEFAULT_SIZE;
         this.shouldPontuate = true;
-        color = Color.YELLOW;
+        this.color = Color.YELLOW;
+        this.pontuation = pontuation;
     }
 
-    public Circle(Point pos, Color color, int size) {
-        this(pos);
+    public Circle(Point pos, Color color, int size, int pontuation) {
+        this(pos, pontuation);
         this.width = size;
         this.height = size;
         this.color = color;

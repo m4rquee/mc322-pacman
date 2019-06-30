@@ -21,8 +21,19 @@ public class ObstacleBuilder {
     // Getting obstacles with random generated map
     public static List<Obstacle> buildObstacles(AbstractMap.SimpleEntry<Point, int[][]> mapAndSpawn) {
         intMap = mapAndSpawn.getValue();
+        boolean foundSpawn = false;
+        for (int i = 0; i < intMap.length && !foundSpawn; i++) {
+            for (int j = 0; j < intMap[i].length; j++) {
+                if (intMap[i][j] == -1) {
+                    foundSpawn = true;
+                    spawn = new Point(i * Rectangle.DEFAULT_SIZE + 20, j * Rectangle.DEFAULT_SIZE + 20);
+                    break;
+                }
+            }
+            if (foundSpawn)
+                break;
+        }
         List<Obstacle> ret = new LinkedList<>();
-        spawn = mapAndSpawn.getKey().times(Rectangle.DEFAULT_SIZE).plus(new Point(20));
         fillObstacleList(intMap, ret);
         return ret;
     }
@@ -84,10 +95,11 @@ public class ObstacleBuilder {
                 Point offset = new Point(i, j).times(Rectangle.DEFAULT_SIZE);
                 if (map[i][j] == 1) {
                     list.add(new Rectangle(offset.plus(20)));
-                } else if (map[i][j] == 2) {
-                    list.add(new Circle(offset.plus(28), Color.RED, 18));
-                } else if ((i != 0 || j != 0) && map[i][j] == 0) {
-                    list.add(new Circle(offset.plus(28)));
+                } else if (i != 0 || j != 0) {
+                    if (map[i][j] == 2)
+                        list.add(new Circle(offset.plus(28), Color.RED, 18, 100));
+                    else if (map[i][j] == 0)
+                        list.add(new Circle(offset.plus(28), 10));
                 }
             }
     }

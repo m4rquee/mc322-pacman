@@ -10,13 +10,13 @@ import java.util.Objects;
 public abstract class Character extends GameObject {
 
     private Image image;
-    private Point spwanPoint;
+    private Point spawnPoint;
     private Direction direction;
     private static final int SIZE = 30;
 
     public Character(Point pos, Image imageIcon) {
         this.pos = pos;
-        this.spwanPoint = pos;
+        this.spawnPoint = pos;
         this.image = imageIcon;
     }
 
@@ -25,7 +25,7 @@ public abstract class Character extends GameObject {
     }
 
     public void respawn() {
-        this.pos = spwanPoint;
+        this.pos = spawnPoint;
     }
 
     public Image getImage() {

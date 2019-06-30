@@ -14,25 +14,25 @@ import java.util.Objects;
 public class ObstacleController {
 
     private List<Obstacle> obstacles;
-    private boolean pontuate;
+    private Obstacle pontuate;
 
     ObstacleController() {
         this.obstacles = new LinkedList<>();
     }
 
-    public void setPontuate(boolean pontuate) {
+    void setPontuate(Obstacle pontuate) {
         this.pontuate = pontuate;
     }
 
-    public boolean getPontuate() {
+    Obstacle getPontuate() {
         return this.pontuate;
     }
 
-    public void removeObstacle(Obstacle obstacle) {
+    private void removeObstacle(Obstacle obstacle) {
         obstacles.remove(obstacle);
     }
 
-    public void removeObstacles() {
+    void removeObstacles() {
         obstacles = new LinkedList<>();
     }
 
@@ -40,8 +40,8 @@ public class ObstacleController {
         for (Obstacle at : obstacles) {
             if (at.collision(character)) {
                 if (at.shouldPontuate) {
+                    setPontuate(at);
                     removeObstacle(at);
-                    pontuate = true;
                 }
                 return true;
             }
@@ -88,5 +88,13 @@ public class ObstacleController {
                 return ghost;
         }
         return null;
+    }
+
+    boolean endedLevel() {
+        int pointsInTheMap = 0;
+        for(Obstacle obstacle : obstacles) {
+            pointsInTheMap += obstacle.getPontuation();
+        }
+        return pointsInTheMap == 0;
     }
 }

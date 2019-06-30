@@ -1,5 +1,6 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.GhostType;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
@@ -17,8 +18,7 @@ public class GameController extends BoardController implements ActionListener {
 
     public static final int DOT_SIZE = 1;
     private static final int DELAY = 5;
-    private static final int POINTS_PER_LEVEL = 1740;
-    private static final int POINTS_TO_GAIN_LIFE = 5000;
+    private static final int POINTS_TO_GAIN_LIFE = 10000;
 
     private Pacman pacman = new Pacman();
     private ArrayList<Ghost> ghosts;
@@ -101,13 +101,19 @@ public class GameController extends BoardController implements ActionListener {
             if (!obstacleController.collisionDetected(pacman.withFuturePosition())) {
                 pacman.move();
             }
-            if (obstacleController.getPontuate()) {
-                pacman.pontuate(10);
+            if (obstacleController.getPontuate() != null) {
+                pacman.pontuate(obstacleController.getPontuate().getPontuation());
+                if(obstacleController.getPontuate().getPontuation() == 100) {
+                    for(Ghost ghost : ghosts) {
+                        ghost.setAlreadyEaten(false);
+                    }
+                    pacman.setPowerUp(true);
+                }
                 if (pacman.getPoints() == POINTS_TO_GAIN_LIFE) {
                     pacman.addLife();
                 }
-                obstacleController.setPontuate(false);
-                if (pacman.getPoints() >= POINTS_PER_LEVEL * levelNumber) {
+                obstacleController.setPontuate(null);
+                if (obstacleController.endedLevel()) {
                     inGame = false;
                     levelNumber++;
                     pacman.respawn();
@@ -159,7 +165,7 @@ public class GameController extends BoardController implements ActionListener {
             ghost.respawn();
 
         try {
-            Thread.sleep(300);
+            Thread.sleep(1000);
         } catch (InterruptedException e1) {
             e1.printStackTrace();
         }
@@ -173,7 +179,8 @@ public class GameController extends BoardController implements ActionListener {
 
             Ghost hitGhost = obstacleController.hitGhost(ghosts, pacman);
             if (hitGhost != null) {
-                if (pacman.hasPowerUp()) {
+                if (pacman.hasPowerUp() && !hitGhost.wasAlreadyEaten()) {
+                    hitGhost.setAlreadyEaten(true);
                     hitGhost.respawn();
                     pacman.pontuate(500);
                 } else {

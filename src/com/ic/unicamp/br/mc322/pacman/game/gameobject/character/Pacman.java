@@ -5,6 +5,8 @@ import com.ic.unicamp.br.mc322.pacman.game.utilities.Direction;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,24 +19,33 @@ public class Pacman extends Character {
     private boolean hasPowerUp;
     private Map<Direction, Image> images;
     private static final int SIZE = 30;
-    public static final int INITIAL_X = 20;
-    public static final int INITIAL_Y = 20;
+    private static final int INITIAL_X = 20;
+    private static final int INITIAL_Y = 20;
+    private Instant shouldFinishPowerUp;
 
     public Pacman() {
         super(new Point(INITIAL_X, INITIAL_Y), new ImageIcon("resources/pacmanWithAMouth.png").getImage());
         initImages();
         points = 0;
-        life = 5;
+        life = 3;
         hasPowerUp = false;
         setDirection(Direction.RIGHT);
+        shouldFinishPowerUp = Instant.now().minus(1, ChronoUnit.SECONDS);
     }
 
-    public Pacman(Point pos) {
+    private Pacman(Point pos) {
         super(pos, null);
     }
 
     public boolean hasPowerUp() {
         return hasPowerUp;
+    }
+
+    public void setPowerUp(boolean bool) {
+        if(bool) {
+            shouldFinishPowerUp = Instant.now().plus(5, ChronoUnit.SECONDS);
+        }
+        this.hasPowerUp = bool;
     }
 
     public void pontuate(int points) {
@@ -61,6 +72,7 @@ public class Pacman extends Character {
     public void drawMe(Graphics g) {
         g.setColor(Color.white);
         g.drawString("Vidas: " + getLife(), 100, 18);
+        g.drawString(hasPowerUp ? "POWER UP!" : "", 200, 18);
         g.drawImage(this.getImage(), this.getPos().getX(), this.getPos().getY(), super.getSize(), super.getSize(), (Image img, int infoflags, int x, int y, int width, int height) -> false);
     }
 
@@ -69,6 +81,9 @@ public class Pacman extends Character {
     }
 
     public void move() {
+        if(Instant.now().compareTo(this.shouldFinishPowerUp) > 0) {
+            this.hasPowerUp = false;
+        }
         Direction direction = this.getDirection();
         this.setImage(this.images.get(direction));
 
@@ -77,6 +92,7 @@ public class Pacman extends Character {
 
     public void takeHit() {
         this.life -= 1;
+        this.hasPowerUp = false;
         this.respawn();
     }
 

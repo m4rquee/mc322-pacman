@@ -18,6 +18,7 @@ public class Ghost extends Character {
     private GhostType type;
     private Instant lastTimeChangedDirection;
     private Instant shouldChangeDirection;
+    private boolean alreadyEaten;
 
     public Ghost(Point pos, GhostType type) {
         super(pos, new ImageIcon("resources/Ghost.png").getImage());
@@ -25,10 +26,19 @@ public class Ghost extends Character {
         this.setDirection(Direction.RIGHT);
         lastTimeChangedDirection = Instant.now();
         shouldChangeDirection = Instant.now().plus(2, ChronoUnit.SECONDS);
+        alreadyEaten = false;
     }
 
     public GhostType getType() {
         return type;
+    }
+
+    public void setAlreadyEaten(boolean alreadyEaten) {
+        this.alreadyEaten = alreadyEaten;
+    }
+
+    public boolean wasAlreadyEaten() {
+        return alreadyEaten;
     }
 
     @Override
@@ -98,6 +108,7 @@ public class Ghost extends Character {
                 }
                 break;
             case WIZARD:
+                this.setDirection(Direction.DOWN);
                 // Wizards doesn't need to walk
                 break;
         }
