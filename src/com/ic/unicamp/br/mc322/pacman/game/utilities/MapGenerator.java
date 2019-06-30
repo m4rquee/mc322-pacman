@@ -1,8 +1,12 @@
 package com.ic.unicamp.br.mc322.pacman.game.utilities;
 
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MapGenerator {
+
+    private Point spawn;
 
     private static int scaleUp(int k) { // Coverts tile map index to final map index
         return 2 * k + 1;

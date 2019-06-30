@@ -2,8 +2,11 @@ package com.ic.unicamp.br.mc322.pacman.game.controller;
 
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Obstacle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Ghost;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -71,5 +74,19 @@ public class ObstacleController {
     @Override
     public int hashCode() {
         return Objects.hash(obstacles);
+    }
+
+    boolean shouldTakeHit(ArrayList<Ghost> ghosts, Pacman pacman) {
+        boolean ret;
+        for (Ghost ghost : ghosts) {
+            int charX = ghost.getPos().getX();
+            int charY = ghost.getPos().getY();
+            ret = !(charX + (ghost.getSize()-10) <= pacman.getPos().getX() || charY + (ghost.getSize()-10) <= pacman.getPos().getY()
+                    || charX >= pacman.getPos().getX() + (pacman.getSize()-10) || charY >= pacman.getPos().getY() + (pacman.getSize()-10));
+            if(ret) {
+                return true;
+            }
+        }
+        return false;
     }
 }

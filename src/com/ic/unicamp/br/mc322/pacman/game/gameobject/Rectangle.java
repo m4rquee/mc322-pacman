@@ -9,7 +9,6 @@ public class Rectangle extends Obstacle {
     private int width;
     private int height;
     public static final int DEFAULT_SIZE = 30;
-    private static int COUNT = 0;
 
     public Rectangle(Point pos, int width, int height) {
         this.pos = pos;
@@ -32,8 +31,6 @@ public class Rectangle extends Obstacle {
 
     @Override
     public boolean collision(Character character) {
-        COUNT++;
-//        System.out.println(COUNT);
         int charX = character.getPos().getX();
         int charY = character.getPos().getY();
 

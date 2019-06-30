@@ -13,12 +13,15 @@ import java.util.List;
 
 public class ObstacleBuilder {
 
+    public static Point spawn;
+
     // Getting obstacles with random generated map
     public static List<Obstacle> buildObstacles(int[][] map) {
         List<Obstacle> ret = new LinkedList<>();
         boolean foundSpawn = false;
         for (int i = 1; i < map.length - 1 && !foundSpawn; i++) {
             for (int j = 1; j < map[i].length - 1; j++) {
+                spawn = new Point(i * Rectangle.DEFAULT_SIZE + 20, j * Rectangle.DEFAULT_SIZE + 20);
                 if (map[i][j] == -1) {
                     map[i][j] = -1;
                     map[i - 1][j - 1] = -1;
@@ -40,6 +43,7 @@ public class ObstacleBuilder {
 
     // Reading map from file
     public static List<Obstacle> buildObstacles() {
+        spawn = new Point(4 * Rectangle.DEFAULT_SIZE + 20, 11 * Rectangle.DEFAULT_SIZE + 20);
         int[][] map = new int[17][17];
         List<Obstacle> ret = new LinkedList<>();
         String linha;
@@ -65,15 +69,15 @@ public class ObstacleBuilder {
                         in = Integer.parseInt(linha.substring(j, j + 1));
                     }
                     if (i < 17 && j < 17)
-                        map[i][j-qtosSub] = in;
+                        map[i][j - qtosSub] = in;
                 }
-                if(qtosSub != 0)
+                if (qtosSub != 0)
                     spawnLineCount++;
                 if (spawnLine) {
-                    if(spawnLineCount == 3)
-                        map[i][linha.length()-qtosSub-2] = 0;
+                    if (spawnLineCount == 3)
+                        map[i][linha.length() - qtosSub - 2] = 0;
                     else
-                        map[i][linha.length()-qtosSub-2] = 1;
+                        map[i][linha.length() - qtosSub - 2] = 1;
                 }
                 i++;
                 spawnLine = false;

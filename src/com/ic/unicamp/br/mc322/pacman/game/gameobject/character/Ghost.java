@@ -5,23 +5,25 @@ import com.ic.unicamp.br.mc322.pacman.game.utilities.Direction;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Random;
 
 import static com.ic.unicamp.br.mc322.pacman.game.controller.GameController.DOT_SIZE;
 
 public class Ghost extends Character {
 
     private int life = 1;
-    private static final Point DEFAULT_START_POINT = new Point(500, 500);
     private GhostType type;
+    private Instant lastTimeChangedDirection;
+    private Instant shouldChangeDirection;
 
-    public Ghost(GhostType type) {
-        super(DEFAULT_START_POINT, new ImageIcon("resources/Ghost.png").getImage());
-        this.type = type;
-    }
-
-    private Ghost(Point pos, GhostType type) {
+    public Ghost(Point pos, GhostType type) {
         super(pos, new ImageIcon("resources/Ghost.png").getImage());
         this.type = type;
+        this.setDirection(Direction.RIGHT);
+        lastTimeChangedDirection = Instant.now();
+        shouldChangeDirection = Instant.now().plus(2, ChronoUnit.SECONDS);
     }
 
     public int getLife() {
@@ -69,21 +71,54 @@ public class Ghost extends Character {
         }
     }
 
-    public void setNextDirection(Point pos) {
+    public void setNextDirection(Point pos, Direction collidedDirection) {
         switch (this.getType()) {
             case CHASER:
-                if (this.getPos().getY() < pos.getY())
-                    this.setDirection(Direction.UP);
-                else if (this.getPos().getX() < pos.getX())
-                    this.setDirection(Direction.LEFT);
-                else if (this.getPos().getY() > pos.getY())
-                    this.setDirection(Direction.DOWN);
-                else if (this.getPos().getY() > pos.getY())
-                    this.setDirection(Direction.RIGHT);
+                if (collidedDirection == null) {
+                    if (pos.getY() < this.getPos().getY())
+                        this.setDirection(Direction.UP);
+                    else if (pos.getX() < this.getPos().getX())
+                        this.setDirection(Direction.LEFT);
+                    else if (pos.getY() > this.getPos().getY())
+                        this.setDirection(Direction.DOWN);
+                    else if (pos.getX() > this.getPos().getX())
+                        this.setDirection(Direction.RIGHT);
+                } else {
+                    if (pos.getX() < this.getPos().getX() && !Direction.LEFT.equals(collidedDirection))
+                        this.setDirection(Direction.LEFT);
+                    else if (pos.getY() < this.getPos().getY() && !Direction.UP.equals(collidedDirection))
+                        this.setDirection(Direction.UP);
+                    else if (pos.getX() > this.getPos().getX() && !Direction.RIGHT.equals(collidedDirection))
+                        this.setDirection(Direction.RIGHT);
+                    else if (pos.getY() > this.getPos().getY() && !Direction.DOWN.equals(collidedDirection))
+                        this.setDirection(Direction.DOWN);
+                }
                 break;
             case EVASIVE:
                 break;
             case RANDOM:
+                if (lastTimeChangedDirection.compareTo(shouldChangeDirection) < 0) {
+                    lastTimeChangedDirection = Instant.now();
+                } else {
+                    int dir = new Random().nextInt(3);
+                    switch (dir) {
+                        case 0:
+                            this.setDirection(Direction.RIGHT);
+                            break;
+                        case 1:
+                            this.setDirection(Direction.UP);
+                            break;
+                        case 2:
+                            this.setDirection(Direction.LEFT);
+                            break;
+                        case 3:
+                            this.setDirection(Direction.DOWN);
+                            break;
+
+                    }
+                    lastTimeChangedDirection = Instant.now();
+                    shouldChangeDirection = Instant.now().plus(200, ChronoUnit.MILLIS);
+                }
                 break;
             case WIZARD:
                 break;

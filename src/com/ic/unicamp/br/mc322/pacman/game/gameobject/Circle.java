@@ -1,6 +1,7 @@
 package com.ic.unicamp.br.mc322.pacman.game.gameobject;
 
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
 
 import java.awt.*;
 
@@ -33,6 +34,9 @@ public class Circle extends Obstacle {
 
     @Override
     public boolean collision(Character character) {
+        if(!(character instanceof Pacman)) {
+            return false;
+        }
         int charX = character.getPos().getX();
         int charY = character.getPos().getY();
 

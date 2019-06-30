@@ -3,7 +3,6 @@ package com.ic.unicamp.br.mc322.pacman.game.controller;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Line;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Ghost;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
 import com.ic.unicamp.br.mc322.pacman.game.utilities.MapGenerator;
@@ -79,9 +78,25 @@ public class BoardController extends JPanel {
 
     void nextLevel(Graphics g) {
         String msg = "LEVEL UP!";
+        String msgMotivacional = "[ PRESS ENTER TO GO NEXT LEVEL]";
         FontMetrics metr = getFontMetrics(new Font("Helvetica", Font.BOLD, 30));
         g.setColor(Color.white);
         g.setFont(new Font("Helvetica", Font.BOLD, 30));
         g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
+        g.setFont(new Font("Helvetica", Font.BOLD, 15));
+        metr = getFontMetrics(new Font("Helvetica", Font.BOLD, 15));
+        g.drawString(msgMotivacional, (B_WIDTH - metr.stringWidth(msgMotivacional)) / 2, B_HEIGHT / 2 + 30);
+    }
+
+    void gameOver(Graphics g) {
+        String msg = "GAME OVER!!!";
+        String msgMotivacional = "[ PRESS R TO RESTART ]";
+        FontMetrics metr = getFontMetrics(new Font("Helvetica", Font.BOLD, 30));
+        g.setColor(Color.white);
+        g.setFont(new Font("Helvetica", Font.BOLD, 30));
+        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
+        g.setFont(new Font("Helvetica", Font.BOLD, 15));
+        metr = getFontMetrics(new Font("Helvetica", Font.BOLD, 15));
+        g.drawString(msgMotivacional, (B_WIDTH - metr.stringWidth(msgMotivacional)) / 2, B_HEIGHT / 2 + 30);
     }
 }

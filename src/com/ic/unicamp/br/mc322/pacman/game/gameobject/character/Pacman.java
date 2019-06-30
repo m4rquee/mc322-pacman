@@ -12,15 +12,18 @@ import static com.ic.unicamp.br.mc322.pacman.game.controller.GameController.DOT_
 
 public class Pacman extends Character {
 
-    private int life = 3;
-    private static final int SIZE = 30;
+    private int life;
+    private int points;
     private Map<Direction, Image> images;
+    private static final int SIZE = 30;
     public static final Point DEFAULT_START_POINT = new Point(20, 20);
-    private int points = 0;
 
     public Pacman() {
         super(DEFAULT_START_POINT, new ImageIcon("resources/pacmanWithAMouth.png").getImage());
         initImages();
+        points = 0;
+        life = 3;
+        setDirection(Direction.RIGHT);
     }
 
     public Pacman(Image image, Point pos) {
@@ -51,7 +54,7 @@ public class Pacman extends Character {
     public void drawMe(Graphics g) {
         g.setColor(Color.white);
         g.drawString("Vidas: " + getLife(), 100, 18);
-        g.drawImage(this.getImage(), this.getPos().getX(), this.getPos().getY(), SIZE, SIZE, (Image img, int infoflags, int x, int y, int width, int height) -> false);
+        g.drawImage(this.getImage(), this.getPos().getX(), this.getPos().getY(), super.getSize(), super.getSize(), (Image img, int infoflags, int x, int y, int width, int height) -> false);
     }
 
     public int getSize() {
@@ -65,8 +68,9 @@ public class Pacman extends Character {
         super.setNextPosition(direction);
     }
 
-    public void takeHit(int damage) {
+    public void takeHit() {
         this.life -= 1;
+        this.setPos(DEFAULT_START_POINT);
     }
 
     public Pacman withFuturePosition() {
