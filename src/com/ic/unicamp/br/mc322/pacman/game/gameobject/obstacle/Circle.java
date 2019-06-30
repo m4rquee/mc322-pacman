@@ -6,7 +6,7 @@ import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
 
 import java.awt.*;
 
-public class Circle extends Obstacle {
+public class Circle extends Collectable {
 
     private int width;
     private int height;

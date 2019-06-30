@@ -92,7 +92,7 @@ public class ObstacleController {
 
     boolean endedLevel() {
         int pointsInTheMap = 0;
-        for(Obstacle obstacle : obstacles) {
+        for (Obstacle obstacle : obstacles) {
             pointsInTheMap += obstacle.getPontuation();
         }
         return pointsInTheMap == 0;

@@ -3,6 +3,7 @@ package com.ic.unicamp.br.mc322.pacman.game.utilities;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Circle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Obstacle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.PowerUp;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Rectangle;
 
 import java.awt.*;
@@ -97,7 +98,7 @@ public class ObstacleBuilder {
                     list.add(new Rectangle(offset.plus(20)));
                 } else if (i != 0 || j != 0) {
                     if (map[i][j] == 2)
-                        list.add(new Circle(offset.plus(28), Color.RED, 18, 100));
+                        list.add(new PowerUp(offset.plus(28), Color.RED, 18, 100));
                     else if (map[i][j] == 0)
                         list.add(new Circle(offset.plus(28), 10));
                 }
