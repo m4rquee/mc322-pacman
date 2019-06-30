@@ -26,8 +26,8 @@ public class Pacman extends Character {
         setDirection(Direction.RIGHT);
     }
 
-    public Pacman(Image image, Point pos) {
-        super(pos, image);
+    public Pacman(Point pos) {
+        super(pos, null);
     }
 
     public void pontuate(int points) {
@@ -74,27 +74,7 @@ public class Pacman extends Character {
     }
 
     public Pacman withFuturePosition() {
-        Point futurePosition;
-        switch (this.getDirection()) {
-            case LEFT:
-                futurePosition = new Point(this.pos.getX() - DOT_SIZE, this.getPos()
-                        .getY());
-                return new Pacman(this.getImage(), futurePosition);
-            case RIGHT:
-                futurePosition = new Point(this.pos.getX() + DOT_SIZE, this.getPos()
-                        .getY());
-                return new Pacman(this.getImage(), futurePosition);
-            case UP:
-                futurePosition = new Point(this.pos.getX(), this.getPos()
-                        .getY() - DOT_SIZE);
-                return new Pacman(this.getImage(), futurePosition);
-            case DOWN:
-                futurePosition = new Point(this.pos.getX(), this.getPos()
-                        .getY() + DOT_SIZE);
-                return new Pacman(this.getImage(), futurePosition);
-            default:
-                return null;
-        }
+        return new Pacman(this.getDirection().getDelta().times(DOT_SIZE).plus(this.getPos()));
     }
 
     public void addLife() {

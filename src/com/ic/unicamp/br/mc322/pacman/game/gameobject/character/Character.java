@@ -61,8 +61,8 @@ public abstract class Character extends GameObject {
                 this.setPos(new Point(pos.getX(), pos.getY() + 1));
                 break;
         }
-    }
 
+    }
 
     @Override
     public boolean equals(Object o) {
