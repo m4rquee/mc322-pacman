@@ -57,8 +57,8 @@ public class MapGenerator {
         return ret;
     }
 
-    public static int[][] generateMap() { // Generates a map with size 2^(N + 1) + 1
-        int tile_size = 2 << 2;
+    public static int[][] generateMap(int N) { // Generates a map with size 2^(N + 1) + 1
+        int tile_size = 2 << N;
         int[][] tile_map = generateTileMap(tile_size);
 
         // Use the generated tiles as the walls of the new map:
@@ -66,34 +66,38 @@ public class MapGenerator {
         int map_size = 2 * tile_size + 1;
         int[][] ret = new int[map_size][map_size];
 
-        for (int i = 0; i < map_size; i++)
-          for (int j = 0; j < map_size; j++)
-            ret[i][j] = 0;
-
-        for (int i = 1; i < map_size; i += 2)
+        for (int i = 1; i < map_size; i += 2) // Fill every odd coordinate pair with ones
             for (int j = 1; j < map_size; j += 2)
                 ret[i][j] = 1;
 
         for (int i = 0; i < tile_size; i++)
-            for (int j = i % 2; j < tile_size; j += 2) {
+            for (int j = 0; j < tile_size; j++) {
                 int curr = tile_map[i][j];
                 int scaled_i = scaleUp(i), scaled_j = scaleUp(j);
 
                 if (curr == 0) {
                     ret[scaled_i][scaled_j] = -1; // Place the spawn point
                 } else {
-                  // If a neighbor cell is part of this tile the wall is extended towards it:
-                  if (safeGet(tile_map, i - 1, j) == curr)
-                      ret[scaled_i - 1][scaled_j] = 1;
-                  if (safeGet(tile_map, i, j - 1) == curr)
-                      ret[scaled_i][scaled_j - 1] = 1;
-                  if (safeGet(tile_map, i, j + 1) == curr)
-                      ret[scaled_i][scaled_j + 1] = 1;
-                  if (safeGet(tile_map, i + 1, j) == curr)
-                      ret[scaled_i + 1][scaled_j] = 1;
+                    // If a neighbor cell is part of this tile the wall is extended towards it:
+                    if (safeGet(tile_map, i - 1, j) == curr)
+                        ret[scaled_i - 1][scaled_j] = 1;
+                    if (safeGet(tile_map, i, j - 1) == curr)
+                        ret[scaled_i][scaled_j - 1] = 1;
+                    if (safeGet(tile_map, i, j + 1) == curr)
+                        ret[scaled_i][scaled_j + 1] = 1;
+                    if (safeGet(tile_map, i + 1, j) == curr)
+                        ret[scaled_i + 1][scaled_j] = 1;
                 }
             }
 
         return ret;
+    }
+
+    public static void printMap(int[][] map) { // For debugging propose
+        for (int[] line : map) {
+            for (int j = 0; j < map[0].length; j++)
+                System.out.print(String.format("%02d ", line[j]));
+            System.out.println();
+        }
     }
 }

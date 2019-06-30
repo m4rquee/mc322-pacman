@@ -37,17 +37,8 @@ public class BoardController extends JPanel {
 
     void buildObstacles() {
         int[][] map = null;
-        if(MAP_STYLE == 1) {
-            boolean hasSpawn = false;
-            while (!hasSpawn) {
-                map = MapGenerator.generateMap();
-                for (int i = 0; i < map.length; i++) {
-                    for (int j = 0; j < map[i].length; j++) {
-                        if (map[i][j] == -1)
-                            hasSpawn = true;
-                    }
-                }
-            }
+        if (MAP_STYLE == 1) {
+            map = MapGenerator.generateMap(2);
             obstacleController.add(ObstacleBuilder.buildObstacles(map));
         } else {
             obstacleController.add(ObstacleBuilder.buildObstacles());
@@ -68,12 +59,12 @@ public class BoardController extends JPanel {
         else
             g.drawString("Points: " + points, B_WIDTH - 145, 18);
         obstacleController.drawAllObstacles(g);
-        if(ghosts != null) {
+        if (ghosts != null) {
             for (Ghost ghost : ghosts) {
                 ghost.drawMe(g);
             }
         }
-        if(pacman != null) {
+        if (pacman != null) {
             pacman.drawMe(g);
         }
         Toolkit.getDefaultToolkit().sync();
