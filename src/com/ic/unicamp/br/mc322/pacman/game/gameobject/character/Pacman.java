@@ -70,7 +70,7 @@ public class Pacman extends Character {
 
     public void takeHit() {
         this.life -= 1;
-        this.setPos(DEFAULT_START_POINT);
+        this.pos = new Point(20, 20);
     }
 
     public Pacman withFuturePosition() {
