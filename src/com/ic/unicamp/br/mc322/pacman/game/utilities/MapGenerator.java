@@ -101,6 +101,11 @@ public class MapGenerator {
                 }
             }
 
+        for (int i = 0; i < map_size - 1; i += 4)
+            for (int j = i % 2; j < map_size - 1; j += 5)
+                if (ret[i][j] == 0)
+                    ret[i][j] = 2; // Place power-up
+
         return ret;
     }
 

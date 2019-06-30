@@ -5,6 +5,7 @@ import com.ic.unicamp.br.mc322.pacman.game.gameobject.Obstacle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Rectangle;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -78,11 +79,15 @@ public class ObstacleBuilder {
     // Get the obstacle list of the map of integers
     private static void fillObstacleList(int[][] map, List<Obstacle> list) {
         for (int i = 0; i < map.length; i++)
-            for (int j = 0; j < map[i].length; j++)
+            for (int j = 0; j < map[i].length; j++) {
+                Point offset = new Point(i, j).times(Rectangle.DEFAULT_SIZE);
                 if (map[i][j] == 1) {
-                    list.add(new Rectangle(new Point(20 + i * Rectangle.DEFAULT_SIZE, 20 + j * Rectangle.DEFAULT_SIZE)));
+                    list.add(new Rectangle(offset.plus(20)));
+                } else if (map[i][j] == 2) {
+                    list.add(new Circle(offset.plus(28), Color.RED, 18));
                 } else if ((i != 0 || j != 0) && map[i][j] == 0) {
-                    list.add(new Circle(new Point(28 + i * Rectangle.DEFAULT_SIZE, 28 + j * Rectangle.DEFAULT_SIZE)));
+                    list.add(new Circle(offset.plus(28)));
                 }
+            }
     }
 }

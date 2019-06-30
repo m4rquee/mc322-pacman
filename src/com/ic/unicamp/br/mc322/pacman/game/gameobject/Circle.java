@@ -10,20 +10,21 @@ public class Circle extends Obstacle {
     private int width;
     private int height;
     private static final int DEFAULT_SIZE = 15;
-    private Color color = Color.YELLOW;
-
-    public Circle(Point pos, int width, int height) {
-        this.pos = pos;
-        this.width = width;
-        this.height = height;
-        this.shouldPontuate = true;
-    }
+    private Color color;
 
     public Circle(Point pos) {
         this.pos = pos;
         this.width = DEFAULT_SIZE;
         this.height = DEFAULT_SIZE;
         this.shouldPontuate = true;
+        color = Color.YELLOW;
+    }
+
+    public Circle(Point pos, Color color, int size) {
+        this(pos);
+        this.width = size;
+        this.height = size;
+        this.color = color;
     }
 
     @Override
@@ -34,13 +35,13 @@ public class Circle extends Obstacle {
 
     @Override
     public boolean collision(Character character) {
-        if(!(character instanceof Pacman)) {
+        if (!(character instanceof Pacman)) {
             return false;
         }
         int charX = character.getPos().getX();
         int charY = character.getPos().getY();
 
-        if(!(charX + character.getSize() <= pos.getX() || charY + character.getSize() <= pos.getY() || charX >= pos.getX() + width
+        if (!(charX + character.getSize() <= pos.getX() || charY + character.getSize() <= pos.getY() || charX >= pos.getX() + width
                 || charY >= pos.getY() + height)) {
             this.color = Color.BLACK;
             return true;

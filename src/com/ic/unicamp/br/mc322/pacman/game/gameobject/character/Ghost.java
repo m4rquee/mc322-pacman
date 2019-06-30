@@ -40,27 +40,7 @@ public class Ghost extends Character {
     }
 
     public Ghost withFuturePosition() {
-        Point futurePosition;
-        switch (this.getDirection()) {
-            case LEFT:
-                futurePosition = new Point(this.pos.getX() - DOT_SIZE, this.getPos()
-                        .getY());
-                return new Ghost(futurePosition, getType());
-            case RIGHT:
-                futurePosition = new Point(this.pos.getX() + DOT_SIZE, this.getPos()
-                        .getY());
-                return new Ghost(futurePosition, getType());
-            case UP:
-                futurePosition = new Point(this.pos.getX(), this.getPos()
-                        .getY() - DOT_SIZE);
-                return new Ghost(futurePosition, getType());
-            case DOWN:
-                futurePosition = new Point(this.pos.getX(), this.getPos()
-                        .getY() + DOT_SIZE);
-                return new Ghost(futurePosition, getType());
-            default:
-                return null;
-        }
+        return new Ghost(this.getDirection().getDelta().times(DOT_SIZE).plus(pos), type);
     }
 
     public void setNextDirection(Point pos, Direction collidedDirection) {

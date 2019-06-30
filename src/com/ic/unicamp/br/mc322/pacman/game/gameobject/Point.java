@@ -42,6 +42,10 @@ public class Point {
 		return new Point(this.x + vector.x, this.y + vector.y);
 	}
 
+	public Point plus(int k) {
+		return new Point(this.x + k, this.y + k);
+	}
+
 	public Point times(int scalar) {
 		return new Point(this.x * scalar, this.y * scalar);
 	}

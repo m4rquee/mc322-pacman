@@ -80,7 +80,7 @@ public class Pacman extends Character {
     }
 
     public Pacman withFuturePosition() {
-        return new Pacman(this.getDirection().getDelta().times(DOT_SIZE).plus(this.getPos()));
+        return new Pacman(this.getDirection().getDelta().times(DOT_SIZE).plus(pos));
     }
 
     public void addLife() {
