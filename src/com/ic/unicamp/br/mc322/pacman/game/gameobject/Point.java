@@ -38,11 +38,6 @@ public class Point {
 		this.y = y;
 	}
 
-	public void move(Point vector) {
-		this.x += vector.x;
-		this.y += vector.y;
-	}
-
 	public Point plus(Point vector) {
 		return new Point(this.x + vector.x, this.y + vector.y);
 	}

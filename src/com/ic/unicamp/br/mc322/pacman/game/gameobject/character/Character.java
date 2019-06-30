@@ -46,7 +46,7 @@ public abstract class Character extends GameObject {
     }
 
     void setNextPosition(Direction direction) {
-        pos.move(direction.getDelta());
+        pos = pos.plus(direction.getDelta());
     }
 
     @Override

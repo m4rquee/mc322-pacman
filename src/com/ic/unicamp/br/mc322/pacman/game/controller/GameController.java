@@ -151,6 +151,7 @@ public class GameController extends BoardController implements ActionListener {
 
     private void restartGame() {
         obstacleController.removeObstacles();
+        ghosts.clear();
         inGame = false;
     }
 
