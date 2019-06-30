@@ -51,14 +51,8 @@ public class BoardController extends JPanel {
         g.setColor(Color.WHITE);
         g.setFont(new Font(null, Font.PLAIN, 20));
         g.drawString("Level: " + levelNumber, 5, 18);
-        if (points < 100)
-            g.drawString("Points: " + points, B_WIDTH - 100, 18);
-        else if (points < 1000)
-            g.drawString("Points: " + points, B_WIDTH - 115, 18);
-        else if (points < 10000)
-            g.drawString("Points: " + points, B_WIDTH - 130, 18);
-        else
-            g.drawString("Points: " + points, B_WIDTH - 145, 18);
+        g.drawString("Points: " + String.format("%06d", points), B_WIDTH - 165, 18);
+
         obstacleController.drawAllObstacles(g);
         if (ghosts != null) {
             for (Ghost ghost : ghosts) {
