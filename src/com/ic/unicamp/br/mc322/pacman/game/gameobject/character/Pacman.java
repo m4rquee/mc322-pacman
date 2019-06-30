@@ -27,7 +27,7 @@ public class Pacman extends Character {
     public Pacman() {
         super(new Point(INITIAL_X, INITIAL_Y), new ImageIcon("resources/pacmanWithAMouth.png").getImage());
         initImages();
-        points = 9900;
+        points = 0;
         life = 3;
         hasPowerUp = false;
         setDirection(Direction.RIGHT);
