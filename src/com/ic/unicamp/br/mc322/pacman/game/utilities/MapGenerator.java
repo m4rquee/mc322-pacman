@@ -52,7 +52,7 @@ public class MapGenerator {
     }
 
     // Spawns a random point inside the matrix, then covers with L shaped tiles:
-    private static AbstractMap.SimpleEntry<Point, int[][]> generateTileMap(int size) {
+    private static Tuple<Point, int[][]> generateTileMap(int size) {
         int[][] tile_map = new int[size][size];
         // Generates a point to start tiling around:
         int p_x = ThreadLocalRandom.current().nextInt(1, size - 1);
@@ -60,15 +60,15 @@ public class MapGenerator {
         tile_map[p_x][p_y] = 0; // Starting point
         generateTileMapRec(tile_map, size, 0, 0, p_x, p_y, 0);
 
-        return new AbstractMap.SimpleEntry<>(new Point(p_x, p_y), tile_map);
+        return new Tuple<>(new Point(p_x, p_y), tile_map);
     }
 
     // Generates a map with size 2^(N + 1) + 1, uses the tiles as the map walls:
-    public static AbstractMap.SimpleEntry<Point, int[][]> generateMap(int N) {
+    public static Tuple<Point, int[][]> generateMap(int N) {
         int tile_size = 2 << N;
-        AbstractMap.SimpleEntry<Point, int[][]> tileMapAndSpawn = generateTileMap(tile_size);
-        Point spawn = tileMapAndSpawn.getKey();
-        int[][] tile_map = tileMapAndSpawn.getValue();
+        Tuple<Point, int[][]> tileMapAndSpawn = generateTileMap(tile_size);
+        Point spawn = tileMapAndSpawn.getA();
+        int[][] tile_map = tileMapAndSpawn.getB();
 
         // Use the generated tiles as the walls of the new map:
 
@@ -109,7 +109,7 @@ public class MapGenerator {
                 if (map[i][j] == 0)
                     map[i][j] = 2; // Place power-up
 
-        return new AbstractMap.SimpleEntry<>(spawn, map);
+        return new Tuple<>(spawn, map);
     }
 
     public static void printMap(int[][] map) { // For debugging propose

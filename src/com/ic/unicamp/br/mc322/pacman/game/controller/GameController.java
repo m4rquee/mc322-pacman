@@ -113,7 +113,7 @@ public class GameController extends BoardController implements ActionListener {
                     pacman.setPowerUp(true);
                 }
                 obstacleController.setPontuate(null);
-                if (obstacleController.endedLevel()) {
+                if (obstacleController.collectedAllPoints()) {
                     inGame = false;
                     levelNumber++;
                     pacman.respawn();

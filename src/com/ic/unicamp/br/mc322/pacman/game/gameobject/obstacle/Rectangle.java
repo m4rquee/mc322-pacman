@@ -5,7 +5,7 @@ import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 
 import java.awt.*;
 
-public class Rectangle extends Obstacle {
+public class Rectangle extends Wall {
 
     private int width;
     private int height;

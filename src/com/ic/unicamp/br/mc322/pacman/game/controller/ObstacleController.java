@@ -1,23 +1,27 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Collectable;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Obstacle;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Wall;
+import com.ic.unicamp.br.mc322.pacman.game.utilities.Tuple;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 public class ObstacleController {
 
-    private List<Obstacle> obstacles;
+    private List<Wall> walls;
+    private List<Collectable> collectables;
     private Obstacle pontuate;
 
     ObstacleController() {
-        this.obstacles = new LinkedList<>();
+        this.walls = new LinkedList<>();
+        this.collectables = new LinkedList<>();
     }
 
     void setPontuate(Obstacle pontuate) {
@@ -28,16 +32,26 @@ public class ObstacleController {
         return this.pontuate;
     }
 
-    private void removeObstacle(Obstacle obstacle) {
-        obstacles.remove(obstacle);
+    private void removeObstacle(Wall wall) {
+        this.walls.remove(wall);
+    }
+
+    private void removeObstacle(Collectable collectable) {
+        this.collectables.remove(collectable);
     }
 
     void removeObstacles() {
-        obstacles = new LinkedList<>();
+        this.walls = new LinkedList<>();
+        this.collectables = new LinkedList<>();
     }
 
     public boolean collisionDetected(Character character) {
-        for (Obstacle at : obstacles) {
+        for (Wall at : this.walls) {
+            if (at.collision(character))
+                return true;
+        }
+
+        for (Collectable at : collectables) {
             if (at.collision(character)) {
                 if (at.shouldPontuate) {
                     setPontuate(at);
@@ -50,30 +64,26 @@ public class ObstacleController {
     }
 
     void drawAllObstacles(Graphics g) {
-        for (Obstacle at : obstacles) {
+        for (Obstacle at : this.walls) {
+            at.drawMe(g);
+        }
+
+        for (Obstacle at : this.collectables) {
             at.drawMe(g);
         }
     }
 
-    void add(Obstacle obstacle) {
-        this.obstacles.add(obstacle);
+    void add(Wall wall) {
+        this.walls.add(wall);
     }
 
-    void add(List<Obstacle> obstacles) {
-        this.obstacles.addAll(obstacles);
+    void add(Collectable collectable) {
+        this.collectables.add(collectable);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ObstacleController that = (ObstacleController) o;
-        return Objects.equals(obstacles, that.obstacles);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(obstacles);
+    void add(Tuple<List<Wall>, List<Collectable>> obstacles) {
+        this.walls.addAll(obstacles.getA());
+        this.collectables.addAll(obstacles.getB());
     }
 
     Ghost hitGhost(ArrayList<Ghost> ghosts, Pacman pacman) {
@@ -90,11 +100,7 @@ public class ObstacleController {
         return null;
     }
 
-    boolean endedLevel() {
-        int pointsInTheMap = 0;
-        for (Obstacle obstacle : obstacles) {
-            pointsInTheMap += obstacle.getPontuation();
-        }
-        return pointsInTheMap == 0;
+        boolean collectedAllPoints() {
+        return this.collectables.size() == 0;
     }
 }
