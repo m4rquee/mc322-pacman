@@ -36,7 +36,7 @@ public class ObstacleController {
         obstacles = new LinkedList<>();
     }
 
-    boolean collisionDetected(Character character) {
+    public boolean collisionDetected(Character character) {
         for (Obstacle at : obstacles) {
             if (at.collision(character)) {
                 if (at.shouldPontuate) {

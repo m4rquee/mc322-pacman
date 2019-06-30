@@ -14,9 +14,11 @@ import java.util.List;
 public class ObstacleBuilder {
 
     public static Point spawn;
+    public static int[][] intMap;
 
     // Getting obstacles with random generated map
     public static List<Obstacle> buildObstacles(int[][] map) {
+        intMap = map;
         List<Obstacle> ret = new LinkedList<>();
         boolean foundSpawn = false;
         for (int i = 1; i < map.length - 1 && !foundSpawn; i++) {
@@ -87,6 +89,7 @@ public class ObstacleBuilder {
             ex.printStackTrace();
         }
         ret = fillObstacleList(map, ret);
+        intMap = map;
         return ret;
     }
 

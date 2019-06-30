@@ -22,7 +22,7 @@ public class Pacman extends Character {
         super(DEFAULT_START_POINT, new ImageIcon("resources/pacmanWithAMouth.png").getImage());
         initImages();
         points = 0;
-        life = 3;
+        life = 5;
         setDirection(Direction.RIGHT);
     }
 

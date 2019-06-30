@@ -38,6 +38,8 @@ public class GameController extends BoardController implements ActionListener {
         ghosts = new ArrayList<>();
         ghosts.add(new Ghost(ObstacleBuilder.spawn, GhostType.CHASER));
         ghosts.add(new Ghost(ObstacleBuilder.spawn, GhostType.RANDOM));
+        ghosts.add(new Ghost(ObstacleBuilder.spawn, GhostType.WIZARD));
+        ghosts.add(new Ghost(ObstacleBuilder.spawn, GhostType.EVASIVE));
     }
 
     private void initGame() {
@@ -119,14 +121,31 @@ public class GameController extends BoardController implements ActionListener {
 
     private void moveGhosts() {
         for (Ghost ghost : ghosts) {
-            ghost.setNextDirection(pacman.getPos(), null);
+            Point pos = null;
+            if (ghost.getType() == GhostType.CHASER) {
+                pos = pacman.getPos();
+            } else if (ghost.getType() == GhostType.EVASIVE){
+                int xMedio = 0;
+                int yMedio = 0;
+                for (Ghost ghostAux : ghosts) {
+                    xMedio += ghostAux.getPos().getX();
+                    yMedio += ghostAux.getPos().getY();
+                }
+                xMedio = xMedio / 4;
+                yMedio = yMedio / 4;
+                pos = new Point(xMedio, yMedio);
+            }
+            ghost.setNextDirection(pos, null);
             if (!obstacleController.collisionDetected(ghost.withFuturePosition())) {
                 ghost.move();
             } else {
-                ghost.setNextDirection(pacman.getPos(), ghost.getDirection());
+                ghost.setNextDirection(pos, ghost.getDirection());
                 if (!obstacleController.collisionDetected(ghost.withFuturePosition())) {
                     ghost.move();
                 }
+            }
+            if(ghost.getType() == GhostType.WIZARD) {
+                ghost.setNextPos(obstacleController);
             }
         }
     }
