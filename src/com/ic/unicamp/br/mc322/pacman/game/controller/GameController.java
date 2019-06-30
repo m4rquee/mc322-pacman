@@ -40,7 +40,7 @@ public class GameController extends BoardController implements ActionListener {
 
     private void initGhosts() {
         for (GhostType type : GhostType.values())
-            ghosts.add(new Ghost(ObstacleBuilder.spawn, type));
+            ghosts.add(new Ghost(new Point(ObstacleBuilder.spawn.getX(), ObstacleBuilder.spawn.getY()), type));
     }
 
     private void initGame() {
@@ -162,7 +162,7 @@ public class GameController extends BoardController implements ActionListener {
             if (obstacleController.shouldTakeHit(ghosts, pacman)) {
                 pacman.takeHit();
                 for (Ghost ghost : ghosts) {
-                    ghost.setPos(ObstacleBuilder.spawn);
+                    ghost.setPos(new Point(ObstacleBuilder.spawn.getX(), ObstacleBuilder.spawn.getY()));
                 }
                 try {
                     Thread.sleep(300);
