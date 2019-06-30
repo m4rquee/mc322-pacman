@@ -19,31 +19,32 @@ public class GameController extends BoardController implements ActionListener {
     private static final int DELAY = 5;
     private static final int POINTS_PER_LEVEL = 1740;
     private static final int POINTS_TO_GAIN_LIFE = 5000;
-    private int maxPoints = POINTS_PER_LEVEL;
 
     private Pacman pacman = new Pacman();
     private ArrayList<Ghost> ghosts;
 
-    static boolean inGame = true;
-    static boolean waiting = false;
-    static boolean shouldRestart = false;
-    private int levelNumber = 1;
+    static boolean inGame;
+    static boolean waiting;
+    static boolean shouldRestart;
+    private int levelNumber;
 
     public GameController() {
+        ghosts = new ArrayList<>();
+        inGame = true;
+        waiting = false;
+        shouldRestart = false;
+        levelNumber = 1;
         initGame();
         initGhosts();
     }
 
     private void initGhosts() {
-        ghosts = new ArrayList<>();
-        ghosts.add(new Ghost(ObstacleBuilder.spawn, GhostType.CHASER));
-        ghosts.add(new Ghost(ObstacleBuilder.spawn, GhostType.RANDOM));
-        ghosts.add(new Ghost(ObstacleBuilder.spawn, GhostType.WIZARD));
-        ghosts.add(new Ghost(ObstacleBuilder.spawn, GhostType.EVASIVE));
+        for (GhostType type : GhostType.values())
+            ghosts.add(new Ghost(ObstacleBuilder.spawn, type));
     }
 
     private void initGame() {
-        Timer timer = new Timer(DELAY, this);
+        Timer timer = new Timer(DELAY, this); // At every DELAY ms triggers this listener
         timer.start();
     }
 
@@ -61,10 +62,9 @@ public class GameController extends BoardController implements ActionListener {
             if (waiting) {
                 buildObstacles();
                 initGhosts();
-                if(shouldRestart) {
+                if (shouldRestart) {
                     pacman = new Pacman();
                     levelNumber = 1;
-                    maxPoints = POINTS_PER_LEVEL;
                     shouldRestart = false;
                 }
                 // Resets game control variables
@@ -72,7 +72,7 @@ public class GameController extends BoardController implements ActionListener {
                 GameController.waiting = false;
             } else {
                 // While waiting, draw level up or game over screen
-                if(pacman.getLife() == 0) {
+                if (pacman.getLife() == 0) {
                     super.gameOver(g);
                     super.doDrawing(g, levelNumber, pacman.getPoints(), null, null);
                 } else {
@@ -103,17 +103,16 @@ public class GameController extends BoardController implements ActionListener {
             }
             if (obstacleController.getPontuate()) {
                 pacman.pontuate(10);
-                if(pacman.getPoints() == POINTS_TO_GAIN_LIFE) {
-                    pacman.setLife(pacman.getLife()+1);
+                if (pacman.getPoints() == POINTS_TO_GAIN_LIFE) {
+                    pacman.addLife();
                 }
                 obstacleController.setPontuate(false);
-                if (pacman.getPoints() >= maxPoints) {
+                if (pacman.getPoints() >= POINTS_PER_LEVEL * levelNumber) {
                     inGame = false;
                     levelNumber++;
                     pacman.setPos(new Point(Pacman.DEFAULT_START_POINT));
                     pacman.setDirection(Direction.RIGHT);
                     obstacleController.removeObstacles();
-                    maxPoints += POINTS_PER_LEVEL;
                 }
             }
         }
@@ -124,7 +123,7 @@ public class GameController extends BoardController implements ActionListener {
             Point pos = null;
             if (ghost.getType() == GhostType.CHASER) {
                 pos = pacman.getPos();
-            } else if (ghost.getType() == GhostType.EVASIVE){
+            } else if (ghost.getType() == GhostType.EVASIVE) {
                 int xMedio = 0;
                 int yMedio = 0;
                 for (Ghost ghostAux : ghosts) {
@@ -144,10 +143,15 @@ public class GameController extends BoardController implements ActionListener {
                     ghost.move();
                 }
             }
-            if(ghost.getType() == GhostType.WIZARD) {
+            if (ghost.getType() == GhostType.WIZARD) {
                 ghost.setNextPos(obstacleController);
             }
         }
+    }
+
+    private void restartGame() {
+        obstacleController.removeObstacles();
+        inGame = false;
     }
 
     @Override
@@ -155,9 +159,9 @@ public class GameController extends BoardController implements ActionListener {
         if (inGame) {
             movePacman();
             moveGhosts();
-            if(obstacleController.shouldTakeHit(ghosts, pacman)) {
+            if (obstacleController.shouldTakeHit(ghosts, pacman)) {
                 pacman.takeHit();
-                for(Ghost ghost : ghosts) {
+                for (Ghost ghost : ghosts) {
                     ghost.setPos(ObstacleBuilder.spawn);
                 }
                 try {
@@ -166,10 +170,9 @@ public class GameController extends BoardController implements ActionListener {
                     e1.printStackTrace();
                 }
             }
-            if(pacman.getLife() == 0) {
-                obstacleController.removeObstacles();
-                inGame = false;
-            }
+
+            if (pacman.getLife() == 0)
+                restartGame();
         }
         repaint();
     }

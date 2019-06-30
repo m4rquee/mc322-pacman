@@ -46,26 +46,19 @@ public abstract class Character extends GameObject {
     }
 
     void setNextPosition(Direction direction) {
+        Point pos = this.getPos();
         switch (direction) {
             case LEFT:
-                this.setPos(new Point(this.getPos()
-                        .getX() - 1, this.getPos()
-                        .getY()));
+                this.setPos(new Point(pos.getX() - 1, pos.getY()));
                 break;
             case RIGHT:
-                this.setPos(new Point(this.getPos()
-                        .getX() + 1, this.getPos()
-                        .getY()));
+                this.setPos(new Point(pos.getX() + 1, pos.getY()));
                 break;
             case UP:
-                this.setPos(new Point(this.getPos()
-                        .getX(), this.getPos()
-                        .getY() - 1));
+                this.setPos(new Point(pos.getX(), pos.getY() - 1));
                 break;
             case DOWN:
-                this.setPos(new Point(this.getPos()
-                        .getX(), this.getPos()
-                        .getY() + 1));
+                this.setPos(new Point(pos.getX(), pos.getY() + 1));
                 break;
         }
     }

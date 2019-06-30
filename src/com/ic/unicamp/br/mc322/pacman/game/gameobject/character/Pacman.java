@@ -97,7 +97,7 @@ public class Pacman extends Character {
         }
     }
 
-    public void setLife(int life) {
-        this.life = life;
+    public void addLife() {
+        this.life++;
     }
 }

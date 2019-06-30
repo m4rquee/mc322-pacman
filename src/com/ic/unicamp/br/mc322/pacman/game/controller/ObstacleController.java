@@ -12,13 +12,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class ObstacleController {
+
     private List<Obstacle> obstacles;
+    private boolean pontuate;
 
     ObstacleController() {
         this.obstacles = new LinkedList<>();
     }
-
-    private boolean pontuate;
 
     public void setPontuate(boolean pontuate) {
         this.pontuate = pontuate;
@@ -81,9 +81,9 @@ public class ObstacleController {
         for (Ghost ghost : ghosts) {
             int charX = ghost.getPos().getX();
             int charY = ghost.getPos().getY();
-            ret = !(charX + (ghost.getSize()-10) <= pacman.getPos().getX() || charY + (ghost.getSize()-10) <= pacman.getPos().getY()
-                    || charX >= pacman.getPos().getX() + (pacman.getSize()-10) || charY >= pacman.getPos().getY() + (pacman.getSize()-10));
-            if(ret) {
+            ret = !(charX + (ghost.getSize() - 10) <= pacman.getPos().getX() || charY + (ghost.getSize() - 10) <= pacman.getPos().getY()
+                    || charX >= pacman.getPos().getX() + (pacman.getSize() - 10) || charY >= pacman.getPos().getY() + (pacman.getSize() - 10));
+            if (ret) {
                 return true;
             }
         }
