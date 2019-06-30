@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.ic.unicamp.br.mc322.pacman.game.controller.GameController.DOT_SIZE;
-import static javax.swing.JComponent.getDefaultLocale;
 
 public class Pacman extends Character {
 
