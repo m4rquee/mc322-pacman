@@ -9,6 +9,14 @@ public class Point {
 		this.y = y;
 	}
 
+	public Point(int k) {
+		this.x = k;
+		this.y = k;
+	}
+
+	public Point() {
+	}
+
 	public Point(Point point) {
 		this.x = point.x;
 		this.y = point.y;

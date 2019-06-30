@@ -17,29 +17,11 @@ public class ObstacleBuilder {
     public static int[][] intMap;
 
     // Getting obstacles with random generated map
-    public static List<Obstacle> buildObstacles(int[][] map) {
+    public static List<Obstacle> buildObstacles(int[][] map, Point spawnPos) {
         intMap = map;
         List<Obstacle> ret = new LinkedList<>();
-        boolean foundSpawn = false;
-        for (int i = 1; i < map.length - 1 && !foundSpawn; i++) {
-            for (int j = 1; j < map[i].length - 1; j++) {
-                spawn = new Point(i * Rectangle.DEFAULT_SIZE + 20, j * Rectangle.DEFAULT_SIZE + 20);
-                if (map[i][j] == -1) {
-                    map[i][j] = -1;
-                    map[i - 1][j - 1] = -1;
-                    map[i - 1][j] = -1;
-                    map[i - 1][j + 1] = -1;
-                    map[i][j + 1] = -1;
-                    map[i][j - 1] = -1;
-                    map[i + 1][j - 1] = -1;
-                    map[i + 1][j] = -1;
-                    map[i + 1][j + 1] = -1;
-                    foundSpawn = true;
-                    break;
-                }
-            }
-        }
-        ret = fillObstacleList(map, ret);
+        spawn = spawnPos.times(Rectangle.DEFAULT_SIZE).plus(new Point(20));
+        fillObstacleList(map, ret);
         return ret;
     }
 
@@ -88,21 +70,19 @@ public class ObstacleBuilder {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        ret = fillObstacleList(map, ret);
+        fillObstacleList(map, ret);
         intMap = map;
         return ret;
     }
 
     // Get the obstacle list of the map of integers
-    private static List<Obstacle> fillObstacleList(int[][] map, List<Obstacle> ret) {
+    private static void fillObstacleList(int[][] map, List<Obstacle> list) {
         for (int i = 0; i < map.length; i++)
             for (int j = 0; j < map[i].length; j++)
                 if (map[i][j] == 1) {
-                    ret.add(new Rectangle(new Point(20 + i * Rectangle.DEFAULT_SIZE, 20 + j * Rectangle.DEFAULT_SIZE)));
+                    list.add(new Rectangle(new Point(20 + i * Rectangle.DEFAULT_SIZE, 20 + j * Rectangle.DEFAULT_SIZE)));
                 } else if ((i != 0 || j != 0) && map[i][j] == 0) {
-                    ret.add(new Circle(new Point(28 + i * Rectangle.DEFAULT_SIZE, 28 + j * Rectangle.DEFAULT_SIZE)));
+                    list.add(new Circle(new Point(28 + i * Rectangle.DEFAULT_SIZE, 28 + j * Rectangle.DEFAULT_SIZE)));
                 }
-        return ret;
     }
-
 }

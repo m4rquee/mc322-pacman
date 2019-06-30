@@ -61,7 +61,8 @@ public class MapGenerator {
         return ret;
     }
 
-    public static int[][] generateMap(int N) { // Generates a map with size 2^(N + 1) + 1
+    // Generates a map with size 2^(N + 1) + 1, uses the tiles as the map walls:
+    public static int[][] generateMap(int N, Point spawn) {
         int tile_size = 2 << N;
         int[][] tile_map = generateTileMap(tile_size);
 
@@ -80,7 +81,13 @@ public class MapGenerator {
                 int scaled_i = scaleUp(i), scaled_j = scaleUp(j);
 
                 if (curr == 0) {
-                    ret[scaled_i][scaled_j] = -1; // Place the spawn point
+                    spawn.setX(scaled_i);
+                    spawn.setY(scaled_j);
+
+                    // Make ghosts spawn area:
+                    for (int a = scaled_i - 1; a <= scaled_i + 1; a++)
+                        for (int b = scaled_j - 1; b <= scaled_j + 1; b++)
+                            ret[a][b] = -1;
                 } else {
                     // If a neighbor cell is part of this tile the wall is extended towards it:
                     if (safeGet(tile_map, i - 1, j) == curr)
