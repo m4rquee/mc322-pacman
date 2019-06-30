@@ -175,6 +175,7 @@ public class GameController extends BoardController implements ActionListener {
             if (hitGhost != null) {
                 if (pacman.hasPowerUp()) {
                     hitGhost.respawn();
+                    pacman.pontuate(500);
                 } else {
                     pacman.takeHit();
                     respawn();

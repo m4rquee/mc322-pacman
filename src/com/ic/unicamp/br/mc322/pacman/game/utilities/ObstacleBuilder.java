@@ -9,6 +9,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.AbstractMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,11 +19,11 @@ public class ObstacleBuilder {
     public static int[][] intMap;
 
     // Getting obstacles with random generated map
-    public static List<Obstacle> buildObstacles(int[][] map, Point spawnPos) {
-        intMap = map;
+    public static List<Obstacle> buildObstacles(AbstractMap.SimpleEntry<Point, int[][]> mapAndSpawn) {
+        intMap = mapAndSpawn.getValue();
         List<Obstacle> ret = new LinkedList<>();
-        spawn = spawnPos.times(Rectangle.DEFAULT_SIZE).plus(new Point(20));
-        fillObstacleList(map, ret);
+        spawn = mapAndSpawn.getKey().times(Rectangle.DEFAULT_SIZE).plus(new Point(20));
+        fillObstacleList(intMap, ret);
         return ret;
     }
 

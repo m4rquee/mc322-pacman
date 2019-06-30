@@ -2,6 +2,7 @@ package com.ic.unicamp.br.mc322.pacman.game.utilities;
 
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 
+import java.util.AbstractMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MapGenerator {
@@ -51,62 +52,64 @@ public class MapGenerator {
     }
 
     // Spawns a random point inside the matrix, then covers with L shaped tiles:
-    private static int[][] generateTileMap(int size) {
-        int[][] ret = new int[size][size];
+    private static AbstractMap.SimpleEntry<Point, int[][]> generateTileMap(int size) {
+        int[][] tile_map = new int[size][size];
         // Generates a point to start tiling around:
         int p_x = ThreadLocalRandom.current().nextInt(1, size - 1);
         int p_y = ThreadLocalRandom.current().nextInt(1, size - 1);
-        ret[p_x][p_y] = 0; // Starting point
-        generateTileMapRec(ret, size, 0, 0, p_x, p_y, 0);
-        return ret;
+        tile_map[p_x][p_y] = 0; // Starting point
+        generateTileMapRec(tile_map, size, 0, 0, p_x, p_y, 0);
+
+        return new AbstractMap.SimpleEntry<>(new Point(p_x, p_y), tile_map);
     }
 
     // Generates a map with size 2^(N + 1) + 1, uses the tiles as the map walls:
-    public static int[][] generateMap(int N, Point spawn) {
+    public static AbstractMap.SimpleEntry<Point, int[][]> generateMap(int N) {
         int tile_size = 2 << N;
-        int[][] tile_map = generateTileMap(tile_size);
+        AbstractMap.SimpleEntry<Point, int[][]> tileMapAndSpawn = generateTileMap(tile_size);
+        Point spawn = tileMapAndSpawn.getKey();
+        int[][] tile_map = tileMapAndSpawn.getValue();
 
         // Use the generated tiles as the walls of the new map:
 
         int map_size = 2 * tile_size + 1;
-        int[][] ret = new int[map_size][map_size];
+        int[][] map = new int[map_size][map_size];
 
         for (int i = 1; i < map_size; i += 2) // Fill every odd coordinate pair with ones
             for (int j = 1; j < map_size; j += 2)
-                ret[i][j] = 1;
+                map[i][j] = 1;
+
+        // Make ghosts spawn area:
+        int scaled_i = scaleUp(spawn.getX()), scaled_j = scaleUp(spawn.getY());
+        for (int a = scaled_i - 1; a <= scaled_i + 1; a++)
+            for (int b = scaled_j - 1; b <= scaled_j + 1; b++)
+                map[a][b] = -1;
 
         for (int i = 0; i < tile_size; i++)
             for (int j = 0; j < tile_size; j++) {
                 int curr = tile_map[i][j];
-                int scaled_i = scaleUp(i), scaled_j = scaleUp(j);
+                scaled_i = scaleUp(i);
+                scaled_j = scaleUp(j);
 
-                if (curr == 0) {
-                    spawn.setX(scaled_i);
-                    spawn.setY(scaled_j);
-
-                    // Make ghosts spawn area:
-                    for (int a = scaled_i - 1; a <= scaled_i + 1; a++)
-                        for (int b = scaled_j - 1; b <= scaled_j + 1; b++)
-                            ret[a][b] = -1;
-                } else {
+                if (curr != 0) {
                     // If a neighbor cell is part of this tile the wall is extended towards it:
                     if (safeGet(tile_map, i - 1, j) == curr)
-                        ret[scaled_i - 1][scaled_j] = 1;
+                        map[scaled_i - 1][scaled_j] = 1;
                     if (safeGet(tile_map, i, j - 1) == curr)
-                        ret[scaled_i][scaled_j - 1] = 1;
+                        map[scaled_i][scaled_j - 1] = 1;
                     if (safeGet(tile_map, i, j + 1) == curr)
-                        ret[scaled_i][scaled_j + 1] = 1;
+                        map[scaled_i][scaled_j + 1] = 1;
                     if (safeGet(tile_map, i + 1, j) == curr)
-                        ret[scaled_i + 1][scaled_j] = 1;
+                        map[scaled_i + 1][scaled_j] = 1;
                 }
             }
 
         for (int i = 0; i < map_size - 1; i += 4)
             for (int j = i % 2; j < map_size - 1; j += 5)
-                if (ret[i][j] == 0)
-                    ret[i][j] = 2; // Place power-up
+                if (map[i][j] == 0)
+                    map[i][j] = 2; // Place power-up
 
-        return ret;
+        return new AbstractMap.SimpleEntry<>(spawn, map);
     }
 
     public static void printMap(int[][] map) { // For debugging propose

@@ -36,11 +36,8 @@ public class BoardController extends JPanel {
     }
 
     void buildObstacles() {
-        int[][] map = null;
         if (MAP_STYLE == 1) {
-            Point spawn = new Point();
-            map = MapGenerator.generateMap(N, spawn);
-            obstacleController.add(ObstacleBuilder.buildObstacles(map, spawn));
+            obstacleController.add(ObstacleBuilder.buildObstacles(MapGenerator.generateMap(N)));
         } else {
             obstacleController.add(ObstacleBuilder.buildObstacles());
         }
