@@ -40,7 +40,7 @@ public class GameController extends BoardController implements ActionListener {
     private void initGhosts() {
         ghosts = new ArrayList<>();
         for (GhostType type : GhostType.values())
-            ghosts.add(new Ghost(new Point(ObstacleBuilder.spawn.getX(), ObstacleBuilder.spawn.getY()), type));
+            ghosts.add(new Ghost(new Point(ObstacleBuilder.spawnCoordinates.getX(), ObstacleBuilder.spawnCoordinates.getY()), type));
     }
 
     private void initGame() {

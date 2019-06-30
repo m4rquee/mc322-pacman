@@ -67,7 +67,7 @@ public class MapGenerator {
     public static Tuple<Point, int[][]> generateMap(int N) {
         int tile_size = 2 << N;
         Tuple<Point, int[][]> tileMapAndSpawn = generateTileMap(tile_size);
-        Point spawn = tileMapAndSpawn.getA();
+        Point spawn = tileMapAndSpawn.getA().times(2).plus(1); // Apply the scaling
         int[][] tile_map = tileMapAndSpawn.getB();
 
         // Use the generated tiles as the walls of the new map:
@@ -80,11 +80,11 @@ public class MapGenerator {
                 map[i][j] = 1;
 
         // Make ghosts spawn area:
-        int scaled_i = scaleUp(spawn.getX()), scaled_j = scaleUp(spawn.getY());
-        for (int a = scaled_i - 1; a <= scaled_i + 1; a++)
-            for (int b = scaled_j - 1; b <= scaled_j + 1; b++)
+        for (int a = spawn.getX() - 1; a <= spawn.getX() + 1; a++)
+            for (int b = spawn.getY() - 1; b <= spawn.getY() + 1; b++)
                 map[a][b] = -1;
 
+        int scaled_i, scaled_j;
         for (int i = 0; i < tile_size; i++)
             for (int j = 0; j < tile_size; j++) {
                 int curr = tile_map[i][j];

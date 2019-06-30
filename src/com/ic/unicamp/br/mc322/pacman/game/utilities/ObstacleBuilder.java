@@ -13,25 +13,12 @@ import java.util.List;
 
 public class ObstacleBuilder {
 
-    public static Point spawn;
+    public static Point spawnCoordinates;
 
     // Getting obstacles with random generated map
     public static Tuple<List<Wall>, List<Collectable>> buildObstacles(Tuple<Point, int[][]> mapAndSpawn) {
         int[][] map = mapAndSpawn.getB();
-        boolean foundSpawn = false;
-        // TODO REMOVE
-        for (int i = 0; i < map.length && !foundSpawn; i++) {
-            for (int j = 0; j < map[0].length; j++) {
-                if (map[i][j] == -1) {
-                    foundSpawn = true;
-                    spawn = new Point((i + 1) * Rectangle.DEFAULT_SIZE + 20, (j + 1) * Rectangle.DEFAULT_SIZE + 20);
-                    break;
-                }
-            }
-            if (foundSpawn)
-                break;
-        }
-
+        spawnCoordinates = mapAndSpawn.getA().times(Rectangle.DEFAULT_SIZE).plus(20);
         Tuple<List<Wall>, List<Collectable>> obstacles = new Tuple<>(new LinkedList<>(), new LinkedList<>());
         fillObstacleList(map, obstacles);
         return obstacles;
@@ -39,7 +26,7 @@ public class ObstacleBuilder {
 
     // Reading map from file
     public static Tuple<List<Wall>, List<Collectable>> buildObstacles(int N) {
-        spawn = new Point(4 * Rectangle.DEFAULT_SIZE + 20, 11 * Rectangle.DEFAULT_SIZE + 20);
+        spawnCoordinates = new Point(11, 3).times(Rectangle.DEFAULT_SIZE).plus(20);
         int[][] map = new int[(2 << (N + 1)) + 1][(2 << (N + 1)) + 1];
         String line;
         try {
