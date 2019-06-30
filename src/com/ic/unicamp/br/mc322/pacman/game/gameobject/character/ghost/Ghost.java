@@ -18,6 +18,7 @@ public class Ghost extends Character {
     private GhostType type;
     private Instant lastTimeChangedDirection;
     private Instant shouldChangeDirection;
+    private Instant lastTimeSpawned;
     private boolean alreadyEaten;
 
     public Ghost(Point pos, GhostType type) {
@@ -40,7 +41,8 @@ public class Ghost extends Character {
         this.type = type;
         this.setDirection(Direction.RIGHT);
         lastTimeChangedDirection = Instant.now();
-        shouldChangeDirection = Instant.now().plus(2, ChronoUnit.SECONDS);
+        shouldChangeDirection = Instant.now().plus(1, ChronoUnit.SECONDS);
+        lastTimeSpawned = Instant.now();
         alreadyEaten = false;
     }
 
@@ -54,6 +56,16 @@ public class Ghost extends Character {
 
     public boolean wasAlreadyEaten() {
         return alreadyEaten;
+    }
+
+    public void respawn() {
+        lastTimeSpawned = Instant.now();
+        super.respawn();
+    }
+
+    public void move() {
+        if(Instant.now().compareTo(lastTimeSpawned.plus(1, ChronoUnit.SECONDS)) > 0)
+            super.move();
     }
 
     @Override
