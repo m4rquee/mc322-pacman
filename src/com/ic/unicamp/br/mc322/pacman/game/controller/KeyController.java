@@ -19,9 +19,14 @@ public class KeyController extends KeyAdapter {
         upDirection = key == KeyEvent.VK_UP;
         downDirection = key == KeyEvent.VK_DOWN;
         rightDirection = key == KeyEvent.VK_RIGHT;
-        if (!GameController.inGame)
+        if (!GameController.inGame) {
             if (key == 10) {
                 GameController.waiting = true;
             }
+            if(key == 82) {
+                GameController.waiting = true;
+                GameController.shouldRestart = true;
+            }
+        }
     }
 }

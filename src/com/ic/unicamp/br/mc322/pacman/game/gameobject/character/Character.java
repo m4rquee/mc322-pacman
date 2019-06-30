@@ -11,7 +11,6 @@ public abstract class Character extends GameObject {
 
     private Image image;
     private Direction direction;
-    private int size;
     private static final int SIZE = 30;
 
     public Character(Point pos, Image imageIcon) {
@@ -36,7 +35,7 @@ public abstract class Character extends GameObject {
     }
 
     public int getSize() {
-        return size;
+        return SIZE;
     }
 
     public abstract void drawMe(Graphics g);

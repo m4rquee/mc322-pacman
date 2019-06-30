@@ -5,6 +5,7 @@ import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.GhostType;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
 import com.ic.unicamp.br.mc322.pacman.game.utilities.Direction;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
+import com.ic.unicamp.br.mc322.pacman.game.utilities.ObstacleBuilder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,20 +17,27 @@ public class GameController extends BoardController implements ActionListener {
 
     public static final int DOT_SIZE = 1;
     private static final int DELAY = 5;
-    private static final int POINTS_PER_LEVEL = 1740;
+    private static final int POINTS_PER_LEVEL = 100;
     private static final int POINTS_TO_GAIN_LIFE = 5000;
     private int maxPoints = POINTS_PER_LEVEL;
 
     private Pacman pacman = new Pacman();
-    private ArrayList<Ghost> ghosts = new ArrayList<>();
+    private ArrayList<Ghost> ghosts;
 
     static boolean inGame = true;
     static boolean waiting = false;
+    static boolean shouldRestart = false;
     private int levelNumber = 1;
 
     public GameController() {
-        ghosts.add(new Ghost(GhostType.CHASER));
         initGame();
+        initGhosts();
+    }
+
+    private void initGhosts() {
+        ghosts = new ArrayList<>();
+        ghosts.add(new Ghost(ObstacleBuilder.spawn, GhostType.CHASER));
+        ghosts.add(new Ghost(ObstacleBuilder.spawn, GhostType.RANDOM));
     }
 
     private void initGame() {
@@ -50,13 +58,25 @@ public class GameController extends BoardController implements ActionListener {
         } else {
             if (waiting) {
                 buildObstacles();
+                initGhosts();
+                if(shouldRestart) {
+                    pacman = new Pacman();
+                    levelNumber = 1;
+                    maxPoints = POINTS_PER_LEVEL;
+                    shouldRestart = false;
+                }
                 // Resets game control variables
                 GameController.inGame = true;
                 GameController.waiting = false;
             } else {
-                // While waiting, draw level up screen
-                super.nextLevel(g);
-                super.doDrawing(g, levelNumber, pacman.getPoints(), null, null);
+                // While waiting, draw level up or game over screen
+                if(pacman.getLife() == 0) {
+                    super.gameOver(g);
+                    super.doDrawing(g, levelNumber, pacman.getPoints(), null, null);
+                } else {
+                    super.nextLevel(g);
+                    super.doDrawing(g, levelNumber, pacman.getPoints(), null, null);
+                }
             }
         }
     }
@@ -99,12 +119,11 @@ public class GameController extends BoardController implements ActionListener {
 
     private void moveGhosts() {
         for (Ghost ghost : ghosts) {
-            Direction oldDirection = ghost.getDirection();
-            ghost.setNextDirection(pacman.getPos());
+            ghost.setNextDirection(pacman.getPos(), null);
             if (!obstacleController.collisionDetected(ghost.withFuturePosition())) {
                 ghost.move();
             } else {
-                ghost.setDirection(oldDirection);
+                ghost.setNextDirection(pacman.getPos(), ghost.getDirection());
                 if (!obstacleController.collisionDetected(ghost.withFuturePosition())) {
                     ghost.move();
                 }
@@ -117,6 +136,21 @@ public class GameController extends BoardController implements ActionListener {
         if (inGame) {
             movePacman();
             moveGhosts();
+            if(obstacleController.shouldTakeHit(ghosts, pacman)) {
+                pacman.takeHit();
+                for(Ghost ghost : ghosts) {
+                    ghost.setPos(ObstacleBuilder.spawn);
+                }
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if(pacman.getLife() == 0) {
+                obstacleController.removeObstacles();
+                inGame = false;
+            }
         }
         repaint();
     }

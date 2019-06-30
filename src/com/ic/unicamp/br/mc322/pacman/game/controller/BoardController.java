@@ -36,8 +36,8 @@ public class BoardController extends JPanel {
     }
 
     void buildObstacles() {
-        int[][] map = null;
         if(MAP_STYLE == 1) {
+            int[][] map = null;
             boolean hasSpawn = false;
             while (!hasSpawn) {
                 map = MapGenerator.generateMap();
@@ -88,9 +88,25 @@ public class BoardController extends JPanel {
 
     void nextLevel(Graphics g) {
         String msg = "LEVEL UP!";
+        String msgMotivacional = "[ PRESS ENTER TO GO NEXT LEVEL]";
         FontMetrics metr = getFontMetrics(new Font("Helvetica", Font.BOLD, 30));
         g.setColor(Color.white);
         g.setFont(new Font("Helvetica", Font.BOLD, 30));
         g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
+        g.setFont(new Font("Helvetica", Font.BOLD, 15));
+        metr = getFontMetrics(new Font("Helvetica", Font.BOLD, 15));
+        g.drawString(msgMotivacional, (B_WIDTH - metr.stringWidth(msgMotivacional)) / 2, B_HEIGHT / 2 + 30);
+    }
+
+    void gameOver(Graphics g) {
+        String msg = "GAME OVER!!!";
+        String msgMotivacional = "[ PRESS R TO RESTART ]";
+        FontMetrics metr = getFontMetrics(new Font("Helvetica", Font.BOLD, 30));
+        g.setColor(Color.white);
+        g.setFont(new Font("Helvetica", Font.BOLD, 30));
+        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
+        g.setFont(new Font("Helvetica", Font.BOLD, 15));
+        metr = getFontMetrics(new Font("Helvetica", Font.BOLD, 15));
+        g.drawString(msgMotivacional, (B_WIDTH - metr.stringWidth(msgMotivacional)) / 2, B_HEIGHT / 2 + 30);
     }
 }
