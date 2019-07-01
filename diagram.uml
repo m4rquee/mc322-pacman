@@ -3,374 +3,128 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="646.612660596109" y="628.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Collectable</node>
-    <node x="1036.7616266109374" y="780.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Circle</node>
-    <node x="1070.0784236453192" y="1108.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost</node>
-    <node x="259.0784236453193" y="1204.0">com.ic.unicamp.br.mc322.pacman.game.utilities.ObstacleBuilder</node>
-    <node x="167.32842364531928" y="1466.0">com.ic.unicamp.br.mc322.pacman.game.controller.BoardController</node>
-    <node x="1320.5116266109374" y="128.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character</node>
-    <node x="122.5" y="924.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Line</node>
-    <node x="72.41666666666674" y="805.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Wall</node>
-    <node x="995.237660596109" y="2044.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman</node>
-    <node x="1141.185722993481" y="0.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.GameObject</node>
-    <node x="166.6543272627755" y="2470.0">com.ic.unicamp.br.mc322.pacman.game.controller.ObstacleController</node>
-    <node x="379.5949599442707" y="912.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Rectangle</node>
-    <node x="890.237660596109" y="1724.0">com.ic.unicamp.br.mc322.pacman.game.controller.GameController</node>
-    <node x="835.0784236453193" y="1228.0">com.ic.unicamp.br.mc322.pacman.game.controller.KeyController</node>
-    <node x="0.0" y="496.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Obstacle</node>
-    <node x="1098.5116266109374" y="936.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.PowerUp</node>
+    <node x="889.0" y="1111.0">com.ic.unicamp.br.mc322.pacman.game.utilities.MapGenerator</node>
+    <node x="578.0" y="1634.0">com.ic.unicamp.br.mc322.pacman.game.runner.Runner</node>
+    <node x="1225.0" y="108.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character</node>
+    <node x="1504.0" y="1634.0">com.ic.unicamp.br.mc322.pacman.game.utilities.Direction</node>
+    <node x="1372.0" y="876.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.strategy.CrazyGhost</node>
+    <node x="783.0" y="1634.0">com.ic.unicamp.br.mc322.pacman.game.utilities.Tuple</node>
+    <node x="87.0" y="1339.0">com.ic.unicamp.br.mc322.pacman.game.controller.GameController</node>
+    <node x="244.0" y="852.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Rectangle</node>
+    <node x="915.0" y="1634.0">com.ic.unicamp.br.mc322.pacman.game.utilities.MapReader</node>
+    <node x="732.0" y="876.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.strategy.Evasive</node>
+    <node x="234.625" y="216.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Obstacle</node>
+    <node x="1343.0" y="1111.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.Point</node>
+    <node x="11.5" y="588.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Collectable</node>
+    <node x="0.0" y="864.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Circle</node>
+    <node x="0.0" y="1634.0">com.ic.unicamp.br.mc322.pacman.game.utilities.ObstacleBuilder</node>
+    <node x="1052.0" y="504.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost</node>
+    <node x="0.0" y="1111.0">com.ic.unicamp.br.mc322.pacman.game.controller.BoardController</node>
+    <node x="488.0" y="864.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Line</node>
+    <node x="1052.0" y="876.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.strategy.Chaser</node>
+    <node x="1372.0" y="456.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman</node>
+    <node x="440.875" y="613.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Wall</node>
+    <node x="752.0" y="0.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.GameObject</node>
+    <node x="0.0" y="1785.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.GhostType</node>
+    <node x="1162.0" y="1008.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.strategy.Random</node>
+    <node x="495.0" y="1111.0">com.ic.unicamp.br.mc322.pacman.game.controller.ObstacleController</node>
+    <node x="1482.0" y="1008.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.strategy.Wizard</node>
+    <node x="1244.0" y="1634.0">com.ic.unicamp.br.mc322.pacman.game.controller.KeyController</node>
+    <node x="11.5" y="1008.0">com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.PowerUp</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.ObstacleController" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost">
-      <point x="126.90909090909088" y="-149.0" />
-      <point x="468.0634181718664" y="2440.0" />
-      <point x="1631.2616266109374" y="2440.0" />
-      <point x="1631.2616266109374" y="1436.0" />
-      <point x="1348.649852216748" y="1436.0" />
-      <point x="128.57142857142867" y="149.0" />
-    </edge>
     <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.PowerUp" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Circle">
-      <point x="-50.25" y="-29.0" />
+      <point x="0.0" y="-29.0" />
       <point x="0.0" y="41.0" />
     </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.BoardController" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost">
-      <point x="180.0" y="-89.0" />
-      <point x="572.3284236453193" y="1446.0" />
-      <point x="1091.5069950738907" y="1446.0" />
-      <point x="-128.57142857142844" y="149.0" />
+    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.strategy.CrazyGhost" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost">
+      <point x="0.0" y="-29.0" />
+      <point x="1468.0" y="827.0" />
+      <point x="1302.0" y="827.0" />
+      <point x="100.0" y="125.0" />
     </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.BoardController" target="com.ic.unicamp.br.mc322.pacman.game.utilities.ObstacleBuilder">
-      <point x="0.0" y="-89.0" />
-      <point x="-133.25" y="53.0" />
+    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.strategy.Chaser" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost">
+      <point x="0.0" y="-29.0" />
+      <point x="0.0" y="125.0" />
     </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.BoardController" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Line">
-      <point x="-180.0" y="-89.0" />
-      <point x="212.32842364531928" y="1446.0" />
-      <point x="153.38662661093736" y="1446.0" />
-      <point x="153.38662661093736" y="1088.0" />
-      <point x="234.5" y="1088.0" />
-      <point x="0.0" y="41.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.GameController" target="com.ic.unicamp.br.mc322.pacman.game.controller.KeyController">
-      <point x="13.799999999999955" y="-125.0" />
-      <point x="1042.037660596109" y="1704.0" />
-      <point x="1033.737660596109" y="1704.0" />
-      <point x="1033.737660596109" y="1436.0" />
-      <point x="1014.245090311986" y="1436.0" />
-      <point x="71.66666666666674" y="29.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Line" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.GameObject">
-      <point x="0.0" y="-41.0" />
-      <point x="234.5" y="892.0" />
-      <point x="247.59495994427084" y="892.0" />
-      <point x="247.59495994427084" y="88.0" />
-      <point x="1167.435722993481" y="88.0" />
-      <point x="-43.75" y="29.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.utilities.ObstacleBuilder" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Circle">
-      <point x="133.25" y="-53.0" />
-      <point x="658.8284236453193" y="1088.0" />
-      <point x="696.0" y="1088.0" />
-      <point x="696.0" y="892.0" />
-      <point x="1074.0949599442706" y="892.0" />
-      <point x="-74.66666666666674" y="41.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Circle" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.GameObject">
-      <point x="28.0" y="-41.0" />
-      <point x="1176.7616266109374" y="108.0" />
-      <point x="1202.435722993481" y="108.0" />
-      <point x="-8.75" y="29.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.BoardController" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Rectangle">
-      <point x="-90.0" y="-89.0" />
-      <point x="302.3284236453193" y="1446.0" />
-      <point x="248.57842364531928" y="1446.0" />
-      <point x="248.57842364531928" y="1048.0" />
-      <point x="416.92829327760404" y="1048.0" />
-      <point x="-74.66666666666669" y="53.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.GameObject">
-      <point x="-100.0" y="-149.0" />
-      <point x="1120.0784236453192" y="1068.0" />
-      <point x="1310.0116266109374" y="1068.0" />
-      <point x="1310.0116266109374" y="108.0" />
-      <point x="1219.935722993481" y="108.0" />
-      <point x="8.75" y="29.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Collectable" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman">
-      <point x="0.0" y="41.0" />
-      <point x="747.112660596109" y="760.0" />
-      <point x="802.5784236453193" y="760.0" />
-      <point x="802.5784236453193" y="2014.0" />
-      <point x="1036.9043272627757" y="2014.0" />
-      <point x="-83.33333333333326" y="-173.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost" target="com.ic.unicamp.br.mc322.pacman.game.controller.GameController">
-      <point x="42.85714285714289" y="149.0" />
-      <point x="1262.9355665024623" y="1446.0" />
-      <point x="1276.6007558342042" y="1446.0" />
-      <point x="1276.6007558342042" y="1704.0" />
-      <point x="1152.437660596109" y="1704.0" />
-      <point x="124.20000000000005" y="-125.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.GameController" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost">
-      <point x="41.40000000000009" y="-125.0" />
-      <point x="1069.637660596109" y="1674.0" />
-      <point x="1214.0069950738907" y="1674.0" />
-      <point x="1214.0069950738907" y="1446.0" />
-      <point x="1134.3641379310334" y="1446.0" />
-      <point x="-85.71428571428578" y="149.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.utilities.ObstacleBuilder" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Rectangle">
-      <point x="-44.41666666666663" y="-53.0" />
-      <point x="481.16175697865265" y="1068.0" />
-      <point x="566.2616266109374" y="1068.0" />
-      <point x="74.66666666666669" y="53.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.GameObject">
-      <point x="111.11111111111109" y="-173.0" />
-      <point x="1231.34877170722" y="2024.0" />
-      <point x="1609.2616266109374" y="2024.0" />
-      <point x="1609.2616266109374" y="78.0" />
-      <point x="1272.435722993481" y="78.0" />
-      <point x="61.25" y="29.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.KeyController" target="com.ic.unicamp.br.mc322.pacman.game.controller.GameController">
-      <point x="0.0" y="29.0" />
-      <point x="942.5784236453193" y="1436.0" />
-      <point x="972.9117569786526" y="1436.0" />
-      <point x="972.9117569786526" y="1664.0" />
-      <point x="1014.437660596109" y="1664.0" />
-      <point x="-13.799999999999955" y="-125.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Rectangle" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.GameObject">
-      <point x="5.6843418860808015E-14" y="-53.0" />
-      <point x="491.59495994427084" y="98.0" />
-      <point x="1184.935722993481" y="98.0" />
-      <point x="-26.25" y="29.0" />
+    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.strategy.Wizard" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.strategy.CrazyGhost">
+      <point x="0.0" y="-29.0" />
+      <point x="1624.0" y="983.0" />
+      <point x="1516.0" y="983.0" />
+      <point x="48.0" y="29.0" />
     </edge>
     <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character">
-      <point x="0.0" y="-149.0" />
-      <point x="1220.0784236453192" y="1078.0" />
-      <point x="1445.0116266109374" y="1078.0" />
-      <point x="0.0" y="149.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.ObstacleController" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Obstacle">
-      <point x="-158.63636363636374" y="-149.0" />
-      <point x="182.51796362641176" y="2450.0" />
-      <point x="5.053293277604098" y="2450.0" />
-      <point x="5.053293277604098" y="603.0" />
-      <point x="37.33333333333337" y="603.0" />
-      <point x="-74.66666666666663" y="41.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.BoardController" target="com.ic.unicamp.br.mc322.pacman.game.controller.KeyController">
-      <point x="90.0" y="-89.0" />
-      <point x="482.3284236453193" y="1436.0" />
-      <point x="870.9117569786526" y="1436.0" />
-      <point x="-71.66666666666663" y="29.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.ObstacleController" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Collectable">
-      <point x="-95.18181818181824" y="-149.0" />
-      <point x="245.97250908095725" y="2430.0" />
-      <point x="27.053293277604098" y="2430.0" />
-      <point x="27.053293277604098" y="750.0" />
-      <point x="689.6840891675375" y="750.0" />
-      <point x="-57.428571428571445" y="41.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman" target="com.ic.unicamp.br.mc322.pacman.game.controller.GameController">
-      <point x="-55.55555555555566" y="-173.0" />
-      <point x="1064.6821050405533" y="2004.0" />
-      <point x="936.237660596109" y="2004.0" />
-      <point x="-92.0" y="125.0" />
+      <point x="0.0" y="-125.0" />
+      <point x="1202.0" y="431.0" />
+      <point x="1287.25" y="431.0" />
+      <point x="-62.25" y="149.0" />
     </edge>
     <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Obstacle" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.GameObject">
-      <point x="-56.0" y="-41.0" />
-      <point x="56.0" y="78.0" />
-      <point x="1149.935722993481" y="78.0" />
-      <point x="-61.25" y="29.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.BoardController" target="com.ic.unicamp.br.mc322.pacman.game.controller.ObstacleController">
-      <point x="-180.0" y="89.0" />
-      <point x="212.32842364531928" y="1704.0" />
-      <point x="341.15432726277555" y="1704.0" />
-      <point x="0.0" y="-149.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.ObstacleController" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman">
-      <point x="63.45454545454544" y="-149.0" />
-      <point x="404.60887271732093" y="2420.0" />
-      <point x="1120.237660596109" y="2420.0" />
-      <point x="0.0" y="173.0" />
+      <point x="0.0" y="-41.0" />
+      <point x="346.625" y="83.0" />
+      <point x="787.0" y="83.0" />
+      <point x="-35.0" y="29.0" />
     </edge>
     <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Line" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Wall">
-      <point x="-74.66666666666669" y="-41.0" />
-      <point x="159.83333333333326" y="892.0" />
-      <point x="124.2166666666667" y="892.0" />
-      <point x="14.799999999999983" y="16.0" />
+      <point x="0.0" y="-41.0" />
+      <point x="600.0" y="827.0" />
+      <point x="496.375" y="827.0" />
+      <point x="18.5" y="16.0" />
     </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.PowerUp" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman">
-      <point x="50.25" y="29.0" />
-      <point x="1249.2616266109374" y="1058.0" />
-      <point x="1380.5784236453192" y="1058.0" />
-      <point x="1380.5784236453192" y="1994.0" />
-      <point x="1148.0154383738868" y="1994.0" />
-      <point x="27.77777777777783" y="-173.0" />
+    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.strategy.Random" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.strategy.CrazyGhost">
+      <point x="0.0" y="-29.0" />
+      <point x="1312.0" y="983.0" />
+      <point x="1420.0" y="983.0" />
+      <point x="-48.0" y="29.0" />
     </edge>
     <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Wall" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Obstacle">
       <point x="0.0" y="-16.0" />
-      <point x="109.41666666666674" y="603.0" />
-      <point x="112.0" y="603.0" />
-      <point x="0.0" y="41.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.utilities.ObstacleBuilder" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Collectable">
-      <point x="44.41666666666674" y="-53.0" />
-      <point x="569.995090311986" y="1078.0" />
-      <point x="665.310722993481" y="1078.0" />
-      <point x="665.310722993481" y="760.0" />
-      <point x="718.3983748818232" y="760.0" />
-      <point x="-28.71428571428578" y="41.0" />
+      <point x="477.875" y="431.0" />
+      <point x="402.625" y="431.0" />
+      <point x="56.0" y="41.0" />
     </edge>
     <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.GameController" target="com.ic.unicamp.br.mc322.pacman.game.controller.BoardController">
-      <point x="-124.20000000000005" y="-125.0" />
-      <point x="904.0376605961089" y="1704.0" />
-      <point x="482.3284236453193" y="1704.0" />
-      <point x="90.0" y="89.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.BoardController" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman">
+      <point x="0.0" y="-125.0" />
       <point x="0.0" y="89.0" />
-      <point x="392.3284236453193" y="1704.0" />
-      <point x="363.15432726277555" y="1704.0" />
-      <point x="363.15432726277555" y="2024.0" />
-      <point x="1009.1265494849979" y="2024.0" />
-      <point x="-111.11111111111109" y="-173.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Line" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character">
-      <point x="74.66666666666674" y="-41.0" />
-      <point x="309.16666666666674" y="892.0" />
-      <point x="293.5067169229234" y="892.0" />
-      <point x="293.5067169229234" y="456.0" />
-      <point x="1362.0116266109374" y="456.0" />
-      <point x="-83.0" y="149.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.ObstacleController" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Wall">
-      <point x="-31.727272727272748" y="-149.0" />
-      <point x="309.42705453550275" y="2410.0" />
-      <point x="52.50329327760414" y="2410.0" />
-      <point x="52.50329327760414" y="892.0" />
-      <point x="94.61666666666679" y="892.0" />
-      <point x="-14.799999999999955" y="16.0" />
     </edge>
     <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Circle" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Collectable">
-      <point x="-84.0" y="-41.0" />
-      <point x="1064.7616266109374" y="740.0" />
-      <point x="804.5412320246804" y="740.0" />
-      <point x="57.428571428571445" y="41.0" />
+      <point x="0.0" y="-41.0" />
+      <point x="0.0" y="41.0" />
     </edge>
     <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character">
-      <point x="83.33333333333326" y="-173.0" />
-      <point x="1203.5709939294422" y="2014.0" />
-      <point x="1552.7616266109374" y="2014.0" />
-      <point x="1552.7616266109374" y="466.0" />
-      <point x="1528.0116266109374" y="466.0" />
-      <point x="83.0" y="149.0" />
+      <point x="0.0" y="-173.0" />
+      <point x="1497.0" y="431.0" />
+      <point x="1411.75" y="431.0" />
+      <point x="62.25" y="149.0" />
     </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Rectangle" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character">
-      <point x="74.66666666666669" y="-53.0" />
-      <point x="566.2616266109374" y="892.0" />
-      <point x="538.8817169229234" y="892.0" />
-      <point x="538.8817169229234" y="466.0" />
-      <point x="1389.678293277604" y="466.0" />
-      <point x="-55.33333333333326" y="149.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.utilities.ObstacleBuilder" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.PowerUp">
-      <point x="222.08333333333326" y="-53.0" />
-      <point x="747.6617569786525" y="1058.0" />
-      <point x="1148.7616266109374" y="1058.0" />
-      <point x="-50.25" y="29.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Circle" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character">
-      <point x="84.0" y="-41.0" />
-      <point x="1232.7616266109374" y="760.0" />
-      <point x="1187.7616266109374" y="760.0" />
-      <point x="1187.7616266109374" y="476.0" />
-      <point x="1417.3449599442706" y="476.0" />
-      <point x="-27.666666666666742" y="149.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Obstacle" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character">
-      <point x="56.0" y="-41.0" />
-      <point x="168.0" y="446.0" />
-      <point x="1334.3449599442706" y="446.0" />
-      <point x="-110.66666666666674" y="149.0" />
+    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.strategy.Evasive" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost">
+      <point x="0.0" y="-29.0" />
+      <point x="882.0" y="827.0" />
+      <point x="1102.0" y="827.0" />
+      <point x="-100.0" y="125.0" />
     </edge>
     <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Collectable" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Obstacle">
       <point x="0.0" y="-41.0" />
-      <point x="747.112660596109" y="603.0" />
-      <point x="186.66666666666674" y="603.0" />
-      <point x="74.66666666666669" y="41.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.GameController" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Collectable">
-      <point x="-41.39999999999998" y="-125.0" />
-      <point x="986.8376605961089" y="1674.0" />
-      <point x="824.5784236453193" y="1674.0" />
-      <point x="824.5784236453193" y="750.0" />
-      <point x="775.8269463103946" y="750.0" />
-      <point x="28.714285714285666" y="41.0" />
+      <point x="112.0" y="431.0" />
+      <point x="290.625" y="431.0" />
+      <point x="-56.0" y="41.0" />
     </edge>
     <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Rectangle" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Wall">
-      <point x="-74.66666666666663" y="-53.0" />
-      <point x="416.9282932776041" y="882.0" />
-      <point x="139.01666666666677" y="882.0" />
-      <point x="29.599999999999994" y="16.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.utilities.ObstacleBuilder" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Wall">
-      <point x="-222.08333333333326" y="-53.0" />
-      <point x="303.495090311986" y="1038.0" />
-      <point x="105.61666666666679" y="1038.0" />
-      <point x="105.61666666666679" y="892.0" />
-      <point x="109.41666666666674" y="892.0" />
-      <point x="0.0" y="16.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.ObstacleController" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character">
-      <point x="158.63636363636363" y="-149.0" />
-      <point x="499.7906908991391" y="2450.0" />
-      <point x="1642.2616266109374" y="2450.0" />
-      <point x="1642.2616266109374" y="456.0" />
-      <point x="1555.678293277604" y="456.0" />
-      <point x="110.66666666666674" y="149.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.GameController" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman">
-      <point x="0.0" y="125.0" />
-      <point x="1028.237660596109" y="1994.0" />
-      <point x="1092.4598828183312" y="1994.0" />
-      <point x="-27.77777777777783" y="-173.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.controller.GameController" target="com.ic.unicamp.br.mc322.pacman.game.utilities.ObstacleBuilder">
-      <point x="-69.0" y="-125.0" />
-      <point x="959.237660596109" y="1684.0" />
-      <point x="813.5784236453193" y="1684.0" />
-      <point x="813.5784236453193" y="1426.0" />
-      <point x="658.8284236453193" y="1426.0" />
-      <point x="133.25" y="53.0" />
-    </edge>
-    <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost" target="com.ic.unicamp.br.mc322.pacman.game.controller.ObstacleController">
-      <point x="85.71428571428578" y="149.0" />
-      <point x="1305.792709359605" y="1446.0" />
-      <point x="1620.2616266109374" y="1446.0" />
-      <point x="1620.2616266109374" y="2430.0" />
-      <point x="436.3361454445937" y="2430.0" />
-      <point x="95.18181818181819" y="-149.0" />
+      <point x="0.0" y="-53.0" />
+      <point x="356.0" y="827.0" />
+      <point x="459.375" y="827.0" />
+      <point x="-18.5" y="16.0" />
     </edge>
     <edge source="com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character" target="com.ic.unicamp.br.mc322.pacman.game.gameobject.GameObject">
-      <point x="62.25" y="-149.0" />
-      <point x="1507.2616266109374" y="88.0" />
-      <point x="1254.935722993481" y="88.0" />
-      <point x="43.75" y="29.0" />
+      <point x="0.0" y="-149.0" />
+      <point x="1349.5" y="83.0" />
+      <point x="857.0" y="83.0" />
+      <point x="35.0" y="29.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.3131276901004304" x="821.5" y="1384.0" />
-  <SelectedNodes>
-    <node>com.ic.unicamp.br.mc322.pacman.game.utilities.ObstacleBuilder</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="0.4752313554708764" x="883.0" y="908.5" />
+  <SelectedNodes />
   <Categories>
     <Category>Methods</Category>
   </Categories>
