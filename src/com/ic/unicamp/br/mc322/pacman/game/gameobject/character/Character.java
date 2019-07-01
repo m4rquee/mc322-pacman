@@ -67,9 +67,4 @@ public abstract class Character extends GameObject {
         return Objects.equals(pos, character.pos) &&
                 Objects.equals(image, character.image);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(pos, image);
-    }
 }
