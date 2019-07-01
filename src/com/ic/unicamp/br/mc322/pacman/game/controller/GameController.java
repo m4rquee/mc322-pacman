@@ -1,8 +1,8 @@
 package com.ic.unicamp.br.mc322.pacman.game.controller;
 
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.GhostType;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.*;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.strategy.*;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Collectable;
 import com.ic.unicamp.br.mc322.pacman.game.utilities.Direction;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
@@ -40,8 +40,10 @@ public class GameController extends BoardController implements ActionListener {
 
     private void initGhosts() {
         ghosts = new ArrayList<>();
-        for (GhostType type : GhostType.values())
-            ghosts.add(new Ghost(new Point(ObstacleBuilder.spawnCoordinates.getX(), ObstacleBuilder.spawnCoordinates.getY()), type));
+        ghosts.add(new Chaser(ObstacleBuilder.spawnCoordinates));
+        ghosts.add(new Evasive(ObstacleBuilder.spawnCoordinates));
+        ghosts.add(new Wizard(ObstacleBuilder.spawnCoordinates));
+        ghosts.add(new Random(ObstacleBuilder.spawnCoordinates));
     }
 
     private void initGame() {
@@ -148,7 +150,7 @@ public class GameController extends BoardController implements ActionListener {
                 }
             }
             if (ghost.getType() == GhostType.WIZARD) {
-                ghost.setNextPos(obstacleController);
+                ((Wizard) ghost).setNextPos(obstacleController);
             }
         }
     }
