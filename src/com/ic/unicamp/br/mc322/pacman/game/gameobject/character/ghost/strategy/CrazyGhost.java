@@ -22,20 +22,6 @@ public abstract class CrazyGhost extends Ghost {
 
     protected void randomDirection() {
         int dir = new Random().nextInt(3);
-        switch (dir) {
-            case 0:
-                this.setDirection(Direction.RIGHT);
-                break;
-            case 1:
-                this.setDirection(Direction.UP);
-                break;
-            case 2:
-                this.setDirection(Direction.LEFT);
-                break;
-            case 3:
-                this.setDirection(Direction.DOWN);
-                break;
-
-        }
+        setDirection(Direction.values()[dir]);
     }
 }
