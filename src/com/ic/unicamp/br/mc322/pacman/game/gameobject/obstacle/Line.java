@@ -14,7 +14,6 @@ public class Line extends Wall {
         this.pos = pos;
         this.width = width;
         this.height = height;
-        this.shouldPontuate = false;
     }
 
     public Line(com.ic.unicamp.br.mc322.pacman.game.gameobject.Point x1, Point x2) {

@@ -15,7 +15,6 @@ public class Rectangle extends Wall {
         this.pos = pos;
         this.width = width;
         this.height = height;
-        this.shouldPontuate = false;
     }
 
     public Rectangle(Point pos) {

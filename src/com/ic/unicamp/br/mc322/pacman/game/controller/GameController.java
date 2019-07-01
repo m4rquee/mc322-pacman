@@ -3,6 +3,7 @@ package com.ic.unicamp.br.mc322.pacman.game.controller;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.Ghost;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.ghost.GhostType;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
+import com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle.Collectable;
 import com.ic.unicamp.br.mc322.pacman.game.utilities.Direction;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.utilities.ObstacleBuilder;
@@ -94,31 +95,29 @@ public class GameController extends BoardController implements ActionListener {
         } else if (KeyController.downDirection) {
             pacman.setDirection(Direction.DOWN);
         }
-        if (!obstacleController.collisionDetected(pacman.withFuturePosition())) {
+
+        if (!obstacleController.collisionDetected(pacman.withFuturePosition()))
             pacman.move();
-        } else {
+        else {
             pacman.setDirection(oldDirection);
-            if (!obstacleController.collisionDetected(pacman.withFuturePosition())) {
+            if (!obstacleController.collisionDetected(pacman.withFuturePosition()))
                 pacman.move();
-            }
-            if (obstacleController.getPontuate() != null) {
-                pacman.pontuate(obstacleController.getPontuate().getPontuation());
-                if (pacman.getPoints() >= POINTS_TO_GAIN_LIFE  && !pacman.hasAlreadyGainedLife()) {
-                    pacman.addLife();
-                }
-                if(obstacleController.getPontuate().getPontuation() == 100) {
-                    for(Ghost ghost : ghosts) {
-                        ghost.setAlreadyEaten(false);
-                    }
-                    pacman.setPowerUp(true);
-                }
-                obstacleController.setPontuate(null);
-                if (obstacleController.collectedAllPoints()) {
-                    inGame = false;
-                    levelNumber++;
-                    pacman.respawn();
-                    obstacleController.removeObstacles();
-                }
+        }
+
+        Collectable at = obstacleController.collectPoint(pacman);
+        if (at != null) {
+            if (at.givesPowerUp())
+                for (Ghost ghost : ghosts)
+                    ghost.setAlreadyEaten(false);
+
+            if (pacman.getPoints() >= POINTS_TO_GAIN_LIFE && !pacman.hasAlreadyGainedLife())
+                pacman.addLife();
+
+            if (obstacleController.collectedAllPoints()) {
+                inGame = false;
+                levelNumber++;
+                pacman.respawn();
+                obstacleController.removeObstacles();
             }
         }
     }

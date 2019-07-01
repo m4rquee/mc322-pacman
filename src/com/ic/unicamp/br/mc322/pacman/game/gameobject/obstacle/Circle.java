@@ -2,7 +2,6 @@ package com.ic.unicamp.br.mc322.pacman.game.gameobject.obstacle;
 
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.Point;
 import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Character;
-import com.ic.unicamp.br.mc322.pacman.game.gameobject.character.Pacman;
 
 import java.awt.*;
 
@@ -13,13 +12,12 @@ public class Circle extends Collectable {
     private static final int DEFAULT_SIZE = 15;
     private Color color;
 
-    public Circle(com.ic.unicamp.br.mc322.pacman.game.gameobject.Point pos, int pontuation) {
+    public Circle(Point pos, int pontuation) {
+        super(pontuation);
         this.pos = pos;
         this.width = DEFAULT_SIZE;
         this.height = DEFAULT_SIZE;
-        this.shouldPontuate = true;
         this.color = Color.YELLOW;
-        this.pontuation = pontuation;
     }
 
     public Circle(Point pos, Color color, int size, int pontuation) {
@@ -37,10 +35,6 @@ public class Circle extends Collectable {
 
     @Override
     public boolean collision(Character character) {
-        // TODO
-        if (!(character instanceof Pacman)) {
-            return false;
-        }
         int charX = character.getPos().getX();
         int charY = character.getPos().getY();
 

@@ -17,19 +17,10 @@ public class ObstacleController {
 
     private List<Wall> walls;
     private List<Collectable> collectables;
-    private Obstacle pontuate;
 
     ObstacleController() {
         this.walls = new LinkedList<>();
         this.collectables = new LinkedList<>();
-    }
-
-    void setPontuate(Obstacle pontuate) {
-        this.pontuate = pontuate;
-    }
-
-    Obstacle getPontuate() {
-        return this.pontuate;
     }
 
     private void removeObstacle(Wall wall) {
@@ -46,21 +37,21 @@ public class ObstacleController {
     }
 
     public boolean collisionDetected(Character character) {
-        for (Wall at : this.walls) {
+        for (Wall at : this.walls)
             if (at.collision(character))
                 return true;
-        }
 
-        for (Collectable at : collectables) {
-            if (at.collision(character)) {
-                if (at.shouldPontuate) {
-                    setPontuate(at);
-                    removeObstacle(at);
-                }
-                return true;
-            }
-        }
         return false;
+    }
+
+    public Collectable collectPoint(Pacman pacman) {
+        for (Collectable at : collectables)
+            if (at.collision(pacman)) {
+                removeObstacle(at);
+                at.givePoints(pacman);
+                return at;
+            }
+        return null;
     }
 
     void drawAllObstacles(Graphics g) {
@@ -100,7 +91,7 @@ public class ObstacleController {
         return null;
     }
 
-        boolean collectedAllPoints() {
+    boolean collectedAllPoints() {
         return this.collectables.size() == 0;
     }
 }
